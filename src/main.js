@@ -4,6 +4,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Routers from './router';
 import App from './app.vue';
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(VueRouter);
 

@@ -3,7 +3,7 @@
         border: solid 1px #f5f5f5;
         position: absolute;
         width: 100%;
-        height:100%;
+        height: 100%;
         display: block;
         text-align: center;
         padding: 10px 10px;
@@ -12,10 +12,10 @@
         #main {
             width: 95%;
             height: 95%;
-            margin:0 auto;
+            margin: 0 auto;
             box-sizing: border-box;
         }
-        p{
+        p {
             color: white;
         }
     }
@@ -34,7 +34,7 @@
     import ggdp from '@/functions/common'
     // 按需引入 ECharts 主模块
     let echarts = require('echarts/lib/echarts');
-    import china from  'echarts/map/js/china.js';
+    import china from 'echarts/map/js/china.js';
 
     require('echarts/lib/chart/map');
     require('echarts/lib/chart/lines');
@@ -212,7 +212,7 @@
                 planePath: 'arrow',
                 series: [],
                 fromdata: '北京',
-                color:['#02ACB2','#FFFF00','#FFA011','#A6141B','#00FF01']
+                color: ['#02ACB2', '#FFFF00', '#FFA011', '#A6141B', '#00FF01']
 
             }
         },
@@ -220,6 +220,12 @@
             drawLine() {
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('main'));
+
+
+                myChart.on('click', function (param) {
+                    console.log('地图的点击事件：', param);
+                });
+
                 // 绘制图表
                 myChart.setOption({
                     backgroundColor: '#11213A',
@@ -382,10 +388,7 @@
                                     color: 'red'
                                 },
                                 emphasis: {
-                                    color: 'red',
-                                    label: {
-                                        show: true
-                                    }
+                                    color: 'red'
                                 }
                             },
                             data: [
