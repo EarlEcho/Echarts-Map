@@ -68,11 +68,22 @@
                             color: '#fff'
                         }
                     },
+                    dataRange: {
+                        min: 0,
+                        max: 5000,
+                        x: 'right',
+                        y: 'bottom',
+                        text: [5000,0 ], // 文本，默认为数值文本
+                        calculable: true,
+                        color:['#103a65','#1B1F23','#2A333D'],
+                        splitNumber: 0,
+                    },
                     series: [
                         {
                             name: "中国",
                             type: "map",
                             mapType: "china",
+                            roam: true, //是否开启鼠标缩放和平移
                             zoom: 1.25,
                             selectedMode: false,
                             itemStyle: {
@@ -102,40 +113,7 @@
                                 }
                             },
                             data: [
-                                {name: '北京', value: this.randomData()},
-                                {name: '天津', value: this.randomData()},
-                                {name: '上海', value: this.randomData()},
-                                {name: '重庆', value: this.randomData()},
-                                {name: '河北', value: this.randomData()},
-                                {name: '河南', value: this.randomData()},
-                                {name: '云南', value: this.randomData()},
-                                {name: '辽宁', value: this.randomData()},
-                                {name: '黑龙江', value: this.randomData()},
-                                {name: '湖南', value: this.randomData()},
-                                {name: '安徽', value: this.randomData()},
-                                {name: '山东', value: this.randomData()},
-                                {name: '新疆', value: this.randomData()},
-                                {name: '江苏', value: this.randomData()},
-                                {name: '浙江', value: this.randomData()},
-                                {name: '江西', value: this.randomData()},
-                                {name: '湖北', value: this.randomData()},
-                                {name: '广西', value: this.randomData()},
-                                {name: '甘肃', value: this.randomData()},
-                                {name: '山西', value: this.randomData()},
-                                {name: '内蒙古', value: this.randomData()},
-                                {name: '陕西', value: this.randomData()},
-                                {name: '吉林', value: this.randomData()},
-                                {name: '福建', value: this.randomData()},
-                                {name: '贵州', value: this.randomData()},
-                                {name: '广东', value: this.randomData()},
-                                {name: '青海', value: this.randomData()},
-                                {name: '西藏', value: this.randomData()},
-                                {name: '四川', value: this.randomData()},
-                                {name: '宁夏', value: this.randomData()},
-                                {name: '海南', value: this.randomData()},
-                                {name: '台湾', value: this.randomData()},
-                                {name: '香港', value: this.randomData()},
-                                {name: '澳门', value: this.randomData()}
+                                /*默认数据是中国地图上的省*/
                             ],
                             markPoint: {
                                 symbol: 'circle',
@@ -148,6 +126,7 @@
                                 data: [
                                     {
                                         name: '广东',
+                                        value:10,
                                         coord: [113.23, 23.16]
                                     }, {
                                         name: '深圳',
@@ -188,7 +167,7 @@
                                     }
                                 ]
                             }
-                        }, {
+                        }, /*{
                             name: '线路',
                             type: 'lines',
                             zlevel: 2,
@@ -209,17 +188,17 @@
                                 }
                             },
                             data: [
-                                /*{
+                                {
                                     coords: [
                                         [102.56, 30.92],
                                         [114.87, 40.82]
                                     ]
-                                },*/
-                                /* {fromName: "成都", toName: "铜川", coords: [[102.56, 30.92], [109.11, 35.09]]},
+                                },
+                                /!* {fromName: "成都", toName: "铜川", coords: [[102.56, 30.92], [109.11, 35.09]]},
                                  {fromName: "成都", toName: "嘉峪关", coords: [[102.56, 30.92], [98.289152, 39.77313]]},
-                                 {fromName: "成都", toName: "广东", coords: [[102.56, 30.92], [113.23, 23.16]]}*/
+                                 {fromName: "成都", toName: "广东", coords: [[102.56, 30.92], [113.23, 23.16]]}*!/
                             ]
-                        }
+                        }*/
                     ]
                 });
             },
