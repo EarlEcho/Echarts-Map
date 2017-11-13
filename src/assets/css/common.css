@@ -1,4 +1,129 @@
+
 * {
     padding: 0;
     margin: 0;
+}
+
+.g-lf {
+    float: left;
+}
+
+.g-rf {
+    float: right;
+}
+
+.el-table th {
+    background-color: #2f6189 !important;
+}
+
+.el-table thead {
+    color: white !important;
+}
+
+.el-table__body, .el-table__footer, .el-table__header {
+    border-bottom: 5px solid #172f4b;
+}
+
+.el-table tr {
+    background-color: #1d3c5b;
+    color: white;
+}
+
+.el-table--enable-row-hover .el-table__body tr:hover > td {
+    background-color: #2f6189;
+}
+
+.el-table td, .el-table th {
+    padding: 6px 0;
+}
+
+.el-table .cell, .el-table th div {
+    padding-right: 0;
+}
+
+.el-table .cell, .el-table th div, .el-table--border td:first-child .cell, .el-table--border th:first-child .cell {
+    text-align: center;
+    padding-left: 0;
+}
+
+.el-table td, .el-table th.is-leaf {
+    border-bottom: 3px solid #172f4b;
+}
+
+.el-table--border::after, .el-table--group::after, .el-table::before {
+    background-color: #172f4b;
+}
+
+.el-table__empty-block {
+    background-color: #11213A;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/*数据框的通用头部样式*/
+.data-header-box {
+    height: 48px;
+    line-height: 48px;
+}
+
+.data-header-box .title {
+    color: white;
+    text-align: left;
+    padding: 0 15px;
+    font-weight: bold;
+    float: left;
+}
+
+.data-header-box .action-group {
+
+    width: 70px;
+    height: 100%;
+}
+
+.data-header-box .action-group .el-button {
+    background: transparent;
+    color: white;
+    padding: 5px;
+    border: none;
+    font-size: 18px;
+}
+
+.action-group .iconfont {
+    font-size: 18px;
+}
+
+.action-group .el-button + .el-button {
+    margin-left: 0;
+}
+
+/*数据框的通用底部样式*/
+.data-footer-box {
+    height: 42px;
+    line-height: 42px;
+}
+
+.data-footer-box .action-group {
+    display: inline-block;
+    text-align: center;
+    width: 70px;
+    height: 100%;
+}
+
+.data-footer-box .box-center {
+    display: inline-block;
+    text-align: center;
+    width: 104px;
+}
+
+.data-footer-box .box-center .el-button {
+    margin: 0 10px;
+}
+
+.data-footer-box .action-group .el-button {
+    background: transparent;
+    color: white;
+    padding: 5px;
+    border: none;
+    font-size: 18px;
 }

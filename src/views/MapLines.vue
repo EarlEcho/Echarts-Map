@@ -1,6 +1,5 @@
 <style scoped lang="less">
     .mian-box {
-        border: solid 1px #f5f5f5;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -9,28 +8,191 @@
         padding: 10px 10px;
         box-sizing: border-box;
         background-color: #11213A;
+        box-sizing: border-box;
         #main {
+            position: absolute;
+            top: 2%;
+            left: 3%;
             width: 95%;
             height: 95%;
-            margin: 0 auto;
-            box-sizing: border-box;
+            z-index: 0;
         }
-        p {
-            color: white;
+
+    }
+
+    .data-list-wrapper {
+        position: absolute;
+        top: 5px;
+        left: 2%;
+        z-index: 5;
+        width: 96%;
+        height: 99%;
+        box-sizing: border-box;
+    }
+
+    .left-wrapper {
+        float: left;
+        width: 40%;
+        height: 100%;
+        border: solid 1px red;
+        .real-time-data {
+            width: 452px;
+            height: 432px;
+            margin: 5% 0;
+            padding: 2px 0;
+            background: url(../assets/boxBk.png) no-repeat;
+            background-size: 100%;
+            .data-content {
+                width: 452px;
+                height: 334px;
+            }
+        }
+
+    }
+
+    .right-wrapper {
+        float: right;
+        width: 40%;
+        height: 100%;
+        border: solid 1px red;
+
+    }
+
+    .transaction-data {
+        width: 322px;
+        height: 400px;
+        margin: 5% 0;
+        padding: 2px 0;
+        background: url(../assets/smallBox.png) no-repeat;
+        background-size: 100%;
+        .data-content {
+            width: 322px;
+            height: 305px;
+        }
+        .transaction-item {
+            font-size: 14px;
+            font-weight: bold;
+            span{
+                color: #cccccc;
+                padding: 0 8px;
+            }
+            .el-row{
+                padding: 0 15px;
+            }
+            .el-col-8{
+                text-align: right;
+            }
+        }
+        .dark-item {
+            background-color: #1d3c5b;
+            height: 29px;
+            line-height: 29px;
+            color: #196ca5;
+        }
+        .light-item {
+            background-color: #172f4b;
+            height: 50px;
+            line-height: 50px;
+            color: #196ca5;
         }
     }
 </style>
 <template>
     <div class="mian-box">
-        <p>中国地图</p>
         <div id="main">
 
         </div>
+        <div class="data-list-wrapper">
+            <div class="left-wrapper">
+                <div class="real-time-data">
+                    <div class="data-header-box">
+                        <span class="title">title</span>
+                        <div class="action-group">
+                            <el-button icon="icon iconfont icon-fangda" @click="expandData"></el-button>
+                            <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
+                                <el-button icon="icon iconfont icon-wenhao1"></el-button>
+                            </el-tooltip>
+                        </div>
+                    </div>
+                    <div class="data-content">
+                        <el-table :data="tableData" size="small">
+                            <el-table-column prop="date" label="时间" width="45px"></el-table-column>
+                            <el-table-column prop="area" label="地区" width="45px"></el-table-column>
+                            <el-table-column prop="company" label="公司" width="82px"></el-table-column>
+                            <el-table-column prop="type" label="品种" width="75px"></el-table-column>
+                            <el-table-column prop="standard" label="规格" width="60px"></el-table-column>
+                            <el-table-column prop="num" label="数量" width="45px"></el-table-column>
+                            <el-table-column prop="price" label="单价" width="50px"></el-table-column>
+                            <el-table-column prop="allCount" label="总价" width="50px"></el-table-column>
+                        </el-table>
+                    </div>
+                    <div class="data-footer-box">
+                        <div class="action-group g-lf">
+                            <el-button icon="icon iconfont icon-caidan" @click="expandData"></el-button>
+                            <el-button icon="icon iconfont icon-jiugongge-copy"></el-button>
+                        </div>
+                        <div class="action-group box-center" >
+                            <el-button icon="icon iconfont icon-arrow-down-circle-left" @click="expandData"></el-button>
+                            <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
+                        </div>
+                        <div class="action-group g-rf">
+                            <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
+                            <el-button icon="icon iconfont icon-pie"></el-button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transaction-data">
+                    <div class="data-header-box">
+                        <span class="title">title</span>
+                        <div class="action-group">
+                            <el-button icon="icon iconfont icon-fangda" @click="expandData"></el-button>
+                            <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
+                                <el-button icon="icon iconfont icon-wenhao1"></el-button>
+                            </el-tooltip>
+                        </div>
+                    </div>
+                    <div class="data-content">
+                        <div class="transaction-item">
+                            <el-row class="dark-item">
+                                <el-col :span="8">
+                                    单日交易量：
+                                </el-col>
+                                <el-col :span="16">
+                                    <span>2124645</span>吨
+                                </el-col>
+                            </el-row>
+                            <el-row class="light-item">
+                                <el-col :span="8">
+                                    计：
+                                </el-col>
+                                <el-col :span="16">
+                                    <span>1578425</span>万元
+                                </el-col>
+                            </el-row>
+                        </div>
+
+                    </div>
+                    <div class="data-footer-box">
+                        <div class="action-group  g-rf">
+                            <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
+                            <el-button icon="icon iconfont icon-pie"></el-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-wrapper">
+
+            </div>
+        </div>
+
     </div>
 
 </template>
 
 <script>
+
+
     import ggdp from '@/functions/common'
     // 按需引入 ECharts 主模块
     let echarts = require('echarts/lib/echarts');
@@ -49,6 +211,48 @@
         props: [],
         data() {
             return {
+                tableData: [
+                    {
+                        date: '11.30',
+                        area: '成都',
+                        company: '某某公司',
+                        type: '一类',
+                        standard: '1#',
+                        num: '12',
+                        price: '354',
+                        allCount: '13213'
+
+                    }, {
+                        date: '11.30',
+                        area: '成都',
+                        company: '某某公司',
+                        type: '一类',
+                        standard: '1#',
+                        num: '15870',
+                        price: '354',
+                        allCount: '1320001'
+
+                    }, {
+                        date: '11.30',
+                        area: '成都',
+                        company: '某某公司',
+                        type: '一类',
+                        standard: '1#',
+                        num: '12',
+                        price: '354',
+                        allCount: '13213'
+
+                    }, {
+                        date: '11.30',
+                        area: '成都',
+                        company: '某某公司',
+                        type: '一类',
+                        standard: '1#',
+                        num: '12',
+                        price: '354',
+                        allCount: '13213'
+                    }
+                ],
                 geoCoordMap: {
                     '上海': [121.4648, 31.2891],
                     '东莞': [113.8953, 22.901],
@@ -181,7 +385,25 @@
                     [{
                         name: '北京'
                     }, {
+                        name: '葫芦岛',
+                        value: 30
+                    }],
+                    [{
+                        name: '北京'
+                    }, {
+                        name: '成都',
+                        value: 30
+                    }],
+                    [{
+                        name: '北京'
+                    }, {
                         name: '哈尔滨',
+                        value: 30
+                    }],
+                    [{
+                        name: '北京'
+                    }, {
+                        name: '鄂尔多斯',
                         value: 30
                     }],
                     [{
@@ -217,6 +439,9 @@
             }
         },
         methods: {
+            expandData: function () {
+                console.log('展开');
+            },
             drawLine() {
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('main'));
@@ -233,31 +458,26 @@
                     visualMap: {
                         min: 1000,
                         max: 5000,
-                        calculable: true,
+//                        calculable: true,
                         color: ['#43D0D6', '#062031'],
                         textStyle: {
                             color: '#fff'
                         }
                     },
+                    legend: {
+                        animation: false
+                    },
                     geo: {
                         map: 'china',
                         label: {
-                            emphasis: {
-                                show: false
-                            }
+                            emphasis: {show: false}
                         },
                         roam: true,
                         layoutSize: "108%",
                         zoom: 1.22,
                         itemStyle: {
-                            normal: {
-                                color: '#062031',
-                                borderWidth: 1.1,
-                                borderColor: '#43D0D6'
-                            },
-                            emphasis: {
-                                color: 'rgba(37, 43, 61, .5)'
-                            }
+                            normal: {color: '#062031', borderWidth: 1.1, borderColor: '#43D0D6'},
+                            emphasis: {color: 'rgba(37, 43, 61, .5)'}
                         }
 
                     },
@@ -278,9 +498,7 @@
                     var toCoord = _this.geoCoordMap[dataItem[1].name];
                     if (fromCoord && toCoord) {
                         res.push({
-                            fromName: dataItem[0].name,
-                            toName: dataItem[1].name,
-                            coords: [fromCoord, toCoord]
+                            fromName: dataItem[0].name, toName: dataItem[1].name, coords: [fromCoord, toCoord]
                         });
                     }
                 }
@@ -292,81 +510,50 @@
             let _this = this;
             [[this.fromdata, this.BJData]].forEach(function (item, i) {
                 _this.series.push(
-                    {
+                    /*{
                         type: 'lines',
                         zlevel: 2,
-                        effect: {
-                            show: true,
-                            period: 4,
-                            trailLength: 0,
-                            symbol: 'arrow',
-                            symbolSize: 7,
+                        effect: {  show: true,  period: 4,  trailLength: 0,  symbol: 'arrow',  symbolSize: 7,
                         },
-                        lineStyle: {
-                            normal: {
-                                width: 1.2,
-                                opacity: 0.6,
-                                curveness: 0.2,
-                                color: '#02ACB2'
-                            }
+                        lineStyle: {  normal: {      width: 1.2,      opacity: 0.6,      curveness: 0.2,      color: '#02ACB2'  }
                         },
                         data: _this.convertData(item[1])
-                    },
+                    },*/
                     //出发点
                     {
                         type: 'effectScatter',
                         coordinateSystem: 'geo',
                         zlevel: 2,
                         rippleEffect: {
-                            period: 4,
-                            brushType: 'stroke',
-                            scale: 4
+                            period: 4, brushType: 'stroke', scale: 4
                         },
                         symbol: 'circle',
                         symbolSize: function (val) {
                             return 4 + val[2] / 10;
                         },
                         itemStyle: {
-                            normal: {
-                                show: true,
-                                color: '#00FFFF'
-                            },
-                            emphasis: {
-                                show: true,
-                                color: '#00FFFF'
-                            }
+                            normal: {show: true, color: '#00FFFF'}, emphasis: {show: true, color: '#00FFFF'}
                         },
                         data: [{
-                            name: _this.fromdata,
-                            value: _this.geoCoordMap[item[0]].concat([100]),
+                            name: _this.fromdata, value: _this.geoCoordMap[item[0]].concat([100]),
                         }],
                     },
                     /*到达点*/
                     {
-                        type: 'scatter',
+                        type: 'effectScatter',
                         coordinateSystem: 'geo',
+                        rippleEffect: {
+                            period: 4, brushType: 'stroke', scale: 4
+                        },
                         zlevel: 2,
                         label: {
-                            normal: {
-                                show: true,
-                                position: 'right',
-                                offset: [5, 0],
-                                formatter: '{b}'
-                            },
-                            emphasis: {
-                                show: true
-                            }
+                            normal: {show: true, position: 'right', offset: [5, 0], formatter: '{b}'},
+                            emphasis: {show: true}
                         },
                         symbol: 'circle',
-                        symbolSize: 5,
+                        symbolSize: 15,
                         itemStyle: {
-                            normal: {
-                                show: false,
-                                color: '#00FFFF',
-                                textStyle: {
-                                    color: "white"
-                                }
-                            }
+                            normal: {show: false, color: '#00FFFF', textStyle: {color: "white"}}
                         },
                         data: item[1].map(function (dataItem) {
                             return {
@@ -375,72 +562,15 @@
                             };
                         }),
                         /*markPoint 表示  高亮点*/
-                        markPoint: {
-                            symbol: 'circle',
-                            symbolSize: 6,
-                            label: {
-                                normal: {
-                                    show: false
-                                }
-                            },
-                            itemStyle: {
-                                normal: {
-                                    color: 'red'
-                                },
-                                emphasis: {
-                                    color: 'red'
-                                }
-                            },
-                            data: [
-                                {
-                                    name: '广东',
-                                    value: 10,
-                                    coord: [113.23, 23.16]
-                                }, {
-                                    name: '深圳',
-                                    coord: [114.07, 22.62]
-                                }, {
-                                    name: '成都',
-                                    coord: [102.56, 30.92]
-                                }, {
-                                    name: '南京',
-                                    coord: [118.78, 32.04]
-                                }, {
-                                    name: '兰州',
-                                    coord: [103.73, 35.03]
-                                }, {
-                                    name: '武汉',
-                                    coord: [114.31, 30.5]
-                                }, {
-                                    name: '义乌',
-                                    coord: [120.06, 29.32]
-                                }, {
-                                    name: '抚顺',
-                                    coord: [123.97, 41.97]
-                                }, {
-                                    name: '拉萨',
-                                    coord: [91.11, 30.97]
-                                }, {
-                                    name: '曲靖',
-                                    coord: [103.79, 25.51]
-                                }, {
-                                    name: '嘉峪关',
-                                    coord: [98.289152, 39.77313]
-                                }, {
-                                    name: '张家口',
-                                    coord: [114.87, 40.82]
-                                }, {
-                                    name: '铜川',
-                                    coord: [109.11, 35.09]
-                                }
-                            ]
-                        }
+                        /*markPoint: {  symbol: 'circle',  symbolSize: 6,  label: {      normal: {          show: false      }  },  itemStyle: {      normal: {          color: 'red'      },      emphasis: {          color: 'red'      }  },  data: [      {          name: '广东',          value: 10,          coord: [113.23, 23.16]      }, {          name: '深圳',          coord: [114.07, 22.62]      }, {          name: '成都',          coord: [102.56, 30.92]      }, {          name: '南京',          coord: [118.78, 32.04]      }, {          name: '兰州',          coord: [103.73, 35.03]      }, {          name: '武汉',          coord: [114.31, 30.5]      }, {          name: '义乌',          coord: [120.06, 29.32]      }, {          name: '抚顺',          coord: [123.97, 41.97]      }, {          name: '拉萨',          coord: [91.11, 30.97]      }, {          name: '曲靖',          coord: [103.79, 25.51]      }, {          name: '嘉峪关',          coord: [98.289152, 39.77313]      }, {          name: '张家口',          coord: [114.87, 40.82]      }, {          name: '铜川',          coord: [109.11, 35.09]      }  ]
+                        }*/
                     }
                 );
             });
-            setTimeout(function () {
-                _this.drawLine();
-            }, 1000)
+            let map = setInterval(function () {
+//                _this.drawLine();
+                clearInterval(map);
+            }, 500)
         }
     }
 </script>

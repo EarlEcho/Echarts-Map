@@ -6,7 +6,20 @@ import Routers from './router';
 import App from './app.vue';
 import 'element-ui/lib/theme-chalk/index.css'
 
+import {Table,TableColumn,Button,Tooltip,Row,Col} from 'element-ui'
+
+
+
+
 Vue.use(VueRouter);
+
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Button);
+Vue.use(Tooltip);
+Vue.use(Row);
+Vue.use(Col);
+
 
 // 路由配置
 const RouterConfig = {
