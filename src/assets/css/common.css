@@ -4,12 +4,28 @@
     margin: 0;
 }
 
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
 .g-lf {
     float: left;
 }
 
 .g-rt {
     float: right;
+}
+
+.red {
+    color: #ff0000;
+}
+
+.green {
+    color: #00ff00;
 }
 
 .el-table th {
@@ -100,13 +116,13 @@
 .data-footer-box {
     height: 42px;
     line-height: 42px;
+    padding: 0 10px;
 }
 
 .data-footer-box .action-group {
-    display: inline-block;
     text-align: center;
-    width: 70px;
     height: 100%;
+
 }
 
 .data-footer-box .box-center {
@@ -144,6 +160,7 @@
 .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
     border: none;
     color: white;
+    width: 132px;
     background-color: #2f6189;
 }
 
@@ -151,4 +168,45 @@
     color: #1291de;
     width: 130px;
     text-align: center;
+}
+
+/*多个select的group*/
+.select-group-wrapper {
+
+}
+
+.select-group-wrapper .el-select .el-input__inner {
+    border-radius: 0;
+    background-color: #5b6c7f;
+    color: #c6c7c8;
+    width: 117px;
+    vertical-align: middle;
+}
+.select-group-wrapper button {
+    border-radius: 0;
+    background-color: #48515c;
+    color: #cccccc;
+    width: 64px;
+    vertical-align: middle;
+}
+.select-group-wrapper .el-button:focus, .el-button:hover {
+    color: #c6c7c8;
+    background-color: #234b6c;
+}
+.el-select-dropdown {
+    background-color: #5b6c7f;
+    border: none;
+    border-radius: 0;
+}
+
+.el-select-dropdown__item {
+    color: #c6c7c8;
+}
+
+.el-popper[x-placement^=bottom] .popper__arrow, .el-popper[x-placement^=bottom] .popper__arrow::after {
+    border-bottom-color: #5b6c7f;
+}
+
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+    background-color: #234b6c;
 }

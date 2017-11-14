@@ -6,9 +6,7 @@ import Routers from './router';
 import App from './app.vue';
 import 'element-ui/lib/theme-chalk/index.css'
 
-import {Table,TableColumn,Button,Tooltip,Row,Col,Tabs,TabPane} from 'element-ui'
-
-
+import {Table, TableColumn, Button, Tooltip, Row, Col, Tabs, TabPane, Dialog, Select, Option} from 'element-ui'
 
 
 Vue.use(VueRouter);
@@ -21,26 +19,30 @@ Vue.use(Row);
 Vue.use(Col);
 Vue.use(Tabs);
 Vue.use(TabPane);
+Vue.use(Dialog);
+Vue.use(Select);
+Vue.use(Option);
+
 
 
 // 路由配置
 const RouterConfig = {
-  mode: 'history',
-  routes: Routers
+    mode: 'history',
+    routes: Routers
 };
 const router = new VueRouter(RouterConfig);
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.title) {//如果设置标题，拦截后设置标题
-    document.title = to.meta.title
-  }
-  next()
+    if (to.meta.title) {//如果设置标题，拦截后设置标题
+        document.title = to.meta.title
+    }
+    next()
 });
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router: router,
-  render: h => h(App)
+    el: '#app',
+    router: router,
+    render: h => h(App)
 });
 
 
