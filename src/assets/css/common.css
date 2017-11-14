@@ -172,7 +172,7 @@
 
 /*多个select的group*/
 .select-group-wrapper {
-
+    padding: 30px 10px 10px 10px;
 }
 
 .select-group-wrapper .el-select .el-input__inner {
@@ -181,18 +181,23 @@
     color: #c6c7c8;
     width: 117px;
     vertical-align: middle;
+    border: solid 1px #46586c;
 }
+
 .select-group-wrapper button {
     border-radius: 0;
     background-color: #48515c;
     color: #cccccc;
     width: 64px;
     vertical-align: middle;
+    border: solid 1px #46586c;
 }
+
 .select-group-wrapper .el-button:focus, .el-button:hover {
     color: #c6c7c8;
     background-color: #234b6c;
 }
+
 .el-select-dropdown {
     background-color: #5b6c7f;
     border: none;
@@ -209,4 +214,34 @@
 
 .el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
     background-color: #234b6c;
+}
+
+.expand-dialog .el-dialog {
+    background: url(../popupTable.png) no-repeat;
+    background-size: 100%;
+    box-shadow: none;
+    border: none;
+}
+
+.el-dialog__wrapper {
+    background: rgba(17, 33, 58, 0.8);
+}
+
+.el-dialog__header, .el-dialog__body {
+    padding: 0;
+}
+
+.el-dialog__header .el-dialog__headerbtn {
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    top: 20px;
+    right: 35px;
+}
+
+.el-dialog__headerbtn .el-icon {
+    color: white;
+    font-size: 18px;
+    line-height: 24px;
 }
