@@ -1,14 +1,8 @@
 <style scoped lang="less">
     .mian-box {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: block;
-        text-align: center;
-        padding: 10px 10px;
-        box-sizing: border-box;
-        background-color: #11213A;
-        box-sizing: border-box;
+        div{
+            box-sizing: border-box;
+        }
         #main {
             position: absolute;
             top: 2%;
@@ -16,70 +10,73 @@
             width: 95%;
             height: 95%;
             z-index: 0;
+            box-sizing: border-box;
+        }
+        .sys-header-wrapper{
+            height: 164px;
+            width: 100%;
         }
 
     }
 
     .data-list-wrapper {
-        position: absolute;
-        top: 5px;
-        left: 2%;
-        z-index: 5;
-        width: 96%;
-        height: 99%;
+        width: 452px;
+        height: 85%;
         box-sizing: border-box;
     }
 
     .left-wrapper {
         float: left;
-        width: 40%;
+        width: 452px;
         height: 100%;
         border: solid 1px red;
+        box-sizing: border-box;
         .real-time-data {
-            width: 452px;
-            height: 432px;
-            margin: 5% 0;
+            width: 100%;
+            height: 433px;
             padding: 2px 0;
             background: url(../assets/boxBk.png) no-repeat;
+            box-sizing: border-box;
             background-size: 100%;
             .data-content {
-                width: 452px;
-                height: 334px;
+                width: 100%;
+                /*height: 334px;*/
             }
         }
 
     }
+
+
 
     .right-wrapper {
         float: right;
         width: 40%;
         height: 100%;
         border: solid 1px red;
-
     }
 
     .transaction-data {
-        width: 322px;
-        height: 400px;
-        margin: 5% 0;
+        width: 70%;
+        height: 42%;
+        margin: 3% 0;
         padding: 2px 0;
         background: url(../assets/smallBox.png) no-repeat;
         background-size: 100%;
         .data-content {
-            width: 322px;
-            height: 305px;
+            width: 100%;
+            /*height: 305px;*/
         }
         .transaction-item {
             font-size: 14px;
             font-weight: bold;
-            span{
+            span {
                 color: #cccccc;
                 padding: 0 8px;
             }
-            .el-row{
+            .el-row {
                 padding: 0 15px;
             }
-            .el-col-8{
+            .el-col-8 {
                 text-align: right;
             }
         }
@@ -96,10 +93,16 @@
             color: #196ca5;
         }
     }
+
 </style>
 <template>
     <div class="mian-box">
+        <!-- 最底部的地图  -->
         <div id="main">
+
+        </div>
+        <!--页面头部的logo和导航栏-->
+        <div class="sys-header-wrapper">
 
         </div>
         <div class="data-list-wrapper">
@@ -116,14 +119,14 @@
                     </div>
                     <div class="data-content">
                         <el-table :data="tableData" size="small">
-                            <el-table-column prop="date" label="时间" width="45px"></el-table-column>
-                            <el-table-column prop="area" label="地区" width="45px"></el-table-column>
-                            <el-table-column prop="company" label="公司" width="82px"></el-table-column>
-                            <el-table-column prop="type" label="品种" width="75px"></el-table-column>
-                            <el-table-column prop="standard" label="规格" width="60px"></el-table-column>
-                            <el-table-column prop="num" label="数量" width="45px"></el-table-column>
-                            <el-table-column prop="price" label="单价" width="50px"></el-table-column>
-                            <el-table-column prop="allCount" label="总价" width="50px"></el-table-column>
+                            <el-table-column prop="date" label="时间"></el-table-column>
+                            <el-table-column prop="area" label="地区" ></el-table-column>
+                            <el-table-column prop="company" label="公司"></el-table-column>
+                            <el-table-column prop="type" label="品种"></el-table-column>
+                            <el-table-column prop="standard" label="规格"></el-table-column>
+                            <el-table-column prop="num" label="数量"></el-table-column>
+                            <el-table-column prop="price" label="单价"></el-table-column>
+                            <el-table-column prop="allCount" label="总价"></el-table-column>
                         </el-table>
                     </div>
                     <div class="data-footer-box">
@@ -131,7 +134,7 @@
                             <el-button icon="icon iconfont icon-caidan" @click="expandData"></el-button>
                             <el-button icon="icon iconfont icon-jiugongge-copy"></el-button>
                         </div>
-                        <div class="action-group box-center" >
+                        <div class="action-group box-center">
                             <el-button icon="icon iconfont icon-arrow-down-circle-left" @click="expandData"></el-button>
                             <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                         </div>

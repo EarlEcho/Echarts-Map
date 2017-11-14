@@ -6,7 +6,7 @@ import Routers from './router';
 import App from './app.vue';
 import 'element-ui/lib/theme-chalk/index.css'
 
-import {Table,TableColumn,Button,Tooltip,Row,Col} from 'element-ui'
+import {Table,TableColumn,Button,Tooltip,Row,Col,Tabs,TabPane} from 'element-ui'
 
 
 
@@ -19,6 +19,8 @@ Vue.use(Button);
 Vue.use(Tooltip);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Tabs);
+Vue.use(TabPane);
 
 
 // 路由配置
