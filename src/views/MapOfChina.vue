@@ -69,16 +69,12 @@
                 }
             }
             .dark-item {
-                background-color: #1d3c5b;
                 height: 29px;
                 line-height: 29px;
-                color: #196ca5;
             }
             .light-item {
-                background-color: #172f4b;
                 height: 50px;
                 line-height: 50px;
-                color: #196ca5;
             }
         }
         .right-data-wrapper {

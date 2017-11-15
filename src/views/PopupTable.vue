@@ -8,7 +8,7 @@
         margin: 37px 60px;
         background: url(../assets/popupInner.png) no-repeat;
         background-size: 100%;
-        height: 777px;
+        height: 900px;
         .tooltip{
             text-align: right;
             padding: 2px 10px 0 10px;
@@ -34,7 +34,7 @@
         }
     }
     .expand-dialog .el-dialog {
-        /*height: 917px;*/
+        max-height: 917px;
     }
     .el-button .el-tooltip .item .el-button--default{
 
@@ -45,7 +45,7 @@
         <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
 
         <div class="expand-dialog">
-            <el-dialog title="提示" :visible.sync="dialogVisible" width="75%" top="12vh">
+            <el-dialog :visible.sync="dialogVisible" width="75%" top="12vh">
                 <div class="content-wrapper">
                     <p class="tooltip">
                         <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">

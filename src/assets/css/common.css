@@ -28,6 +28,18 @@
     color: #00ff00;
 }
 
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
 .el-table th {
     background-color: #2f6189 !important;
 }
@@ -75,72 +87,6 @@
     color: white;
     font-weight: bold;
     font-size: 16px;
-}
-
-/*数据框的通用头部样式*/
-.data-header-box {
-    height: 48px;
-    line-height: 48px;
-}
-
-.data-header-box .title {
-    color: white;
-    text-align: left;
-    padding: 0 15px;
-    font-weight: bold;
-    float: left;
-}
-
-.data-header-box .action-group {
-    width: 70px;
-    height: 100%;
-}
-
-.data-header-box .action-group .el-button {
-    background: transparent;
-    color: white;
-    padding: 5px;
-    border: none;
-    font-size: 18px;
-}
-
-.action-group .iconfont {
-    font-size: 18px;
-}
-
-.action-group .el-button + .el-button {
-    margin-left: 0;
-}
-
-/*数据框的通用底部样式*/
-.data-footer-box {
-    height: 42px;
-    line-height: 42px;
-    padding: 0 10px;
-}
-
-.data-footer-box .action-group {
-    text-align: center;
-    height: 100%;
-
-}
-
-.data-footer-box .box-center {
-    display: inline-block;
-    text-align: center;
-    width: 104px;
-}
-
-.data-footer-box .box-center .el-button {
-    margin: 0 10px;
-}
-
-.data-footer-box .action-group .el-button {
-    background: transparent;
-    color: white;
-    padding: 5px;
-    border: none;
-    font-size: 18px;
 }
 
 /*覆盖的tab选项卡样式*/
@@ -229,6 +175,7 @@
 
 .el-dialog__header, .el-dialog__body {
     padding: 0;
+    padding-top: 15px;
 }
 
 .el-dialog__header .el-dialog__headerbtn {
@@ -245,3 +192,97 @@
     font-size: 18px;
     line-height: 24px;
 }
+
+/*数据框的通用头部样式*/
+.data-header-box {
+    height: 48px;
+    line-height: 48px;
+}
+
+.data-header-box .title {
+    color: white;
+    text-align: left;
+    padding: 0 15px;
+    font-weight: bold;
+    float: left;
+}
+
+.data-header-box .action-group {
+    width: 70px;
+    height: 100%;
+}
+
+.data-header-box .action-group .el-button {
+    background: transparent;
+    color: white;
+    padding: 5px;
+    border: none;
+    font-size: 18px;
+}
+
+.action-group .iconfont {
+    font-size: 18px;
+}
+
+.action-group .el-button + .el-button {
+    margin-left: 0;
+}
+
+/*数据框的通用底部样式*/
+.data-footer-box {
+    height: 42px;
+    line-height: 42px;
+    padding: 0 10px;
+}
+
+.data-footer-box .action-group {
+    text-align: center;
+    height: 100%;
+
+}
+
+.data-footer-box .box-center {
+    display: inline-block;
+    text-align: center;
+    width: 104px;
+}
+
+.data-footer-box .box-center .el-button {
+    margin: 0 10px;
+}
+
+.data-footer-box .action-group .el-button {
+    background: transparent;
+    color: white;
+    padding: 5px;
+    border: none;
+    font-size: 18px;
+}
+
+/*页面头部的通用样式*/
+.sys-header-box {
+    width: 100%;
+    height: 164px;
+    background: url(../logo.png) no-repeat;
+    border: solid 1px;
+    background-size: 100%;
+}
+
+/*row col 的间隔色*/
+.dark-item {
+    background-color: #1d3c5b;
+    height: 30px;
+    line-height: 30px;
+    color: #196ca5;
+}
+
+.light-item {
+    background-color: #172f4b;
+    height: 30px;
+    line-height: 30px;
+    color: #196ca5;
+}
+
+/*菜单栏*/
+
+
