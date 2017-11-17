@@ -1,4 +1,4 @@
-<style scoped lang="less">
+<style lang="less">
     .mian-box {
 
         div {
@@ -19,6 +19,7 @@
             padding: 0 35px;
             position: relative;
             z-index: 10;
+            overflow: hidden;
         }
         .sys-header-box {
             width: 100%;
@@ -90,6 +91,12 @@
             .data-content {
                 height: 405px;
             }
+            .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
+                width: 132px;
+            }
+            .data-content .el-tabs__item {
+                width: 130px;
+            }
         }
         .daily-price-table {
             width: 100%;
@@ -104,6 +111,7 @@
                 border-left: solid 1px #11213A;
             }
         }
+
     }
 </style>
 <template>
@@ -120,15 +128,7 @@
                 <!--左侧数据-->
                 <div class="left-data-wrapper g-lf">
                     <div class="real-time-table">
-                        <div class="data-header-box">
-                            <span class="title">title</span>
-                            <div class="action-group g-rt">
-                                <el-button icon="icon iconfont icon-fangda" @click="expandData"></el-button>
-                                <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                                    <el-button icon="icon iconfont icon-wenhao1"></el-button>
-                                </el-tooltip>
-                            </div>
-                        </div>
+                        <data-header-box item-title="实时交易数据"></data-header-box>
                         <div class="data-content">
                             <el-table :data="realTimeData" size="small" fit>
                                 <el-table-column prop="date" label="时间" width="40px"></el-table-column>
@@ -141,32 +141,10 @@
                                 <el-table-column prop="allCount" label="总价" width="53px"></el-table-column>
                             </el-table>
                         </div>
-                        <div class="data-footer-box clearfix">
-                            <div class="action-group g-lf">
-                                <el-button icon="icon iconfont icon-caidan" @click="expandData"></el-button>
-                                <el-button icon="icon iconfont icon-jiugongge-copy"></el-button>
-                            </div>
-                            <div class="action-group box-center">
-                                <el-button icon="icon iconfont icon-arrow-down-circle-left"
-                                           @click="expandData"></el-button>
-                                <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
-                            </div>
-                            <div class="action-group g-rt">
-                                <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
-                                <el-button icon="icon iconfont icon-pie"></el-button>
-                            </div>
-                        </div>
+                        <data-footer-box :left-item="true" :center-item="true"></data-footer-box>
                     </div>
                     <div class="transaction-data-table">
-                        <div class="data-header-box">
-                            <span class="title">title</span>
-                            <div class="action-group g-rt">
-                                <el-button icon="icon iconfont icon-fangda" @click="expandData"></el-button>
-                                <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                                    <el-button icon="icon iconfont icon-wenhao1"></el-button>
-                                </el-tooltip>
-                            </div>
-                        </div>
+                        <data-header-box item-title="交易数据分析"></data-header-box>
                         <div class="data-content">
                             <div class="transaction-item">
                                 <el-row class="dark-item">
@@ -188,27 +166,15 @@
                             </div>
 
                         </div>
-                        <div class="data-footer-box clearfix">
-                            <div class="action-group  g-rt">
-                                <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
-                                <el-button icon="icon iconfont icon-pie"></el-button>
-                            </div>
-                        </div>
+                        <data-footer-box :left-item="false" :center-item="false"></data-footer-box>
+
                     </div>
                 </div>
 
                 <!--右侧数据-->
                 <div class="right-data-wrapper g-rt">
                     <div class="daily-volume-table">
-                        <div class="data-header-box">
-                            <span class="title">title</span>
-                            <div class="action-group g-rt">
-                                <el-button icon="icon iconfont icon-fangda" @click="expandData"></el-button>
-                                <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                                    <el-button icon="icon iconfont icon-wenhao1"></el-button>
-                                </el-tooltip>
-                            </div>
-                        </div>
+                        <data-header-box item-title="今日成交价"></data-header-box>
                         <div class="data-content">
                             <el-tabs v-model="tabActive" type="card">  <!--34-->
                                 <el-tab-pane label="螺纹钢" name="first">
@@ -231,27 +197,19 @@
 
                         </div>
                         <div class="data-footer-box clearfix">
-                            <div class="action-group box-center">
+                            <div class="action-group center">
                                 <el-button icon="icon iconfont icon-arrow-down-circle-left"
                                            @click="expandData"></el-button>
                                 <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                             </div>
-                            <div class="action-group g-rt">
+                            <div class="action-group g-rt right">
                                 <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
                                 <el-button icon="icon iconfont icon-weibiaoti11"></el-button>
                             </div>
                         </div>
                     </div>
                     <div class="daily-price-table">
-                        <div class="data-header-box">
-                            <span class="title">title</span>
-                            <div class="action-group g-rt">
-                                <el-button icon="icon iconfont icon-fangda" @click="expandData"></el-button>
-                                <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                                    <el-button icon="icon iconfont icon-wenhao1"></el-button>
-                                </el-tooltip>
-                            </div>
-                        </div>
+                        <data-header-box item-title="今日价格指数"></data-header-box>
                         <div class="data-content">
                             <el-row>
                                 <el-col :span="12">
@@ -275,12 +233,12 @@
                             </el-row>
                         </div>
                         <div class="data-footer-box clearfix">
-                            <div class="action-group box-center">
+                            <div class="action-group center">
                                 <el-button icon="icon iconfont icon-arrow-down-circle-left"
                                            @click="expandData"></el-button>
                                 <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                             </div>
-                            <div class="action-group g-rt">
+                            <div class="action-group g-rt right">
                                 <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
                                 <el-button icon="icon iconfont icon-weibiaoti11"></el-button>
                             </div>
@@ -309,10 +267,12 @@
     // 引入提示框和标题组件
     require('echarts/lib/component/tooltip');
     require('echarts/lib/component/title');
+    import DataHeaderBox from '@/components/ToolTop'
+    import DataFooterBox from '@/components/ToolBottom'
 
     export default {
         name: '',
-        components: {},
+        components: {DataHeaderBox,DataFooterBox},
         props: [],
         data() {
             return {

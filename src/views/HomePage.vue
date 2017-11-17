@@ -79,6 +79,7 @@
             color: white;
             transform: skewX(-20deg);
             background-color: #409EFF;
+            /*font-weight: 600;*/
         }
         .el-menu-item.is-active {
             background-color: #409EFF;
@@ -113,7 +114,7 @@
 
     .logo-header-navbar {
         width: 400px;
-        margin: 65px 100px;
+        margin: 70px 12%;
         display: inline-block;
         height: 30px;
         line-height: 30px;
@@ -128,10 +129,18 @@
             background-color: #11213a;
             transform: skewX(40deg);
             margin-right: 10px;
+            border-bottom-color: #2ca1f4 !important;
             span {
                 display: inline-block;
                 -webkit-transform: skew(-40deg);
-
+                vertical-align: top;
+                line-height: 30px;
+            }
+            .iconfont {
+                color: white;
+                vertical-align: bottom;
+                padding-right: 5px;
+                line-height: 30px;
             }
         }
         .el-menu-item.is-active {
@@ -151,8 +160,9 @@
             <div class="homepage-navbar clearfix">
                 <el-menu :default-active="logoHeaderActive" mode="horizontal" class="logo-header-navbar">
                     <el-menu-item index="1"><span>首页</span></el-menu-item>
-                    <el-menu-item index="2"><span>云仓储</span></el-menu-item>
-                    <el-menu-item index="3"><span>交易监控</span></el-menu-item>
+                    <el-menu-item index="2"><span><i class="icon iconfont icon-tilewarehouse"></i>云仓储</span>
+                    </el-menu-item>
+                    <el-menu-item index="3"><span><i class="icon iconfont icon-chart"></i>交易监控</span></el-menu-item>
                 </el-menu>
             </div>
         </div>

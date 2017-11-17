@@ -2,17 +2,17 @@
 
 </style>
 <template>
-    <div class="data-footer-box">
-        <div class="action-group g-lf" v-if="showLeft">
+    <div class="data-footer-box clearfix">
+        <div class="action-group g-lf left" v-if="showLeft">
             <el-button icon="icon iconfont icon-caidan" @click="expandData"></el-button>
             <el-button icon="icon iconfont icon-jiugongge-copy"></el-button>
         </div>
-        <div class="action-group box-center" v-if="showCenter">
+        <div class="action-group center" v-if="showCenter">
             <el-button icon="icon iconfont icon-arrow-down-circle-left"
                        @click="expandData"></el-button>
             <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
         </div>
-        <div class="action-group g-rt">
+        <div class="action-group g-rt right">
             <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
             <el-button icon="icon iconfont icon-pie"></el-button>
         </div>

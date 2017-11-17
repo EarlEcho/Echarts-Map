@@ -106,13 +106,11 @@
 .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
     border: none;
     color: white;
-    width: 132px;
     background-color: #2f6189;
 }
 
 .data-content .el-tabs__item {
     color: #1291de;
-    width: 130px;
     text-align: center;
 }
 
@@ -167,6 +165,7 @@
     background-size: 100%;
     box-shadow: none;
     border: none;
+    padding: 0 0 40px 0;
 }
 
 .el-dialog__wrapper {
@@ -236,15 +235,12 @@
 }
 
 .data-footer-box .action-group {
-    text-align: center;
+    display: inline-block;
     height: 100%;
-
+    width: 33.2%;
 }
 
 .data-footer-box .box-center {
-    display: inline-block;
-    text-align: center;
-    width: 104px;
 }
 
 .data-footer-box .box-center .el-button {
@@ -264,7 +260,6 @@
     width: 100%;
     height: 164px;
     background: url(../logo.png) no-repeat;
-    border: solid 1px;
     background-size: 100%;
 }
 
