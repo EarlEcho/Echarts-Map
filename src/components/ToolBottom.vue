@@ -4,8 +4,8 @@
 <template>
     <div class="data-footer-box clearfix">
         <div class="action-group g-lf left" v-if="showLeft">
-            <el-button icon="icon iconfont icon-caidan" @click="expandData"></el-button>
-            <el-button icon="icon iconfont icon-jiugongge-copy"></el-button>
+            <el-button icon="icon iconfont icon-caidan1" @click="expandData"></el-button>
+            <el-button icon="icon iconfont icon-jiugongge"></el-button>
         </div>
         <div class="action-group center" v-if="showCenter">
             <el-button icon="icon iconfont icon-arrow-down-circle-left"
@@ -14,7 +14,7 @@
         </div>
         <div class="action-group g-rt right">
             <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
-            <el-button icon="icon iconfont icon-pie"></el-button>
+            <el-button icon="icon iconfont icon-pie" @click="showPieChart"></el-button>
         </div>
     </div>
 </template>
@@ -35,6 +35,9 @@
         },
         methods: {
             expandData: function () {
+
+            },
+            showPieChart:function () {
 
             }
         }

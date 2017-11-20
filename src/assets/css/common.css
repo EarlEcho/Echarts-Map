@@ -28,6 +28,22 @@
     color: #00ff00;
 }
 
+.yellow {
+    color: #cccc00;
+}
+
+.blue {
+    color: #00ccff;
+}
+
+.orange {
+    color: #ff6600;
+}
+
+.pink {
+    color: #ff99ff;
+}
+
 .center {
     text-align: center;
 }
@@ -88,7 +104,8 @@
     font-weight: bold;
     font-size: 16px;
 }
-
+.inner-table{
+}
 /*覆盖的tab选项卡样式*/
 .data-content .el-tabs--card > .el-tabs__header {
     border: none;
@@ -128,6 +145,11 @@
     border: solid 1px #46586c;
 }
 
+.select-group-wrapper .el-form-item {
+    vertical-align: middle;
+    margin-bottom: 0px;
+}
+
 .select-group-wrapper button {
     border-radius: 0;
     background-color: #48515c;
@@ -158,6 +180,38 @@
 
 .el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
     background-color: #234b6c;
+}
+
+/*覆盖的data-picker样式*/
+.el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 135px;
+}
+
+.el-picker-panel {
+    color: white;
+    border: 1px solid #dfe4ed;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+    background: #172f4b;
+    border-radius: 4px;
+    line-height: 30px;
+    margin: 5px 0;
+}
+
+.el-picker-panel__icon-btn {
+    color: white;
+}
+
+.el-date-editor .el-input__inner {
+    border-radius: 0;
+    background: #5b6c7f !important;
+    color: #c6c7c8;
+    height: 32px;
+    vertical-align: middle;
+    border: none;
+}
+
+.el-date-editor .el-input__icon {
+    line-height: 32px;
 }
 
 .expand-dialog .el-dialog {
@@ -263,6 +317,16 @@
     background-size: 100%;
 }
 
+.sys-header-box .homepage-navbar {
+    padding-left: 7px;
+    height: 30px;
+    margin-bottom: 1px;
+}
+
+.sys-header-box .homepage-navbar .el-menu {
+    background: transparent;
+}
+
 /*row col 的间隔色*/
 .dark-item {
     background-color: #1d3c5b;
@@ -280,4 +344,89 @@
 
 /*菜单栏*/
 
+.homepage-right-toolbar {
+    color: #007ccf;
+    width: 550px;
+    height: 40px;
+    line-height: 40px;
+    margin: 30px 30px;
+    font-size: 15px;
+}
 
+.homepage-right-toolbar .timer {
+    letter-spacing: 1px;
+}
+
+.homepage-right-toolbar .choose {
+    margin: 0 20px;
+}
+
+.homepage-right-toolbar .tool-group i {
+    margin: 0 7px;
+    vertical-align: middle;
+}
+
+.logo-header-navbar {
+    width: 400px;
+    margin: 70px 12%;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: none;
+}
+
+.logo-header-navbar .el-menu-item {
+    height: 30px;
+    width: 106px;
+    text-align: center;
+    line-height: 30px;
+    border: 2px solid #2ca1f4;
+    color: white;
+    background-color: #11213a;
+    transform: skewX(40deg);
+    margin-right: 10px;
+    border-bottom-color: #2ca1f4 !important;
+}
+
+.logo-header-navbar .el-menu--horizontal .el-menu-item:focus, .el-menu--horizontal .el-menu-item:hover {
+    background-color: #11213A;
+    color: white;
+}
+
+.logo-header-navbar span {
+    display: inline-block;
+    -webkit-transform: skew(-40deg);
+    vertical-align: top;
+    line-height: 30px;
+}
+
+.logo-header-navbar .iconfont {
+    color: white;
+    vertical-align: bottom;
+    padding-right: 5px;
+    line-height: 30px;
+}
+
+.logo-header-navbar .el-menu-item.is-active {
+    background-color: #11213a;
+    color: white;
+}
+
+.popup-other-infos {
+    width: 99.9%;
+}
+
+.popup-other-infos .other-item {
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: white;
+    margin-bottom: 5px;
+    background-color: #1d3c5b;
+
+}
+
+.popup-other-infos .other-item span {
+    font-weight: 600;
+
+}

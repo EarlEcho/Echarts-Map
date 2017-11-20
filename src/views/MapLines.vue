@@ -113,7 +113,7 @@
                         <div class="action-group">
                             <el-button icon="icon iconfont icon-fangda" @click="expandData"></el-button>
                             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                                <el-button icon="icon iconfont icon-wenhao1"></el-button>
+                                <el-button icon="icon iconfont icon-wenhao"></el-button>
                             </el-tooltip>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                     </div>
                     <div class="data-footer-box">
                         <div class="action-group g-lf">
-                            <el-button icon="icon iconfont icon-caidan" @click="expandData"></el-button>
+                            <el-button icon="icon iconfont icon-caidan1" @click="expandData"></el-button>
                             <el-button icon="icon iconfont icon-jiugongge-copy"></el-button>
                         </div>
                         <div class="action-group box-center">
@@ -151,7 +151,7 @@
                         <div class="action-group">
                             <el-button icon="icon iconfont icon-fangda" @click="expandData"></el-button>
                             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                                <el-button icon="icon iconfont icon-wenhao1"></el-button>
+                                <el-button icon="icon iconfont icon-wenhao"></el-button>
                             </el-tooltip>
                         </div>
                     </div>

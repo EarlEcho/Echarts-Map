@@ -21,7 +21,7 @@
             padding-top: 30px;
         }
         .video-right-wrapper {
-            width: 75%;
+            width: 79%;
             height: 854px;
         }
 
@@ -112,58 +112,41 @@
 
     }
 
-    .logo-header-navbar {
-        width: 400px;
-        margin: 70px 12%;
-        display: inline-block;
-        height: 30px;
-        line-height: 30px;
-        border-bottom: none;
-        .el-menu-item {
-            height: 30px;
-            width: 106px;
-            text-align: center;
-            line-height: 30px;
-            border: 2px solid #2ca1f4;
-            color: white;
-            background-color: #11213a;
-            transform: skewX(40deg);
-            margin-right: 10px;
-            border-bottom-color: #2ca1f4 !important;
-            span {
-                display: inline-block;
-                -webkit-transform: skew(-40deg);
-                vertical-align: top;
-                line-height: 30px;
-            }
-            .iconfont {
-                color: white;
-                vertical-align: bottom;
-                padding-right: 5px;
-                line-height: 30px;
-            }
-        }
-        .el-menu-item.is-active {
-            background-color: #11213a;
-            color: white;
-        }
-    }
-
     .videos-content-wrapper {
         border: solid 1px #1f6198;
         height: 825px;
     }
+
+
 </style>
 <template>
     <div class="homepage-wrapper">
         <div class="sys-header-box">
             <div class="homepage-navbar clearfix">
                 <el-menu :default-active="logoHeaderActive" mode="horizontal" class="logo-header-navbar">
-                    <el-menu-item index="1"><span>首页</span></el-menu-item>
-                    <el-menu-item index="2"><span><i class="icon iconfont icon-tilewarehouse"></i>云仓储</span>
+                    <el-menu-item index="1">
+                        <router-link to="/">
+                            <span>首页</span>
+                        </router-link>
+                    </el-menu-item>
+                    <el-menu-item index="2">
+
+                        <router-link to="/map">
+                            <span><i class="icon iconfont icon-tilewarehouse"></i>云仓储</span>
+                        </router-link>
+
                     </el-menu-item>
                     <el-menu-item index="3"><span><i class="icon iconfont icon-chart"></i>交易监控</span></el-menu-item>
                 </el-menu>
+            </div>
+            <div class="homepage-right-toolbar clearfix g-rt">
+                <span class="timer">2017-11-20 &emsp; 11:20:22 </span>
+                <span class="choose">监测间隔 2分钟 </span>
+                <span class="tool-group">
+                    <i class="icon iconfont icon-yifu"></i>
+                    <i class="icon iconfont icon-editor-zhaopian-copy"></i>
+                    <i class="icon iconfont icon-windows"></i>
+                </span>
             </div>
         </div>
         <div class="data-content-box clearfix">

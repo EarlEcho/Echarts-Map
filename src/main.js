@@ -6,7 +6,7 @@ import Routers from './router';
 import App from './app.vue';
 import 'element-ui/lib/theme-chalk/index.css'
 
-import {Table, TableColumn, Button, Tooltip, Row, Col, Tabs, TabPane, Dialog, Select, Option,Menu,MenuItem} from 'element-ui'
+import {Table, TableColumn, Button, Tooltip, Row, Col, Tabs, TabPane, Dialog, Select, Option,Menu,MenuItem,DatePicker,Form,FormItem} from 'element-ui'
 
 
 Vue.use(VueRouter);
@@ -24,6 +24,10 @@ Vue.use(Select);
 Vue.use(Option);
 Vue.use(Menu);
 Vue.use(MenuItem);
+
+Vue.use(DatePicker);
+Vue.use(Form);
+Vue.use(FormItem);
 
 
 

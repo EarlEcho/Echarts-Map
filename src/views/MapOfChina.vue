@@ -1,27 +1,28 @@
 <style lang="less">
     .mian-box {
-
+        width: 1920px;
         div {
             box-sizing: border-box;
         }
         #main {
             position: absolute;
-            top: 2%;
-            left: 3%;
-            width: 95%;
-            height: 95%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1080px;
             z-index: 0;
             box-sizing: border-box;
         }
-        .content-wrapper {
-            width: 100%;
-            min-height: 100%;
-            padding: 0 35px;
-            position: relative;
-            z-index: 10;
-            overflow: hidden;
-        }
+        /* .content-wrapper {
+             min-height: 100%;
+             padding: 0 35px;
+             position: relative;
+             z-index: 10;
+             overflow: hidden;
+         }*/
         .sys-header-box {
+            position: absolute;
+            z-index: 10;
             width: 100%;
             height: 164px;
             background: url(../assets/logo.png) no-repeat;
@@ -32,10 +33,19 @@
             height: 916px;
         }
         .left-data-wrapper {
+            position: absolute;
+            left: 35px;
+            top:164px;
             width: 453px;
-            height: 100%;
+            height: 880px;
         }
-
+        .right-data-wrapper {
+            position: absolute;
+            top:164px;
+            right: 35px;
+            width: 522px;
+            height: 880px;
+        }
         .real-time-table {
             width: 100%;
             height: 435px;
@@ -78,10 +88,7 @@
                 line-height: 50px;
             }
         }
-        .right-data-wrapper {
-            width: 522px;
-            height: 100%;
-        }
+
         .daily-volume-table {
             width: 100%;
             height: 500px;
@@ -119,130 +126,142 @@
         <div id="main">
 
         </div>
-        <div class="content-wrapper">
-            <div class="sys-header-box">
+        <div class="sys-header-box">
+            <div class="homepage-navbar clearfix">
+                <el-menu :default-active="logoHeaderActive" mode="horizontal" class="logo-header-navbar">
+                    <el-menu-item index="1"><span>首页</span></el-menu-item>
+                    <el-menu-item index="2"><span><i class="icon iconfont icon-tilewarehouse"></i>云仓储</span>
+                    </el-menu-item>
+                    <el-menu-item index="3"><span><i class="icon iconfont icon-chart"></i>交易监控</span></el-menu-item>
+                </el-menu>
+            </div>
+            <div class="homepage-right-toolbar clearfix g-rt">
+                <span class="timer">2017-11-20 &emsp; 11:20:22 </span>
+                <span class="choose">监测间隔 2分钟 </span>
+                <span class="tool-group">
+                    <i class="icon iconfont icon-yifu"></i>
+                    <i class="icon iconfont icon-editor-zhaopian-copy"></i>
+                    <i class="icon iconfont icon-windows"></i>
+                </span>
+            </div>
+        </div>
+
+        <!--左侧数据-->
+        <div class="left-data-wrapper g-lf">
+            <div class="real-time-table">
+                <data-header-box item-title="实时交易数据"></data-header-box>
+                <div class="data-content">
+                    <el-table :data="realTimeData" size="small" fit>
+                        <el-table-column prop="date" label="时间" width="40px"></el-table-column>
+                        <el-table-column prop="area" label="地区" width="50px"></el-table-column>
+                        <el-table-column prop="company" label="公司" width="79px"></el-table-column>
+                        <el-table-column prop="type" label="品种" width="75px"></el-table-column>
+                        <el-table-column prop="standard" label="规格" width="55px"></el-table-column>
+                        <el-table-column prop="num" label="数量" width="50px"></el-table-column>
+                        <el-table-column prop="price" label="单价" width="51px"></el-table-column>
+                        <el-table-column prop="allCount" label="总价" width="53px"></el-table-column>
+                    </el-table>
+                </div>
+                <data-footer-box :left-item="true" :center-item="true"></data-footer-box>
+            </div>
+            <div class="transaction-data-table">
+                <data-header-box item-title="交易数据分析"></data-header-box>
+                <div class="data-content">
+                    <div class="transaction-item">
+                        <el-row class="dark-item">
+                            <el-col :span="8">
+                                单日交易量：
+                            </el-col>
+                            <el-col :span="16">
+                                <span>2124645</span>吨
+                            </el-col>
+                        </el-row>
+                        <el-row class="light-item">
+                            <el-col :span="8">
+                                计：
+                            </el-col>
+                            <el-col :span="16">
+                                <span>1578425</span>万元
+                            </el-col>
+                        </el-row>
+                    </div>
+
+                </div>
+                <data-footer-box :left-item="false" :center-item="false"></data-footer-box>
 
             </div>
-            <div class="data-content-box clearfix">
+        </div>
 
-                <!--左侧数据-->
-                <div class="left-data-wrapper g-lf">
-                    <div class="real-time-table">
-                        <data-header-box item-title="实时交易数据"></data-header-box>
-                        <div class="data-content">
-                            <el-table :data="realTimeData" size="small" fit>
-                                <el-table-column prop="date" label="时间" width="40px"></el-table-column>
-                                <el-table-column prop="area" label="地区" width="50px"></el-table-column>
-                                <el-table-column prop="company" label="公司" width="79px"></el-table-column>
-                                <el-table-column prop="type" label="品种" width="75px"></el-table-column>
+        <!--右侧数据-->
+        <div class="right-data-wrapper g-rt">
+            <div class="daily-volume-table">
+                <data-header-box item-title="今日成交价"></data-header-box>
+                <div class="data-content">
+                    <el-tabs v-model="tabActive" type="card">  <!--34-->
+                        <el-tab-pane label="螺纹钢" name="first">
+                            <el-table :data="dailyVolumeTable" size="small" fit>
+                                <el-table-column prop="province" label="省份" width="50px"></el-table-column>
+                                <el-table-column prop="city" label="城市" width="52px"></el-table-column>
+                                <el-table-column prop="name" label="品名" width="80px"></el-table-column>
                                 <el-table-column prop="standard" label="规格" width="55px"></el-table-column>
-                                <el-table-column prop="num" label="数量" width="50px"></el-table-column>
-                                <el-table-column prop="price" label="单价" width="51px"></el-table-column>
-                                <el-table-column prop="allCount" label="总价" width="53px"></el-table-column>
+                                <el-table-column prop="texture" label="材质" width="60px"></el-table-column>
+                                <el-table-column prop="mill" label="钢厂" width="60px"></el-table-column>
+                                <el-table-column prop="date" label="日期" width="50px"></el-table-column>
+                                <el-table-column prop="turnover" label="成交量" width="55px"></el-table-column>
+                                <el-table-column prop="upDowns" label="涨跌" width="60px"></el-table-column>
                             </el-table>
-                        </div>
-                        <data-footer-box :left-item="true" :center-item="true"></data-footer-box>
+                        </el-tab-pane>
+                        <el-tab-pane label="高线" name="second">配置管理</el-tab-pane>
+                        <el-tab-pane label="盘螺" name="third">角色管理</el-tab-pane>
+                        <el-tab-pane label="热轧板卷" name="fourth">定时任务补偿</el-tab-pane>
+                    </el-tabs>
+
+                </div>
+                <div class="data-footer-box clearfix">
+                    <div class="action-group center">
+                        <el-button icon="icon iconfont icon-arrow-down-circle-left"
+                                   @click="expandData"></el-button>
+                        <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                     </div>
-                    <div class="transaction-data-table">
-                        <data-header-box item-title="交易数据分析"></data-header-box>
-                        <div class="data-content">
-                            <div class="transaction-item">
-                                <el-row class="dark-item">
-                                    <el-col :span="8">
-                                        单日交易量：
-                                    </el-col>
-                                    <el-col :span="16">
-                                        <span>2124645</span>吨
-                                    </el-col>
-                                </el-row>
-                                <el-row class="light-item">
-                                    <el-col :span="8">
-                                        计：
-                                    </el-col>
-                                    <el-col :span="16">
-                                        <span>1578425</span>万元
-                                    </el-col>
-                                </el-row>
-                            </div>
-
-                        </div>
-                        <data-footer-box :left-item="false" :center-item="false"></data-footer-box>
-
+                    <div class="action-group g-rt right">
+                        <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
+                        <el-button icon="icon iconfont icon-weibiaoti11"></el-button>
                     </div>
                 </div>
-
-                <!--右侧数据-->
-                <div class="right-data-wrapper g-rt">
-                    <div class="daily-volume-table">
-                        <data-header-box item-title="今日成交价"></data-header-box>
-                        <div class="data-content">
-                            <el-tabs v-model="tabActive" type="card">  <!--34-->
-                                <el-tab-pane label="螺纹钢" name="first">
-                                    <el-table :data="dailyVolumeTable" size="small" fit>
-                                        <el-table-column prop="province" label="省份" width="50px"></el-table-column>
-                                        <el-table-column prop="city" label="城市" width="52px"></el-table-column>
-                                        <el-table-column prop="name" label="品名" width="80px"></el-table-column>
-                                        <el-table-column prop="standard" label="规格" width="55px"></el-table-column>
-                                        <el-table-column prop="texture" label="材质" width="60px"></el-table-column>
-                                        <el-table-column prop="mill" label="钢厂" width="60px"></el-table-column>
-                                        <el-table-column prop="date" label="日期" width="50px"></el-table-column>
-                                        <el-table-column prop="turnover" label="成交量" width="55px"></el-table-column>
-                                        <el-table-column prop="upDowns" label="涨跌" width="60px"></el-table-column>
-                                    </el-table>
-                                </el-tab-pane>
-                                <el-tab-pane label="高线" name="second">配置管理</el-tab-pane>
-                                <el-tab-pane label="盘螺" name="third">角色管理</el-tab-pane>
-                                <el-tab-pane label="热轧板卷" name="fourth">定时任务补偿</el-tab-pane>
-                            </el-tabs>
-
-                        </div>
-                        <div class="data-footer-box clearfix">
-                            <div class="action-group center">
-                                <el-button icon="icon iconfont icon-arrow-down-circle-left"
-                                           @click="expandData"></el-button>
-                                <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
-                            </div>
-                            <div class="action-group g-rt right">
-                                <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
-                                <el-button icon="icon iconfont icon-weibiaoti11"></el-button>
-                            </div>
-                        </div>
+            </div>
+            <div class="daily-price-table">
+                <data-header-box item-title="今日价格指数"></data-header-box>
+                <div class="data-content">
+                    <el-row>
+                        <el-col :span="12">
+                            <el-table :data="dailyVolumeTable" size="small" fit>
+                                <el-table-column prop="province" label="省份" width="45px"></el-table-column>
+                                <el-table-column prop="city" label="城市" width="45px"></el-table-column>
+                                <el-table-column prop="name" label="品名" width="69px"></el-table-column>
+                                <el-table-column prop="turnover" label="指数" width="50px"></el-table-column>
+                                <el-table-column prop="upDowns" label="涨跌" width="50px"></el-table-column>
+                            </el-table>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-table :data="dailyVolumeTable" size="small" fit>
+                                <el-table-column prop="province" label="省份" width="45px"></el-table-column>
+                                <el-table-column prop="city" label="城市" width="45px"></el-table-column>
+                                <el-table-column prop="name" label="品名" width="69px"></el-table-column>
+                                <el-table-column prop="turnover" label="指数" width="50px"></el-table-column>
+                                <el-table-column prop="upDowns" label="涨跌" width="50px"></el-table-column>
+                            </el-table>
+                        </el-col>
+                    </el-row>
+                </div>
+                <div class="data-footer-box clearfix">
+                    <div class="action-group center">
+                        <el-button icon="icon iconfont icon-arrow-down-circle-left"
+                                   @click="expandData"></el-button>
+                        <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                     </div>
-                    <div class="daily-price-table">
-                        <data-header-box item-title="今日价格指数"></data-header-box>
-                        <div class="data-content">
-                            <el-row>
-                                <el-col :span="12">
-                                    <el-table :data="dailyVolumeTable" size="small" fit>
-                                        <el-table-column prop="province" label="省份" width="45px"></el-table-column>
-                                        <el-table-column prop="city" label="城市" width="45px"></el-table-column>
-                                        <el-table-column prop="name" label="品名" width="69px"></el-table-column>
-                                        <el-table-column prop="turnover" label="指数" width="50px"></el-table-column>
-                                        <el-table-column prop="upDowns" label="涨跌" width="50px"></el-table-column>
-                                    </el-table>
-                                </el-col>
-                                <el-col :span="12">
-                                    <el-table :data="dailyVolumeTable" size="small" fit>
-                                        <el-table-column prop="province" label="省份" width="45px"></el-table-column>
-                                        <el-table-column prop="city" label="城市" width="45px"></el-table-column>
-                                        <el-table-column prop="name" label="品名" width="69px"></el-table-column>
-                                        <el-table-column prop="turnover" label="指数" width="50px"></el-table-column>
-                                        <el-table-column prop="upDowns" label="涨跌" width="50px"></el-table-column>
-                                    </el-table>
-                                </el-col>
-                            </el-row>
-                        </div>
-                        <div class="data-footer-box clearfix">
-                            <div class="action-group center">
-                                <el-button icon="icon iconfont icon-arrow-down-circle-left"
-                                           @click="expandData"></el-button>
-                                <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
-                            </div>
-                            <div class="action-group g-rt right">
-                                <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
-                                <el-button icon="icon iconfont icon-weibiaoti11"></el-button>
-                            </div>
-                        </div>
+                    <div class="action-group g-rt right">
+                        <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
+                        <el-button icon="icon iconfont icon-weibiaoti11"></el-button>
                     </div>
                 </div>
             </div>
@@ -272,11 +291,12 @@
 
     export default {
         name: '',
-        components: {DataHeaderBox,DataFooterBox},
+        components: {DataHeaderBox, DataFooterBox},
         props: [],
         data() {
             return {
                 tabActive: 'first',
+                logoHeaderActive: '1',
                 realTimeData: [
                     {
                         date: '11.30',
@@ -550,31 +570,37 @@
                 // 绘制图表
                 myChart.setOption({
                     backgroundColor: '#11213A',
-
                     visualMap: {
                         min: 1000,
                         max: 5000,
-//                        calculable: true,
-                        color: ['#43D0D6', '#062031'],
+                        calculable: true,
+                        right: '33%',
+                        bottom: '5%',
+                        zlevel: 10,
+                        color: ['#50a3ba', '#f1c40f', '#e67e22', '#d94e5d'],
                         textStyle: {
                             color: '#fff'
                         }
                     },
-                    legend: {
-                        animation: false
-                    },
                     geo: {
                         map: 'china',
                         label: {
-                            emphasis: {show: false}
+                            emphasis: {show: true}
                         },
+                        zlevel: 10,
                         layoutCenter: ['46%', '52.4%'],
                         roam: true,
                         layoutSize: "108%",
-                        zoom: 1.22,
+                        zoom: 1.08,
                         itemStyle: {
-                            normal: {color: '#062031', borderWidth: 1.1, borderColor: '#43D0D6'},
-                            emphasis: {color: 'rgba(37, 43, 61, .5)'}
+                            normal: {
+                                color: '#062031',
+                                borderWidth: 1.1,
+                                borderColor: '#43D0D6'
+                            },
+                            emphasis: {
+                                areaColor: '#43D0D6'
+                            }
                         }
 
                     },
@@ -626,7 +652,7 @@
                     {
                         type: 'effectScatter',
                         coordinateSystem: 'geo',
-                        zlevel: 2,
+                        zlevel: 15,
                         rippleEffect: {
                             period: 4, brushType: 'stroke', scale: 4
                         },
@@ -648,7 +674,7 @@
                         rippleEffect: {
                             period: 4, brushType: 'stroke', scale: 4
                         },
-                        zlevel: 2,
+                        zlevel: 15,
                         label: {
                             normal: {show: true, position: 'right', offset: [5, 0], formatter: '{b}'},
                             emphasis: {show: true}
@@ -673,7 +699,7 @@
                         radius: '99%',
                         startAngle: -160,
                         endAngle: -170,
-                        zlevel: 1,
+                        zlevel: 2,
                         axisLine: {
                             lineStyle: {
                                 color: [
@@ -707,7 +733,7 @@
                         radius: '99%',
                         startAngle: -340,
                         endAngle: -350,
-                        zlevel: 1,
+                        zlevel: 2,
                         axisLine: {
                             lineStyle: {
                                 color: [
@@ -740,6 +766,7 @@
                         name: '右外圈',
                         type: 'gauge',
                         radius: '99%',
+                        zlevel: 2,
                         startAngle: -320,
                         endAngle: -400,
                         axisLine: {
@@ -778,6 +805,7 @@
                         radius: '99%',
                         startAngle: -140,
                         endAngle: -220,
+                        zlevel: 2,
                         axisLine: {
                             lineStyle: {
                                 color: [
@@ -810,6 +838,7 @@
                         name: '蓝色外圈1',
                         type: 'gauge',
                         radius: '80%',
+                        zlevel: 2,
                         startAngle: -90 + rotate,
                         endAngle: -135 + rotate,
                         splitNumber: 5,
@@ -838,6 +867,7 @@
                         name: '蓝色外圈1',
                         type: 'gauge',
                         radius: '99%',
+                        zlevel: 2,
                         startAngle: -85 + rotate,
                         endAngle: -115 + rotate,
                         splitNumber: 4,
@@ -866,6 +896,7 @@
                         name: '蓝色外圈2',
                         type: 'gauge',
                         radius: '99%',
+                        zlevel: 2,
                         startAngle: -155 + rotate,
                         endAngle: 175 + rotate,
                         splitNumber: 4,
@@ -894,6 +925,7 @@
                         name: '蓝色外圈3',
                         type: 'gauge',
                         radius: '99%',
+                        zlevel: 2,
                         startAngle: 25 + rotate,
                         endAngle: -5 + rotate,
                         splitNumber: 4,
@@ -925,6 +957,7 @@
                         name: '蓝色外圈4',
                         type: 'gauge',
                         radius: '99%',
+                        zlevel: 2,
                         startAngle: 95 + rotate,
                         endAngle: 65 + rotate,
                         splitNumber: 4,
@@ -956,6 +989,7 @@
                         name: '蓝色外圈5',
                         type: 'gauge',
                         radius: '80%',
+                        zlevel: 2,
                         startAngle: 70 + rotate,
                         endAngle: -10 + rotate,
                         splitNumber: 4,
@@ -984,6 +1018,7 @@
                     },
                     {
                         type: 'pie',
+                        zlevel: 2,
                         radius: ['72%', '85%'],
                         label: {
                             normal: {

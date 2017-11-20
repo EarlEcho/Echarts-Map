@@ -1,11 +1,10 @@
 <style lang="less">
     .data-header-box {
         .popup-table {
-            width: 1486px;
             height: 100%;
         }
 
-        .content-wrapper {
+        .popup-content-wrapper {
             margin: 37px 60px;
             background: url(../assets/popupInner.png) no-repeat;
             background-size: 100%;
@@ -31,7 +30,7 @@
         }
         .expand-table-wrapper {
             .data-content {
-                max-height: 585px;
+                height: 550px;
             }
         }
         .expand-dialog .el-dialog {
@@ -44,7 +43,7 @@
 
     .type2-chart-table-box {
         padding: 0 10px;
-        height: 520px;
+        height: 535px;
         .expand-table-wrapper {
             width: 30%;
         }
@@ -52,7 +51,7 @@
             padding: 0 !important;
         }
         .type2-data-table {
-            height: 460px;
+            height: 460px !important;
         }
         .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
             width: 103px;
@@ -67,14 +66,15 @@
                 height: 470px;
             }
         }
-
+        .data-footer-box .box-center {
+            margin: 0 auto;
+        }
+        .data-footer-box .action-group {
+            display: block;
+        }
     }
 
-    .popup-other-infos {
-        width: 99.9%;
-        height: 80px;
-        border: solid 1px white;
-    }
+
 </style>
 <template>
     <div class="data-header-box">
@@ -82,7 +82,7 @@
         <div class="action-group g-rt">
             <el-button icon="icon iconfont icon-fangda" @click="showPopupTable"></el-button>
             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                <el-button icon="icon iconfont icon-wenhao1"></el-button>
+                <el-button icon="icon iconfont icon-wenhao"></el-button>
             </el-tooltip>
         </div>
 
@@ -91,39 +91,72 @@
         <div class="popup-table">
             <div class="expand-dialog">
                 <el-dialog :visible.sync="showDialogType1" width="1486px" top="100px" :modal="false">
-                    <div class="content-wrapper">
+                    <div class="popup-content-wrapper">
                         <p class="tooltip">
                             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                                <el-button icon="icon iconfont icon-wenhao1"></el-button>
+                                <el-button icon="icon iconfont icon-wenhao"></el-button>
                             </el-tooltip>
                         </p>
                         <p class="popup-title">实时交易数据分析</p>
-                        <div class="select-group-wrapper">
-                            <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label"
-                                           :value="item.value">
-                                </el-option>
-                            </el-select>
-                            <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label"
-                                           :value="item.value">
-                                </el-option>
-                            </el-select>
-                            <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label"
-                                           :value="item.value">
-                                </el-option>
-                            </el-select>
-                            <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label"
-                                           :value="item.value">
-                                </el-option>
-                            </el-select>
-                            <el-button @click="showDialogType1 = true" size="small">搜索</el-button>
-                        </div>
+                        <el-form class="select-group-wrapper" ref="popupSearchData" :model="popupSearchData"
+                                 :inline="true">
+                            <el-form-item>
+                                <el-date-picker v-model="popupSearchData.timer1" type="date" placeholder="选择日期"
+                                                size="small"></el-date-picker>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-date-picker v-model="popupSearchData.timer2" type="date" placeholder="选择日期"
+                                                size="small"></el-date-picker>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-select v-model="popupSearchData.city" placeholder="城市" size="small">
+                                    <el-option v-for="item in cityOptions" :key="item.value" :label="item.label"
+                                               :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-select v-model="popupSearchData.company" placeholder="公司" size="small">
+                                    <el-option v-for="item in companyOptions" :key="item.value" :label="item.label"
+                                               :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+
+                            <el-form-item>
+                                <el-select v-model="popupSearchData.user" placeholder="用户" size="small">
+                                    <el-option v-for="item in userOptions" :key="item.value" :label="item.label"
+                                               :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-select v-model="popupSearchData.variety" placeholder="品种" size="small">
+                                    <el-option v-for="item in varietyOptions" :key="item.value" :label="item.label"
+                                               :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-select v-model="popupSearchData.standard" placeholder="规格" size="small">
+                                    <el-option v-for="item in standardOptions" :key="item.value" :label="item.label"
+                                               :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button @click="showDialogType1 = true" size="small">搜索</el-button>
+                            </el-form-item>
+                        </el-form>
                         <div class="expand-table-wrapper">
                             <div class="data-content">
-                                <el-table :data="expandTableData" size="small" fit>
+                                <el-table :data="expandTableData" fit class="inner-table">
+                                    <el-table-column width="25px">
+                                        <template slot-scope="scope">
+                                            <i class="icon iconfont icon-right green"
+                                               style="font-size: 20px;margin-left: 5px"></i>
+                                        </template>
+                                    </el-table-column>
                                     <el-table-column prop="date" label="日期" width="55px"></el-table-column>
                                     <el-table-column prop="time" label="时间" width="55px"></el-table-column>
                                     <el-table-column prop="area" label="地区"></el-table-column>
@@ -132,23 +165,41 @@
                                     <el-table-column prop="type" label="品种"></el-table-column>
                                     <el-table-column prop="standard" label="规格"></el-table-column>
                                     <el-table-column prop="num" label="合同数量"></el-table-column>
-                                    <el-table-column prop="outNum" label="已出库数量"></el-table-column>
-                                    <el-table-column prop="innerNum" label="未出库数量"></el-table-column>
+
+                                    <el-table-column prop="outNum" label="已出库数量">
+                                        <template slot-scope="scope">
+                                            <span class="green">{{ scope.row.date }}吨</span>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="innerNum" label="未出库数量">
+                                        <template slot-scope="scope">
+                                            <span class="red">{{ scope.row.date }}吨</span>
+                                        </template>
+                                    </el-table-column>
+
                                     <el-table-column prop="price" label="单价"></el-table-column>
                                     <el-table-column prop="allPrice" label="总价(万元)"></el-table-column>
                                 </el-table>
                             </div>
+                            <div class="popup-other-infos">
+                                <p class="other-item">2017年10月1日至2017年10月25日，<span class="yellow">xxxx</span>地区，
+                                    合同数量<span class="blue">222</span>件，总交易量<span class="pink">111111</span>吨，
+                                    总交易金额<span class="orange">111111</span>万元，
+                                    已出库<span class="green">xxxx</span>吨，
+                                    未出库<span class="red">xxxx</span>吨。
+                                </p>
+                            </div>
                             <div class="data-footer-box clearfix">
-                                <div class="action-group g-lf">
-                                    <el-button icon="icon iconfont icon-caidan" @click="expandData"></el-button>
-                                    <el-button icon="icon iconfont icon-jiugongge-copy"></el-button>
+                                <div class="action-group g-lf left">
+                                    <el-button icon="icon iconfont icon-caidan1" @click="expandData"></el-button>
+                                    <el-button icon="icon iconfont icon-jiugongge"></el-button>
                                 </div>
-                                <div class="action-group box-center">
+                                <div class="action-group box-center center">
                                     <el-button icon="icon iconfont icon-arrow-down-circle-left"
                                                @click="expandData"></el-button>
                                     <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                                 </div>
-                                <div class="action-group g-rt">
+                                <div class="action-group g-rt right">
                                     <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
                                     <el-button icon="icon iconfont icon-pie"></el-button>
                                 </div>
@@ -165,7 +216,7 @@
         <div class="popup-table">
             <div class="expand-dialog">
                 <el-dialog :visible.sync="showDialogType2" width="1486px" top="100px" :modal="false">
-                    <div class="content-wrapper">
+                    <div class="popup-content-wrapper">
                         <p class="tooltip">
                             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
                                 <el-button icon="icon iconfont icon-wenhao1"></el-button>
@@ -174,22 +225,22 @@
                         <p class="popup-title">成交价数据分析</p>
                         <div class="select-group-wrapper">
                             <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label"
+                                <el-option v-for="item in varietyOptions" :key="item.value" :label="item.label"
                                            :value="item.value">
                                 </el-option>
                             </el-select>
                             <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label"
+                                <el-option v-for="item in varietyOptions" :key="item.value" :label="item.label"
                                            :value="item.value">
                                 </el-option>
                             </el-select>
                             <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label"
+                                <el-option v-for="item in varietyOptions" :key="item.value" :label="item.label"
                                            :value="item.value">
                                 </el-option>
                             </el-select>
                             <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label"
+                                <el-option v-for="item in varietyOptions" :key="item.value" :label="item.label"
                                            :value="item.value">
                                 </el-option>
                             </el-select>
@@ -205,7 +256,7 @@
                                                 <el-table-column prop="province" label="省份"
                                                                  width="55px"></el-table-column>
                                                 <el-table-column prop="city" label="城市" width="60px"></el-table-column>
-                                                <el-table-column prop="name" label="品名" width="63px"></el-table-column>
+                                                <el-table-column prop="name" label="品名" width="64px"></el-table-column>
                                                 <el-table-column prop="standard" label="规格"
                                                                  width="55px"></el-table-column>
                                                 <el-table-column prop="texture" label="材质"
@@ -231,7 +282,7 @@
                             </div>
                             <div class="expand-chart-wrapper g-rt">
                                 <div class="chart-content">
-                                    <div id="popup-chart">
+                                    <div id="popup-chart" style="width: 100%; height: 470px;">
 
                                     </div>
                                 </div>
@@ -239,7 +290,18 @@
 
                         </div>
                         <div class="popup-other-infos">
-
+                            <p class="other-item">2017年10月1日至2017年10月25日，<span class="yellow">xxxx</span>地区，
+                                合同数量<span class="blue">222</span>件，总交易量<span class="pink">111111</span>吨，
+                                总交易金额<span class="orange">111111</span>万元，
+                                已出库<span class="green">xxxx</span>吨，
+                                未出库<span class="red">xxxx</span>吨。
+                            </p>
+                            <p class="other-item">2017年10月1日至2017年10月25日，<span class="yellow">xxxx</span>地区，
+                                合同数量<span class="blue">222</span>件，总交易量<span class="pink">111111</span>吨，
+                                总交易金额<span class="orange">111111</span>万元，
+                                已出库<span class="green">xxxx</span>吨，
+                                未出库<span class="red">xxxx</span>吨。
+                            </p>
                         </div>
                     </div>
 
@@ -259,6 +321,8 @@
     // 引入提示框和标题组件
     require('echarts/lib/component/tooltip');
     require('echarts/lib/component/title');
+
+    let myChart;
     export default {
         name: 'data-header-box',
         props: ['itemTitle'],
@@ -266,23 +330,81 @@
             return {
                 tabActive: 'first',
                 title: '',
+                popupSearchData: {
+                    timer1: '',
+                    timer2: '',
+                    city: '',
+                    company: '',
+                    user: '',
+                    variety: '',
+                    standard: ''
+                },
                 showDialogType1: false,
                 showDialogType2: false,
-                options: [{
-                    value: '选项1',
-                    label: '黄金糕'
+                cityOptions: [{
+                    value: '1',
+                    label: '北京'
                 }, {
-                    value: '选项2',
-                    label: '双皮奶'
+                    value: '2',
+                    label: '上海'
                 }, {
-                    value: '选项3',
-                    label: '蚵仔煎'
+                    value: '3',
+                    label: '广州'
                 }, {
-                    value: '选项4',
-                    label: '龙须面'
+                    value: '4',
+                    label: '重庆'
+                }],
+                companyOptions: [{
+                    value: '1',
+                    label: '北京公司'
                 }, {
-                    value: '选项5',
-                    label: '北京烤鸭'
+                    value: '2',
+                    label: '上海公司'
+                }, {
+                    value: '3',
+                    label: '广州公司'
+                }, {
+                    value: '4',
+                    label: '重庆公司'
+                }],
+                userOptions: [{
+                    value: '1',
+                    label: '用户1'
+                }, {
+                    value: '2',
+                    label: '用户2'
+                }, {
+                    value: '3',
+                    label: '用户3'
+                }, {
+                    value: '4',
+                    label: '用户4'
+                }],
+                varietyOptions: [{
+                    value: '1',
+                    label: '规格1'
+                }, {
+                    value: '2',
+                    label: '规格2'
+                }, {
+                    value: '3',
+                    label: '规格3'
+                }, {
+                    value: '4',
+                    label: '规格4'
+                }],
+                standardOptions: [{
+                    value: '1',
+                    label: '品种1'
+                }, {
+                    value: '2',
+                    label: '品种2'
+                }, {
+                    value: '3',
+                    label: '品种3'
+                }, {
+                    value: '4',
+                    label: '品种4'
                 }],
                 value: '',
                 expandTableData: [{
@@ -464,8 +586,8 @@
                     },
                     legend: {
                         icon: 'rect',
-                        itemWidth: 14,
-                        itemHeight: 5,
+                        itemWidth: 25,
+                        itemHeight: 14,
                         itemGap: 13,
                         data: ['规格1', '规格2', '规格3'],
                         right: '4%',
@@ -532,7 +654,7 @@
                                     color: 'rgba(137, 189, 27, 0)'
                                 }], false),
                                 shadowColor: 'rgba(0, 0, 0, 0.1)',
-                                shadowBlur: 10
+                                shadowBlur: 20
                             }
                         },
                         itemStyle: {
@@ -540,7 +662,7 @@
                                 color: 'rgb(137,189,27)'
                             }
                         },
-                        data: [96.3, 96.4, 97.5, 95.6, 98.1, 94.8, 89.6, 94.1, 80.1, 52.4, 75.8]
+                        data: [9.1, 16.6, 37.5, 45.9, 67.6, 60.9, 89.6, 94.1, 80.1, 52.4, 75.8]
                     }, {
                         name: '规格2',
                         type: 'line',
@@ -560,7 +682,7 @@
                                     color: 'rgba(0, 136, 212, 0)'
                                 }], false),
                                 shadowColor: 'rgba(0, 0, 0, 0.1)',
-                                shadowBlur: 10
+                                shadowBlur: 20
                             }
                         },
                         itemStyle: {
@@ -568,7 +690,7 @@
                                 color: 'rgb(0,136,212)'
                             }
                         },
-                        data: [97.3, 99.2, 99.3, 100.0, 99.6, 90.6, 80.0, 91.5, 69.8, 67.5, 90.4]
+                        data: [19.6, 30.5, 39.2, 45.5, 108.6, 90.6, 80.0, 75.6, 69.8, 67.5, 90.4]
                     }, {
                         name: '规格3',
                         type: 'line',
@@ -588,7 +710,7 @@
                                     color: 'rgba(219, 50, 51, 0)'
                                 }], false),
                                 shadowColor: 'rgba(0, 0, 0, 0.1)',
-                                shadowBlur: 10
+                                shadowBlur: 20
                             }
                         },
                         itemStyle: {
@@ -596,7 +718,7 @@
                                 color: 'rgb(219,50,51)'
                             }
                         },
-                        data: [84.2, 81.0, 67.5, 72.1, 43.7, 88.5, 91.9, 101.8, 79.7, 87.6, 92.9]
+                        data: [50.9, 67.5, 67.5, 72.8, 85.7, 88.5, 91.9, 101.8, 79.7, 85.1, 92.9]
                     },]
                 },
             }
@@ -608,11 +730,14 @@
         methods: {
             showPopupTable: function () {
                 let _this = this;
-                _this.showDialogType2 = true;
-                let map = setInterval(function () {
-                    _this.drawLine();
-                    clearInterval(map);
-                }, 1000)
+                _this.showDialogType1 = true;
+                if (_this.showDialogType2) {
+                    let map = setInterval(function () {
+                        _this.drawLine();
+                        clearInterval(map);
+                    }, 1000)
+                }
+
             },
             expandData: function () {
 
@@ -620,17 +745,22 @@
             drawLine() {
                 // 基于准备好的dom，初始化echarts实例
                 let _this = this;
-                let myChart;
-                if (myChart != null && myChart != "" && myChart != undefined) {
-                    myChart.dispose();
+                if (myChart == '' || typeof(myChart) == 'undefined') {
+                    myChart = echarts.init(document.getElementById('popup-chart'));
+                    console.log(document.getElementById('popup-chart'));
+                    myChart.setOption(_this.chartOption);
+                    myChart.on('click', function (param) {
+                    });
+                } else {
+                    echarts.dispose(document.getElementById('popup-chart'));
+                    console.log(document.getElementById('popup-chart'));
+
+
+                    myChart = echarts.init(document.getElementById('popup-chart'));
+                    myChart.setOption(_this.chartOption);
+                    myChart.on('click', function (param) {
+                    });
                 }
-                myChart = echarts.init(document.getElementById('popup-chart'));
-
-                myChart.setOption(_this.chartOption);
-                myChart.on('click', function (param) {
-
-                });
-
 
             },
         }
