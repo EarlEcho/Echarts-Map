@@ -22,7 +22,7 @@
 <script>
     export default {
         name: 'data-footer-box',
-        props: ['leftItem', 'centerItem'],
+        props: ['leftItem', 'centerItem', 'pieCharts'],
         data() {
             return {
                 showLeft: true,
@@ -37,9 +37,9 @@
             expandData: function () {
 
             },
-            showPieChart:function () {
-
-            }
+            showPieChart: function () {
+                this.pieCharts();
+            },
         }
     }
 </script>

@@ -35,13 +35,13 @@
         .left-data-wrapper {
             position: absolute;
             left: 35px;
-            top:164px;
+            top: 164px;
             width: 453px;
             height: 880px;
         }
         .right-data-wrapper {
             position: absolute;
-            top:164px;
+            top: 164px;
             right: 35px;
             width: 522px;
             height: 880px;
@@ -118,6 +118,10 @@
                 border-left: solid 1px #11213A;
             }
         }
+        .real-pie-chart {
+            width: 450px;
+            height: 340px;
+        }
 
     }
 </style>
@@ -150,7 +154,10 @@
         <div class="left-data-wrapper g-lf">
             <div class="real-time-table">
                 <data-header-box item-title="实时交易数据"></data-header-box>
-                <div class="data-content">
+                <div class="data-content" v-show="showRealPie">
+                    <div id="real-pie-chart" v-show="!showRealPie">
+
+                    </div>
                     <el-table :data="realTimeData" size="small" fit>
                         <el-table-column prop="date" label="时间" width="40px"></el-table-column>
                         <el-table-column prop="area" label="地区" width="50px"></el-table-column>
@@ -162,7 +169,7 @@
                         <el-table-column prop="allCount" label="总价" width="53px"></el-table-column>
                     </el-table>
                 </div>
-                <data-footer-box :left-item="true" :center-item="true"></data-footer-box>
+                <data-footer-box :left-item="true" :center-item="true" :pie-charts="pieCharts"></data-footer-box>
             </div>
             <div class="transaction-data-table">
                 <data-header-box item-title="交易数据分析"></data-header-box>
@@ -295,6 +302,7 @@
         props: [],
         data() {
             return {
+                showRealPie: true,
                 tabActive: 'first',
                 logoHeaderActive: '1',
                 realTimeData: [
@@ -551,10 +559,89 @@
                 planePath: 'arrow',
                 series: [],
                 fromdata: '北京',
-                color: ['#02ACB2', '#FFFF00', '#FFA011', '#A6141B', '#00FF01']
+                color: ['#02ACB2', '#FFFF00', '#FFA011', '#A6141B', '#00FF01'],
+                realPieOptions: {
+                    backgroundColor: '#2c343c',
+
+                    title: {
+                        text: '解决状态排名',
+                        left: 'center',
+                        top: 20,
+                        textStyle: {
+                            color: '#ccc'
+                        }
+                    },
+
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+
+                    visualMap: {
+                        show: false,
+                        min: 80,
+                        max: 600,
+                        inRange: {
+                            colorLightness: [0, 1]
+                        }
+                    },
+                    series: [
+                        {
+                            name: '解决状态',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '50%'],
+                            data: [
+                                {value: 335, name: 'P1'},
+                                {value: 310, name: 'P2'},
+                                {value: 274, name: 'P3'},
+                                {value: 235, name: 'P4'}
+                            ].sort(function (a, b) {
+                                return a.value - b.value
+                            }),
+                            roseType: 'angle',
+                            label: {
+                                normal: {
+                                    formatter: "{b} : {c} ({d}%)"
+                                }
+                            },
+
+                            labelLine: {
+                                normal: {
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.3)'
+                                    },
+                                    smooth: 0.2,
+                                    length: 10,
+                                    length2: 20
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    color: '#c23531',
+                                    shadowBlur: 200,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            },
+
+                            animationType: 'scale',
+                            animationEasing: 'elasticOut',
+                            animationDelay: function (idx) {
+                                return Math.random() * 200;
+                            }
+                        }
+                    ]
+                }
             }
         },
         methods: {
+            pieCharts: function () {
+                let _this = this;
+                console.log('饼图');
+                _this.showRealPie = false;
+                let pieChart = echarts.init(document.getElementById('real-pie-chart'));
+                pieChart.setOption(_this.realPieOptions);
+            },
             expandData: function () {
                 console.log('展开');
             },
