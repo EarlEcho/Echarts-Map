@@ -730,7 +730,7 @@
         methods: {
             showPopupTable: function () {
                 let _this = this;
-                _this.showDialogType1 = true;
+                _this.showDialogType2 = true;
                 if (_this.showDialogType2) {
                     let map = setInterval(function () {
                         _this.drawLine();

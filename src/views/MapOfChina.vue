@@ -130,35 +130,17 @@
         <div id="main">
 
         </div>
-        <div class="sys-header-box">
-            <div class="homepage-navbar clearfix">
-                <el-menu :default-active="logoHeaderActive" mode="horizontal" class="logo-header-navbar">
-                    <el-menu-item index="1"><span>首页</span></el-menu-item>
-                    <el-menu-item index="2"><span><i class="icon iconfont icon-tilewarehouse"></i>云仓储</span>
-                    </el-menu-item>
-                    <el-menu-item index="3"><span><i class="icon iconfont icon-chart"></i>交易监控</span></el-menu-item>
-                </el-menu>
-            </div>
-            <div class="homepage-right-toolbar clearfix g-rt">
-                <span class="timer">2017-11-20 &emsp; 11:20:22 </span>
-                <span class="choose">监测间隔 2分钟 </span>
-                <span class="tool-group">
-                    <i class="icon iconfont icon-yifu"></i>
-                    <i class="icon iconfont icon-editor-zhaopian-copy"></i>
-                    <i class="icon iconfont icon-windows"></i>
-                </span>
-            </div>
-        </div>
-
+        <!--页面头部的logo 导航-->
+        <sys-header-box></sys-header-box>
         <!--左侧数据-->
         <div class="left-data-wrapper g-lf">
             <div class="real-time-table">
                 <data-header-box item-title="实时交易数据"></data-header-box>
-                <div class="data-content" v-show="showRealPie">
-                    <div id="real-pie-chart" v-show="!showRealPie">
-
+                <div class="data-content">
+                    <div id="real-pie-chart" v-show="!showRealPie" style="width: 453px;height: 340px;">
+                        <!--点击模块的饼图后的图表-->
                     </div>
-                    <el-table :data="realTimeData" size="small" fit>
+                    <el-table :data="realTimeData" size="small" fit v-show="showRealPie">
                         <el-table-column prop="date" label="时间" width="40px"></el-table-column>
                         <el-table-column prop="area" label="地区" width="50px"></el-table-column>
                         <el-table-column prop="company" label="公司" width="79px"></el-table-column>
@@ -169,12 +151,12 @@
                         <el-table-column prop="allCount" label="总价" width="53px"></el-table-column>
                     </el-table>
                 </div>
-                <data-footer-box :left-item="true" :center-item="true" :pie-charts="pieCharts"></data-footer-box>
+                <data-footer-box :left-item="true" :center-item="true" :pie-charts="realPieChart"></data-footer-box>
             </div>
-            <div class="transaction-data-table">
+            <div class="transaction-data-table" v-show="!showTransacPie">
                 <data-header-box item-title="交易数据分析"></data-header-box>
                 <div class="data-content">
-                    <div class="transaction-item">
+                    <div class="transaction-item" >
                         <el-row class="dark-item">
                             <el-col :span="8">
                                 单日交易量：
@@ -192,10 +174,17 @@
                             </el-col>
                         </el-row>
                     </div>
-
                 </div>
-                <data-footer-box :left-item="false" :center-item="false"></data-footer-box>
+                <data-footer-box :left-item="true" :center-item="true" :pie-charts="transacPieChart"></data-footer-box>
+            </div>
+            <div class="real-time-table" v-show="showTransacPie">
+                <data-header-box item-title="交易数据分析"></data-header-box>
+                <div class="data-content">
+                    <div id="transaction-pie-chart" style="width: 453px;height: 340px;">
 
+                    </div>
+                </div>
+                <data-footer-box :left-item="true" :center-item="true" :pie-charts="transacPieChart"></data-footer-box>
             </div>
         </div>
 
@@ -295,16 +284,18 @@
     require('echarts/lib/component/title');
     import DataHeaderBox from '@/components/ToolTop'
     import DataFooterBox from '@/components/ToolBottom'
+    import SysHeaderBox from '@/components/SysHeader'
 
     export default {
         name: '',
-        components: {DataHeaderBox, DataFooterBox},
+        components: {DataHeaderBox, DataFooterBox, SysHeaderBox},
         props: [],
         data() {
             return {
                 showRealPie: true,
                 tabActive: 'first',
                 logoHeaderActive: '1',
+                showTransacPie: false,
                 realTimeData: [
                     {
                         date: '11.30',
@@ -561,81 +552,194 @@
                 fromdata: '北京',
                 color: ['#02ACB2', '#FFFF00', '#FFA011', '#A6141B', '#00FF01'],
                 realPieOptions: {
-                    backgroundColor: '#2c343c',
-
-                    title: {
-                        text: '解决状态排名',
-                        left: 'center',
-                        top: 20,
-                        textStyle: {
-                            color: '#ccc'
-                        }
-                    },
-
+                    backgroundColor: '#1C2B44',
                     tooltip: {
                         trigger: 'item',
                         formatter: "{a} <br/>{b} : {c} ({d}%)"
                     },
-
-                    visualMap: {
-                        show: false,
-                        min: 80,
-                        max: 600,
-                        inRange: {
-                            colorLightness: [0, 1]
-                        }
+                    color: ['#74c31f', '#d35833', '#00ccff', '#ffcc00', '#ffdc90'],
+                    legend: {
+                        itemWidth: 20,
+                        itemHeight: 10,
+                        orient: 'vertical',
+                        x: 'left',
+                        data: ['重庆公司', '北京公司', '上海公司', '杭州公司', '西安公司'],
+                        textStyle: {
+                            color: '#fff',
+                            fontSize: 11
+                        },
+                        backgroundColor: '#274f7d',
+                        borderColor: '#53657a',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        shadowColor: '#29547d',
+                        shadowBlur: 10,
+                        shadowOffsetX: 5,
+                        shadowOffsetY: 5
                     },
                     series: [
                         {
-                            name: '解决状态',
                             type: 'pie',
                             radius: '55%',
-                            center: ['50%', '50%'],
+                            center: ['60%', '55%'],
+                            selectedMode: 'single',
                             data: [
-                                {value: 335, name: 'P1'},
-                                {value: 310, name: 'P2'},
-                                {value: 274, name: 'P3'},
-                                {value: 235, name: 'P4'}
-                            ].sort(function (a, b) {
-                                return a.value - b.value
-                            }),
-                            roseType: 'angle',
+                                {value: 305, name: '重庆公司', selected: true},
+                                {value: 250, name: '北京公司'},
+                                {value: 194, name: '上海公司'},
+                                {value: 135, name: '杭州公司'},
+                                {value: 145, name: '西安公司'}
+                            ],
                             label: {
                                 normal: {
-                                    formatter: "{b} : {c} ({d}%)"
+                                    backgroundColor: '#5c6c80',
+                                    borderColor: '#495c72',
+                                    borderWidth: 1,
+                                    borderRadius: 4,
+                                    color: 'white',
+                                    padding: [5, 7],
+                                    fontSize: 11,
+                                    lineHeight: 33,
                                 }
                             },
-
                             labelLine: {
                                 normal: {
                                     lineStyle: {
-                                        color: 'rgba(255, 255, 255, 0.3)'
-                                    },
-                                    smooth: 0.2,
-                                    length: 10,
-                                    length2: 20
+                                        color: 'white'
+                                    }
                                 }
-                            },
-                            itemStyle: {
-                                normal: {
-                                    color: '#c23531',
-                                    shadowBlur: 200,
-                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                }
-                            },
-
-                            animationType: 'scale',
-                            animationEasing: 'elasticOut',
-                            animationDelay: function (idx) {
-                                return Math.random() * 200;
                             }
-                        }
+                        },
+                        {
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['60%', '55%'],
+                            selectedMode: 'single',
+                            data: [
+                                {value: 305, name: '重庆公司', selected: true},
+                                {value: 250, name: '北京公司'},
+                                {value: 194, name: '上海公司'},
+                                {value: 135, name: '杭州公司'},
+                                {value: 145, name: '西安公司'}
+                            ],
+                            label: {
+                                normal: {
+                                    formatter: '{d}%\n{c}吨',
+                                    position: 'inner',
+                                    color: 'white',
+                                    fontSize: 11,
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    lineStyle: {
+                                        color: 'white'
+                                    }
+                                }
+                            }
+                        },
+                    ]
+                },
+                transacPieOptions: {
+                    backgroundColor: '#1C2B44',
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    color: ['#02ACB2', '#FFFF00', '#FFA011', '#A6141B', '#00FF01'],
+                    legend: {
+                        itemWidth: 20,
+                        itemHeight: 10,
+                        orient: 'vertical',
+                        x: 'left',
+                        data: ['重庆公司', '北京公司', '上海公司', '杭州公司', '西安公司'],
+                        textStyle: {
+                            color: '#fff',
+                            fontSize: 11
+                        },
+                        backgroundColor: '#274f7d',
+                        borderColor: '#53657a',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        shadowColor: '#29547d',
+                        shadowBlur: 10,
+                        shadowOffsetX: 5,
+                        shadowOffsetY: 5
+                    },
+                    series: [
+                        {
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['60%', '55%'],
+                            selectedMode: 'single',
+                            data: [
+                                {value: 351, name: '重庆公司', selected: true},
+                                {value: 150, name: '北京公司'},
+                                {value: 94, name: '上海公司'},
+                                {value: 55, name: '杭州公司'},
+                                {value: 105, name: '西安公司'}
+                            ],
+                            label: {
+                                normal: {
+                                    backgroundColor: '#5c6c80',
+                                    borderColor: '#495c72',
+                                    borderWidth: 1,
+                                    borderRadius: 4,
+                                    color: 'white',
+                                    padding: [5, 7],
+                                    fontSize: 11,
+                                    lineHeight: 33,
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    lineStyle: {
+                                        color: 'white'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['60%', '55%'],
+                            selectedMode: 'single',
+                            data: [
+                                {value: 351, name: '重庆公司', selected: true},
+                                {value: 150, name: '北京公司'},
+                                {value: 94, name: '上海公司'},
+                                {value: 55, name: '杭州公司'},
+                                {value: 105, name: '西安公司'}
+                            ],
+                            label: {
+                                normal: {
+                                    formatter: '{d}%\n{c}吨',
+                                    position: 'inner',
+                                    color: 'white',
+                                    fontSize: 11,
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    lineStyle: {
+                                        color: 'white'
+                                    }
+                                }
+                            }
+                        },
                     ]
                 }
             }
         },
         methods: {
-            pieCharts: function () {
+            transacPieChart: function () {
+                let _this = this;
+                console.log('饼图');
+                _this.showTransacPie = true;
+                let pieChart = echarts.init(document.getElementById('transaction-pie-chart'));
+                pieChart.setOption(_this.transacPieOptions);
+            },
+            realPieChart: function () {
                 let _this = this;
                 console.log('饼图');
                 _this.showRealPie = false;
@@ -661,7 +765,7 @@
                         min: 1000,
                         max: 5000,
                         calculable: true,
-                        right: '33%',
+                        left: '25%',
                         bottom: '5%',
                         zlevel: 10,
                         color: ['#50a3ba', '#f1c40f', '#e67e22', '#d94e5d'],
