@@ -6,7 +6,28 @@ import Routers from './router';
 import App from './app.vue';
 import 'element-ui/lib/theme-chalk/index.css'
 
-import {Table, TableColumn, Button, Tooltip, Row, Col, Tabs, TabPane, Dialog, Select, Option,Menu,MenuItem,DatePicker,Form,FormItem} from 'element-ui'
+
+// import vue-video-player
+import VueVideoPlayer from 'vue-video-player'
+
+import {
+    Table,
+    TableColumn,
+    Button,
+    Tooltip,
+    Row,
+    Col,
+    Tabs,
+    TabPane,
+    Dialog,
+    Select,
+    Option,
+    Menu,
+    MenuItem,
+    DatePicker,
+    Form,
+    FormItem
+} from 'element-ui'
 
 
 Vue.use(VueRouter);
@@ -28,7 +49,11 @@ Vue.use(MenuItem);
 Vue.use(DatePicker);
 Vue.use(Form);
 Vue.use(FormItem);
+// require videojs style [and custom videojs theme]
+require('video.js/dist/video-js.css')
+require('vue-video-player/src/custom-theme.css')
 
+Vue.use(VueVideoPlayer);
 
 
 // 路由配置
