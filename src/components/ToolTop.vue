@@ -1,9 +1,8 @@
-<style lang="less">
+<style scoped lang="less">
     .data-header-box {
         .popup-table {
             height: 100%;
         }
-
         .popup-content-wrapper {
             margin: 37px 60px;
             background: url(../assets/popupInner.png) no-repeat;
@@ -21,7 +20,6 @@
                 }
             }
         }
-
         .popup-title {
             font-size: 28px;
             color: white;
@@ -33,12 +31,6 @@
                 height: 550px;
             }
         }
-        .expand-dialog .el-dialog {
-        }
-        .el-button .el-tooltip .item .el-button--default {
-
-        }
-
     }
 
     .type2-chart-table-box {
@@ -66,21 +58,41 @@
                 height: 470px;
             }
         }
-        .data-footer-box .box-center {
-            margin: 0 auto;
-        }
-        .data-footer-box .action-group {
-            display: block;
-        }
     }
 
+    /*数据框的通用头部样式*/
+    .data-header-box {
+        height: 48px;
+        line-height: 48px;
+    }
 
+    .data-header-box .title {
+        color: white;
+        text-align: left;
+        padding: 0 15px;
+        font-weight: bold;
+        float: left;
+    }
+
+    .data-header-box .action-group {
+        width: 75px;
+        height: 100%;
+        padding-right: 10px;
+    }
+
+    .data-header-box .action-group .el-button {
+        background: transparent;
+        color: white;
+        padding: 5px;
+        border: none;
+        font-size: 18px;
+    }
 </style>
 <template>
     <div class="data-header-box">
         <span class="title">{{title}}</span>
-        <div class="action-group g-rt">
-            <el-button icon="icon iconfont icon-fangda" @click="showPopupTable"></el-button>
+        <div class="action-group g-rt right">
+            <el-button icon="icon iconfont icon-fangda" @click="showPopupTable" v-show="showExpandPopup"></el-button>
             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
                 <el-button icon="icon iconfont icon-wenhao"></el-button>
             </el-tooltip>
@@ -325,11 +337,12 @@
     let myChart;
     export default {
         name: 'data-header-box',
-        props: ['itemTitle'],
+        props: ['itemTitle', 'expandPopup'],
         data() {
             return {
                 tabActive: 'first',
                 title: '',
+                showExpandPopup: true,
                 popupSearchData: {
                     timer1: '',
                     timer2: '',
@@ -725,7 +738,7 @@
         },
         mounted: function () {
             this.title = this.itemTitle;
-            let _this = this;
+            this.showExpandPopup = this.expandPopup;
         },
         methods: {
             showPopupTable: function () {

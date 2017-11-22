@@ -1,6 +1,6 @@
 <style lang="less">
     .mian-box {
-        width: 1920px;
+        width: 100%;
         div {
             box-sizing: border-box;
         }
@@ -43,8 +43,7 @@
             position: absolute;
             top: 164px;
             right: 35px;
-            width: 522px;
-            height: 880px;
+            width: 820px;
         }
         .real-time-table {
             width: 100%;
@@ -88,13 +87,21 @@
                 line-height: 50px;
             }
         }
+        .transaction-pie {
+            width: 100%;
+            height: 402px;
+            margin-bottom: 35px;
+            background: url(../assets/boxBk.png) no-repeat;
+            background-size: 100%;
+        }
 
         .daily-volume-table {
-            width: 100%;
+            width: 522px;
             height: 500px;
             margin-bottom: 13px;
             background: url(../assets/rt1.png) no-repeat;
             background-size: 100%;
+            float: right;
             .data-content {
                 height: 405px;
             }
@@ -106,10 +113,11 @@
             }
         }
         .daily-price-table {
-            width: 100%;
+            width: 522px;
             height: 362px;
             background: url(../assets/rt2.png) no-repeat;
             background-size: 100%;
+            float: right;
             .data-content {
                 height: 272px;
             }
@@ -120,7 +128,21 @@
         }
         .real-pie-chart {
             width: 450px;
-            height: 340px;
+            height: 300px;
+        }
+
+        .right-line-charts-wrapper {
+            width: 820px;
+            height: 500px;
+            background-color: #1b3a57;
+            margin-bottom: 10px;
+            float: right;
+        }
+        .right-line-charts-wrapper2 {
+            width: 820px;
+            height: 370px;
+            background-color: #1b3a57;
+            float: right;
         }
 
     }
@@ -134,13 +156,12 @@
         <sys-header-box></sys-header-box>
         <!--左侧数据-->
         <div class="left-data-wrapper g-lf">
-            <div class="real-time-table">
-                <data-header-box item-title="实时交易数据"></data-header-box>
+
+            <!--实时交易数据的表格-->
+            <div class="real-time-table" v-show="showRealPie">
+                <data-header-box item-title="实时交易数据" :expand-popup="true"></data-header-box>
                 <div class="data-content">
-                    <div id="real-pie-chart" v-show="!showRealPie" style="width: 453px;height: 340px;">
-                        <!--点击模块的饼图后的图表-->
-                    </div>
-                    <el-table :data="realTimeData" size="small" fit v-show="showRealPie">
+                    <el-table :data="realTimeData" size="small" fit>
                         <el-table-column prop="date" label="时间" width="40px"></el-table-column>
                         <el-table-column prop="area" label="地区" width="50px"></el-table-column>
                         <el-table-column prop="company" label="公司" width="79px"></el-table-column>
@@ -151,12 +172,27 @@
                         <el-table-column prop="allCount" label="总价" width="53px"></el-table-column>
                     </el-table>
                 </div>
-                <data-footer-box :left-item="true" :center-item="true" :pie-charts="realPieChart"></data-footer-box>
+                <data-footer-box :left-item="true" :center-item="true" :pie-charts="realPieChart"
+                                 :table-datas="realTableData"></data-footer-box>
             </div>
-            <div class="transaction-data-table" v-show="!showTransacPie">
-                <data-header-box item-title="交易数据分析"></data-header-box>
+            <!--实时交易数据的图表-->
+            <div class="real-time-table" v-show="!showRealPie">
+                <data-header-box item-title="实时交易数据" :expand-popup="true"></data-header-box>
                 <div class="data-content">
-                    <div class="transaction-item" >
+                    <div id="real-pie-chart" style="width: 453px;height: 340px;">
+                        <!--点击模块的饼图后的图表-->
+                    </div>
+                </div>
+                <data-footer-box :left-item="true" :center-item="false" :pie-charts="realPieChart"
+                                 :table-datas="realTableData"></data-footer-box>
+            </div>
+
+
+            <!--左下方的数据图-->
+            <div class="transaction-data-table" v-show="!showTransacPie">
+                <data-header-box item-title="交易数据分析" :expand-popup="false"></data-header-box>
+                <div class="data-content">
+                    <div class="transaction-item">
                         <el-row class="dark-item">
                             <el-col :span="8">
                                 单日交易量：
@@ -175,25 +211,25 @@
                         </el-row>
                     </div>
                 </div>
-                <data-footer-box :left-item="true" :center-item="true" :pie-charts="transacPieChart"></data-footer-box>
+                <data-footer-box :left-item="false" :center-item="false" :pie-charts="transacPieChart"
+                                 :table-datas="transactionTableData"></data-footer-box>
             </div>
-            <div class="real-time-table" v-show="showTransacPie">
-                <data-header-box item-title="交易数据分析"></data-header-box>
-                <div class="data-content">
-                    <div id="transaction-pie-chart" style="width: 453px;height: 340px;">
+            <!--左下方的饼图-->
+            <div class="transaction-pie" v-show="showTransacPie">
+                <data-header-box item-title="交易数据分析" :expand-popup="false"></data-header-box>
+                <div id="transaction-pie-chart" style="width: 450px;height: 300px;"></div>
+                <data-footer-box :left-item="false" :center-item="false"
+                                 :pie-charts="transacPieChart" :table-datas="transactionTableData"></data-footer-box>
+            </div>
 
-                    </div>
-                </div>
-                <data-footer-box :left-item="true" :center-item="true" :pie-charts="transacPieChart"></data-footer-box>
-            </div>
         </div>
 
         <!--右侧数据-->
-        <div class="right-data-wrapper g-rt">
-            <div class="daily-volume-table">
-                <data-header-box item-title="今日成交价"></data-header-box>
+        <div class="right-data-wrapper clearfix">
+            <div class="daily-volume-table" v-show="!showDailyVolumeLine">
+                <data-header-box item-title="今日成交价" :expand-popup="true"></data-header-box>
                 <div class="data-content">
-                    <el-tabs v-model="tabActive" type="card">  <!--34-->
+                    <el-tabs v-model="tabActive" type="card">
                         <el-tab-pane label="螺纹钢" name="first">
                             <el-table :data="dailyVolumeTable" size="small" fit>
                                 <el-table-column prop="province" label="省份" width="50px"></el-table-column>
@@ -213,20 +249,20 @@
                     </el-tabs>
 
                 </div>
-                <div class="data-footer-box clearfix">
-                    <div class="action-group center">
-                        <el-button icon="icon iconfont icon-arrow-down-circle-left"
-                                   @click="expandData"></el-button>
-                        <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
-                    </div>
-                    <div class="action-group g-rt right">
-                        <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
-                        <el-button icon="icon iconfont icon-weibiaoti11"></el-button>
-                    </div>
-                </div>
+                <right-bottom-tool :line-charts="dailyLineChart" :pages="true"
+                                   :table-datas="dailyLineTable"></right-bottom-tool>
             </div>
-            <div class="daily-price-table">
-                <data-header-box item-title="今日价格指数"></data-header-box>
+            <div class="right-line-charts-wrapper" v-show="showDailyVolumeLine">
+                <data-header-box item-title="今日成交价" :expand-popup="true"></data-header-box>
+                <div id="daily-line-chart" style="width: 820px;height: 410px;"></div>
+                <right-bottom-tool :line-charts="dailyLineChart" :pages="false"
+                                   :table-datas="dailyLineTable"></right-bottom-tool>
+            </div>
+
+
+            <!--右下角的数据-->
+            <div class="daily-price-table" v-show="!showDailyPriceLine">
+                <data-header-box item-title="今日价格指数" :expand-popup="true"></data-header-box>
                 <div class="data-content">
                     <el-row>
                         <el-col :span="12">
@@ -249,17 +285,16 @@
                         </el-col>
                     </el-row>
                 </div>
-                <div class="data-footer-box clearfix">
-                    <div class="action-group center">
-                        <el-button icon="icon iconfont icon-arrow-down-circle-left"
-                                   @click="expandData"></el-button>
-                        <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
-                    </div>
-                    <div class="action-group g-rt right">
-                        <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
-                        <el-button icon="icon iconfont icon-weibiaoti11"></el-button>
-                    </div>
+                <right-bottom-tool :line-charts="dailyPriceChart" :pages="true"
+                                   :table-datas="dailyPriceTable"></right-bottom-tool>
+            </div>
+            <div class="right-line-charts-wrapper2" v-show="showDailyPriceLine">
+                <data-header-box item-title="今日价格指数" :expand-popup="true"></data-header-box>
+                <div id="daily-price-chart" style="width: 820px;height: 280px;">
+
                 </div>
+                <right-bottom-tool :line-charts="dailyPriceChart" :pages="false"
+                                   :table-datas="dailyPriceTable"></right-bottom-tool>
             </div>
         </div>
 
@@ -285,10 +320,11 @@
     import DataHeaderBox from '@/components/ToolTop'
     import DataFooterBox from '@/components/ToolBottom'
     import SysHeaderBox from '@/components/SysHeader'
+    import RightBottomTool from '@/components/RightBottomTool'
 
     export default {
-        name: '',
-        components: {DataHeaderBox, DataFooterBox, SysHeaderBox},
+        name: 'CloudStorage',
+        components: {DataHeaderBox, DataFooterBox, SysHeaderBox, RightBottomTool},
         props: [],
         data() {
             return {
@@ -296,6 +332,8 @@
                 tabActive: 'first',
                 logoHeaderActive: '1',
                 showTransacPie: false,
+                showDailyVolumeLine: false,
+                showDailyPriceLine: false,
                 realTimeData: [
                     {
                         date: '11.30',
@@ -728,23 +766,110 @@
                             }
                         },
                     ]
+                },
+                dailyLineOptions: {
+                    backgroundColor: '#0E2A43',
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['螺纹钢', '高线', '盘螺', '热轧板卷'],
+                        top: 'top',
+                        textStyle: {
+                            color: '#fff'
+                        },
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                        axisLine: {
+                            lineStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    yAxis: {
+                        axisLine: {
+                            lineStyle: {
+                                color: '#fff'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                // 使用深浅的间隔色
+                                color: ['#aaa', '#ddd'],
+                                type: 'dashed'
+                            }
+                        },
+
+                    },
+                    series: [{
+                        name: '螺纹钢',
+                        type: 'line',
+                        data: [1800, 1710, 1815, 1902, 1987, 2010, 2111, 2401, 2300, 2671, 2974, 3544, 4237, 4704, 3210]
+                    }, {
+                        name: '高线',
+                        type: 'line',
+                        data: [1514, 1647, 1902, 1987, 1815, 2010, 2111, 3544, 4237, 4704, 3210, 2401, 2300, 2671, 2974]
+                    }, {
+                        name: '盘螺',
+                        type: 'line',
+                        data: [975, 1640, 1744, 2011, 2640, 2111, 2018, 2401, 2640, 2974, 3544, 4037, 4504, 2671, 2971]
+                    }, {
+                        name: '热轧板卷',
+                        type: 'line',
+                        data: [3101, 3321, 3401, 2987, 2874, 2610, 2310, 2000, 2971, 3607, 3974, 4358, 4781, 4012, 3710]
+                    }]
                 }
             }
         },
         methods: {
+            dailyPriceChart: function () {
+                let _this = this;
+                _this.showDailyPriceLine = true;
+                let LineChart = echarts.init(document.getElementById('daily-price-chart'));
+                LineChart.setOption(_this.dailyLineOptions);
+            },
+            dailyPriceTable: function () {
+                this.showDailyPriceLine = false;
+            },
+            dailyLineChart: function () {
+                let _this = this;
+                _this.showDailyVolumeLine = true;
+                let LineChart = echarts.init(document.getElementById('daily-line-chart'));
+                LineChart.setOption(_this.dailyLineOptions);
+            },
+            dailyLineTable: function () {
+                this.showDailyVolumeLine = false;
+            },
             transacPieChart: function () {
                 let _this = this;
-                console.log('饼图');
                 _this.showTransacPie = true;
                 let pieChart = echarts.init(document.getElementById('transaction-pie-chart'));
                 pieChart.setOption(_this.transacPieOptions);
             },
+            transactionTableData: function () {
+                this.showTransacPie = false;
+            },
             realPieChart: function () {
                 let _this = this;
-                console.log('饼图');
                 _this.showRealPie = false;
                 let pieChart = echarts.init(document.getElementById('real-pie-chart'));
                 pieChart.setOption(_this.realPieOptions);
+            },
+            realTableData: function () {
+                this.showRealPie = true;
             },
             expandData: function () {
                 console.log('展开');
@@ -755,7 +880,9 @@
 
 
                 myChart.on('click', function (param) {
-                    console.log('地图的点击事件：', param);
+                    if (param.componentType == 'geo') {
+                        console.log('地图的点击事件：', param);
+                    }
                 });
 
                 // 绘制图表
@@ -765,7 +892,7 @@
                         min: 1000,
                         max: 5000,
                         calculable: true,
-                        left: '25%',
+                        left: '34%',
                         bottom: '5%',
                         zlevel: 10,
                         color: ['#50a3ba', '#f1c40f', '#e67e22', '#d94e5d'],

@@ -104,8 +104,10 @@
     font-weight: bold;
     font-size: 16px;
 }
-.inner-table{
+
+.inner-table {
 }
+
 /*覆盖的tab选项卡样式*/
 .data-content .el-tabs--card > .el-tabs__header {
     border: none;
@@ -246,32 +248,7 @@
     line-height: 24px;
 }
 
-/*数据框的通用头部样式*/
-.data-header-box {
-    height: 48px;
-    line-height: 48px;
-}
 
-.data-header-box .title {
-    color: white;
-    text-align: left;
-    padding: 0 15px;
-    font-weight: bold;
-    float: left;
-}
-
-.data-header-box .action-group {
-    width: 70px;
-    height: 100%;
-}
-
-.data-header-box .action-group .el-button {
-    background: transparent;
-    color: white;
-    padding: 5px;
-    border: none;
-    font-size: 18px;
-}
 
 .action-group .iconfont {
     font-size: 18px;
@@ -307,6 +284,7 @@
     padding: 5px;
     border: none;
     font-size: 18px;
+    vertical-align: middle;
 }
 
 /*页面头部的通用样式*/
