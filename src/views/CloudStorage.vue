@@ -159,7 +159,7 @@
 
             <!--实时交易数据的表格-->
             <div class="real-time-table" v-show="showRealPie">
-                <data-header-box item-title="实时交易数据" :expand-popup="true"></data-header-box>
+                <data-header-box item-title="实时交易数据" :expand-popup="true" :type-num="1"></data-header-box>
                 <div class="data-content">
                     <el-table :data="realTimeData" size="small" fit>
                         <el-table-column prop="date" label="时间" width="40px"></el-table-column>
@@ -227,7 +227,7 @@
         <!--右侧数据-->
         <div class="right-data-wrapper clearfix">
             <div class="daily-volume-table" v-show="!showDailyVolumeLine">
-                <data-header-box item-title="今日成交价" :expand-popup="true"></data-header-box>
+                <data-header-box item-title="今日成交价" :expand-popup="true" :type-num="2"></data-header-box>
                 <div class="data-content">
                     <el-tabs v-model="tabActive" type="card">
                         <el-tab-pane label="螺纹钢" name="first">
@@ -262,7 +262,7 @@
 
             <!--右下角的数据-->
             <div class="daily-price-table" v-show="!showDailyPriceLine">
-                <data-header-box item-title="今日价格指数" :expand-popup="true"></data-header-box>
+                <data-header-box item-title="今日价格指数" :expand-popup="true" :type-num="2"></data-header-box>
                 <div class="data-content">
                     <el-row>
                         <el-col :span="12">

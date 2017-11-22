@@ -1,4 +1,8 @@
 <style scoped lang="less">
+    .menu-copy-btn {
+        margin-top: 1px;
+    }
+
     .data-header-box {
         .popup-table {
             height: 100%;
@@ -81,6 +85,33 @@
     }
 
     .data-header-box .action-group .el-button {
+        background: transparent;
+        color: white;
+        padding: 5px;
+        border: none;
+        font-size: 18px;
+    }
+
+    .pages-center {
+        height: 100%;
+        text-align: center;
+    }
+
+    .data-header-box .pages-center .el-button {
+        background: transparent;
+        color: white;
+        padding: 5px;
+        border: none;
+        font-size: 18px;
+    }
+
+    .popup-bottom-wrapper {
+        width: 33%;
+        display: inline-block;
+        height: 100%;
+    }
+
+    .data-header-box .popup-bottom-wrapper .el-button {
         background: transparent;
         color: white;
         padding: 5px;
@@ -202,17 +233,18 @@
                                 </p>
                             </div>
                             <div class="data-footer-box clearfix">
-                                <div class="action-group g-lf left">
-                                    <el-button icon="icon iconfont icon-caidan1" @click="expandData"></el-button>
+                                <div class="popup-bottom-wrapper left">
+                                    <el-button icon="icon iconfont icon-menu-copy" @click="expandData"
+                                               class="menu-copy-btn"></el-button>
                                     <el-button icon="icon iconfont icon-jiugongge"></el-button>
                                 </div>
-                                <div class="action-group box-center center">
+                                <div class="popup-bottom-wrapper center">
                                     <el-button icon="icon iconfont icon-arrow-down-circle-left"
                                                @click="expandData"></el-button>
                                     <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                                 </div>
-                                <div class="action-group g-rt right">
-                                    <el-button icon="icon iconfont icon-msnui-menu" @click="expandData"></el-button>
+                                <div class="popup-bottom-wrapper right">
+                                    <el-button icon="icon iconfont icon-menu1" @click="expandData"></el-button>
                                     <el-button icon="icon iconfont icon-pie"></el-button>
                                 </div>
                             </div>
@@ -285,7 +317,7 @@
 
                                 </div>
                                 <div class="data-footer-box clearfix">
-                                    <div class="action-group box-center">
+                                    <div class="pages-center">
                                         <el-button icon="icon iconfont icon-arrow-down-circle-left"
                                                    @click="expandData"></el-button>
                                         <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
@@ -337,7 +369,7 @@
     let myChart;
     export default {
         name: 'data-header-box',
-        props: ['itemTitle', 'expandPopup'],
+        props: ['itemTitle', 'expandPopup', 'typeNum'],
         data() {
             return {
                 tabActive: 'first',
@@ -743,13 +775,17 @@
         methods: {
             showPopupTable: function () {
                 let _this = this;
-                _this.showDialogType2 = true;
-                if (_this.showDialogType2) {
+                if (_this.typeNum == 1) {
+                    _this.showDialogType1 = true;
+
+                } else {
+                    _this.showDialogType2 = true;
                     let map = setInterval(function () {
                         _this.drawLine();
                         clearInterval(map);
                     }, 1000)
                 }
+
 
             },
             expandData: function () {
