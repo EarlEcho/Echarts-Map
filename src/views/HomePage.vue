@@ -298,7 +298,7 @@
                     playbackRates: [0.7, 1.0, 1.5, 2.0],
                     sources: [{
                         type: "video/mp4",
-                        src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+                        src: "http://pic.ibaotu.com/00/25/86/008888piCNE6.mp4"
                     }],
                     poster: "/static/image/m9.jpg",
                 },
