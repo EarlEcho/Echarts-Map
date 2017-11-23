@@ -24,6 +24,67 @@
         float: right;
     }
 
+    .popup-table {
+        height: 100%;
+    }
+
+    .popup-content-wrapper {
+        margin: 37px 60px;
+        background: url(../assets/popupInner.png) no-repeat;
+        background-size: 100%;
+        height: 778px;
+        .tooltip {
+            text-align: right;
+            padding: 2px 10px 0 10px;
+            .el-button {
+                background: transparent;
+                color: white;
+                padding: 5px;
+                border: none;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .popup-title {
+        font-size: 28px;
+        color: white;
+        text-align: center;
+        line-height: 30px;
+    }
+
+    .expand-table-wrapper {
+        .data-content {
+            height: 550px;
+        }
+    }
+
+    .type2-chart-table-box {
+        padding: 0 10px;
+        height: 535px;
+        .expand-table-wrapper {
+            width: 30%;
+        }
+        .el-tabs__nav-wrap.is-scrollable {
+            padding: 0 !important;
+        }
+        .type2-data-table {
+            height: 460px !important;
+        }
+        .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
+            width: 103px;
+        }
+        .data-content .el-tabs__item {
+            width: 103px;
+        }
+        .expand-chart-wrapper {
+            width: 69%;
+            #popup-chart {
+                width: 100%;
+                height: 470px;
+            }
+        }
+    }
 </style>
 <template>
     <div>
@@ -167,7 +228,7 @@
 
                                 </div>
                                 <div class="data-footer-box clearfix">
-                                    <div class="pages-center">
+                                    <div class="tool-btn-group center">
                                         <el-button icon="icon iconfont icon-arrow-down-circle-left"
                                                    @click="expandData"></el-button>
                                         <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
@@ -720,8 +781,9 @@
                 let _this = this;
                 _this.showDialogType2 = true;
                 let map = setInterval(function () {
-                    _this.drawLine();
+                    myChart = echarts.init(document.getElementById('popup-chart'));
                     myChart.setOption(_this.chartOption);
+                    clearInterval(map);
                     myChart.on('click', function (param) {
                     });
                 }, 1000)

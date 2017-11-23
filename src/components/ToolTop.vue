@@ -3,38 +3,45 @@
         margin-top: 1px;
     }
 
-    .data-header-box {
-        .popup-table {
-            height: 100%;
-        }
-        .popup-content-wrapper {
-            margin: 37px 60px;
-            background: url(../assets/popupInner.png) no-repeat;
-            background-size: 100%;
-            height: 778px;
-            .tooltip {
-                text-align: right;
-                padding: 2px 10px 0 10px;
-                .el-button {
-                    background: transparent;
-                    color: white;
-                    padding: 5px;
-                    border: none;
-                    font-size: 18px;
-                }
+    .popup-table {
+        height: 100%;
+    }
+
+    .popup-content-wrapper {
+        margin: 37px 60px;
+        background: url(../assets/popupInner.png) no-repeat;
+        background-size: 100%;
+        height: 778px;
+        .tooltip {
+            text-align: right;
+            padding: 2px 10px 0 10px;
+            .el-button {
+                background: transparent;
+                color: white;
+                padding: 5px;
+                border: none;
+                font-size: 18px;
             }
         }
-        .popup-title {
-            font-size: 28px;
-            color: white;
-            text-align: center;
-            line-height: 30px;
+    }
+
+    .popup-title {
+        font-size: 28px;
+        color: white;
+        text-align: center;
+        line-height: 30px;
+    }
+
+    .expand-table-wrapper {
+        .data-content {
+            height: 550px;
         }
-        .expand-table-wrapper {
-            .data-content {
-                height: 550px;
-            }
-        }
+    }
+
+    .popup-bottom-wrapper {
+        width: 33%;
+        display: inline-block;
+        height: 100%;
     }
 
     .type2-chart-table-box {
