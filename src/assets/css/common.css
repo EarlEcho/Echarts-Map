@@ -248,8 +248,6 @@
     line-height: 24px;
 }
 
-
-
 .action-group .iconfont {
     font-size: 18px;
 }
@@ -407,4 +405,39 @@
 .popup-other-infos .other-item span {
     font-weight: 600;
 
+}
+
+.tool-btn-group .el-button {
+    background: transparent;
+    color: white;
+    padding: 5px;
+    border: none;
+    font-size: 18px;
+}
+
+.data-header-box {
+    height: 48px;
+    line-height: 48px;
+}
+
+.data-header-box .title {
+    color: white;
+    text-align: left;
+    padding: 0 15px;
+    font-weight: bold;
+    float: left;
+}
+
+.data-header-box .action-group {
+    width: 75px;
+    height: 100%;
+    padding-right: 10px;
+}
+
+.data-header-box .action-group .el-button {
+    background: transparent;
+    color: white;
+    padding: 5px;
+    border: none;
+    font-size: 18px;
 }

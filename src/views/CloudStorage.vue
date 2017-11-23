@@ -13,13 +13,6 @@
             z-index: 0;
             box-sizing: border-box;
         }
-        /* .content-wrapper {
-             min-height: 100%;
-             padding: 0 35px;
-             position: relative;
-             z-index: 10;
-             overflow: hidden;
-         }*/
         .sys-header-box {
             position: absolute;
             z-index: 10;
@@ -44,16 +37,6 @@
             top: 164px;
             right: 35px;
             width: 820px;
-        }
-        .real-time-table {
-            width: 100%;
-            height: 435px;
-            margin-bottom: 35px;
-            background: url(../assets/boxBk.png) no-repeat;
-            background-size: 100%;
-            .data-content {
-                height: 340px;
-            }
         }
         .transaction-data-table {
             width: 322px;
@@ -157,107 +140,16 @@
         <!--左侧数据-->
         <div class="left-data-wrapper g-lf">
 
-            <!--实时交易数据的表格-->
-            <div class="real-time-table" v-show="showRealPie">
-                <data-header-box item-title="实时交易数据" :expand-popup="true" :type-num="1"></data-header-box>
-                <div class="data-content">
-                    <el-table :data="realTimeData" size="small" fit>
-                        <el-table-column prop="date" label="时间" width="40px"></el-table-column>
-                        <el-table-column prop="area" label="地区" width="50px"></el-table-column>
-                        <el-table-column prop="company" label="公司" width="79px"></el-table-column>
-                        <el-table-column prop="type" label="品种" width="75px"></el-table-column>
-                        <el-table-column prop="standard" label="规格" width="55px"></el-table-column>
-                        <el-table-column prop="num" label="数量" width="50px"></el-table-column>
-                        <el-table-column prop="price" label="单价" width="51px"></el-table-column>
-                        <el-table-column prop="allCount" label="总价" width="53px"></el-table-column>
-                    </el-table>
-                </div>
-                <data-footer-box :left-item="true" :center-item="true" :pie-charts="realPieChart"
-                                 :table-datas="realTableData"></data-footer-box>
-            </div>
-            <!--实时交易数据的图表-->
-            <div class="real-time-table" v-show="!showRealPie">
-                <data-header-box item-title="实时交易数据" :expand-popup="true"></data-header-box>
-                <div class="data-content">
-                    <div id="real-pie-chart" style="width: 453px;height: 340px;">
-                        <!--点击模块的饼图后的图表-->
-                    </div>
-                </div>
-                <data-footer-box :left-item="true" :center-item="false" :pie-charts="realPieChart"
-                                 :table-datas="realTableData"></data-footer-box>
-            </div>
+            <!--左上方表格-->
+            <left-top-table></left-top-table>
 
-
+            <left-bottom-table></left-bottom-table>
             <!--左下方的数据图-->
-            <div class="transaction-data-table" v-show="!showTransacPie">
-                <data-header-box item-title="交易数据分析" :expand-popup="false"></data-header-box>
-                <div class="data-content">
-                    <div class="transaction-item">
-                        <el-row class="dark-item">
-                            <el-col :span="8">
-                                单日交易量：
-                            </el-col>
-                            <el-col :span="16">
-                                <span>2124645</span>吨
-                            </el-col>
-                        </el-row>
-                        <el-row class="light-item">
-                            <el-col :span="8">
-                                计：
-                            </el-col>
-                            <el-col :span="16">
-                                <span>1578425</span>万元
-                            </el-col>
-                        </el-row>
-                    </div>
-                </div>
-                <data-footer-box :left-item="false" :center-item="false" :pie-charts="transacPieChart"
-                                 :table-datas="transactionTableData"></data-footer-box>
-            </div>
-            <!--左下方的饼图-->
-            <div class="transaction-pie" v-show="showTransacPie">
-                <data-header-box item-title="交易数据分析" :expand-popup="false"></data-header-box>
-                <div id="transaction-pie-chart" style="width: 450px;height: 300px;"></div>
-                <data-footer-box :left-item="false" :center-item="false"
-                                 :pie-charts="transacPieChart" :table-datas="transactionTableData"></data-footer-box>
-            </div>
-
         </div>
 
         <!--右侧数据-->
         <div class="right-data-wrapper clearfix">
-            <div class="daily-volume-table" v-show="!showDailyVolumeLine">
-                <data-header-box item-title="今日成交价" :expand-popup="true" :type-num="2"></data-header-box>
-                <div class="data-content">
-                    <el-tabs v-model="tabActive" type="card">
-                        <el-tab-pane label="螺纹钢" name="first">
-                            <el-table :data="dailyVolumeTable" size="small" fit>
-                                <el-table-column prop="province" label="省份" width="50px"></el-table-column>
-                                <el-table-column prop="city" label="城市" width="52px"></el-table-column>
-                                <el-table-column prop="name" label="品名" width="80px"></el-table-column>
-                                <el-table-column prop="standard" label="规格" width="55px"></el-table-column>
-                                <el-table-column prop="texture" label="材质" width="60px"></el-table-column>
-                                <el-table-column prop="mill" label="钢厂" width="60px"></el-table-column>
-                                <el-table-column prop="date" label="日期" width="50px"></el-table-column>
-                                <el-table-column prop="turnover" label="成交量" width="55px"></el-table-column>
-                                <el-table-column prop="upDowns" label="涨跌" width="60px"></el-table-column>
-                            </el-table>
-                        </el-tab-pane>
-                        <el-tab-pane label="高线" name="second">配置管理</el-tab-pane>
-                        <el-tab-pane label="盘螺" name="third">角色管理</el-tab-pane>
-                        <el-tab-pane label="热轧板卷" name="fourth">定时任务补偿</el-tab-pane>
-                    </el-tabs>
-
-                </div>
-                <right-bottom-tool :line-charts="dailyLineChart" :pages="true"
-                                   :table-datas="dailyLineTable"></right-bottom-tool>
-            </div>
-            <div class="right-line-charts-wrapper" v-show="showDailyVolumeLine">
-                <data-header-box item-title="今日成交价" :expand-popup="true"></data-header-box>
-                <div id="daily-line-chart" style="width: 820px;height: 410px;"></div>
-                <right-bottom-tool :line-charts="dailyLineChart" :pages="false"
-                                   :table-datas="dailyLineTable"></right-bottom-tool>
-            </div>
+            <right-top-table></right-top-table>
 
 
             <!--右下角的数据-->
@@ -317,6 +209,11 @@
     // 引入提示框和标题组件
     require('echarts/lib/component/tooltip');
     require('echarts/lib/component/title');
+
+    import LeftTopTable from '@/components/LeftTopTable'
+    import LeftBottomTable from '@/components/LeftBottomTable'
+    import RightTopTable from '@/components/RightTopTable'
+
     import DataHeaderBox from '@/components/ToolTop'
     import DataFooterBox from '@/components/ToolBottom'
     import SysHeaderBox from '@/components/SysHeader'
@@ -324,7 +221,7 @@
 
     export default {
         name: 'CloudStorage',
-        components: {DataHeaderBox, DataFooterBox, SysHeaderBox, RightBottomTool},
+        components: {DataHeaderBox, DataFooterBox, SysHeaderBox, RightBottomTool, LeftTopTable, LeftBottomTable,RightTopTable},
         props: [],
         data() {
             return {
@@ -334,48 +231,6 @@
                 showTransacPie: false,
                 showDailyVolumeLine: false,
                 showDailyPriceLine: false,
-                realTimeData: [
-                    {
-                        date: '11.30',
-                        area: '成都',
-                        company: '某某公司',
-                        type: '一类',
-                        standard: '1#',
-                        num: '12',
-                        price: '354',
-                        allCount: '13213'
-
-                    }, {
-                        date: '11.30',
-                        area: '成都',
-                        company: '某某公司',
-                        type: '一类',
-                        standard: '1#',
-                        num: '15870',
-                        price: '354',
-                        allCount: '1320001'
-
-                    }, {
-                        date: '11.30',
-                        area: '成都',
-                        company: '某某公司',
-                        type: '一类',
-                        standard: '1#',
-                        num: '12',
-                        price: '354',
-                        allCount: '13213'
-
-                    }, {
-                        date: '11.30',
-                        area: '成都',
-                        company: '某某公司',
-                        type: '一类',
-                        standard: '1#',
-                        num: '12',
-                        price: '354',
-                        allCount: '13213'
-                    }
-                ],
                 dailyVolumeTable: [{
                     province: '陕西',
                     city: '西安',
@@ -589,95 +444,6 @@
                 series: [],
                 fromdata: '北京',
                 color: ['#02ACB2', '#FFFF00', '#FFA011', '#A6141B', '#00FF01'],
-                realPieOptions: {
-                    backgroundColor: '#1C2B44',
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
-                    },
-                    color: ['#74c31f', '#d35833', '#00ccff', '#ffcc00', '#ffdc90'],
-                    legend: {
-                        itemWidth: 20,
-                        itemHeight: 10,
-                        orient: 'vertical',
-                        x: 'left',
-                        data: ['重庆公司', '北京公司', '上海公司', '杭州公司', '西安公司'],
-                        textStyle: {
-                            color: '#fff',
-                            fontSize: 11
-                        },
-                        backgroundColor: '#274f7d',
-                        borderColor: '#53657a',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                        shadowColor: '#29547d',
-                        shadowBlur: 10,
-                        shadowOffsetX: 5,
-                        shadowOffsetY: 5
-                    },
-                    series: [
-                        {
-                            type: 'pie',
-                            radius: '55%',
-                            center: ['60%', '55%'],
-                            selectedMode: 'single',
-                            data: [
-                                {value: 305, name: '重庆公司', selected: true},
-                                {value: 250, name: '北京公司'},
-                                {value: 194, name: '上海公司'},
-                                {value: 135, name: '杭州公司'},
-                                {value: 145, name: '西安公司'}
-                            ],
-                            label: {
-                                normal: {
-                                    backgroundColor: '#5c6c80',
-                                    borderColor: '#495c72',
-                                    borderWidth: 1,
-                                    borderRadius: 4,
-                                    color: 'white',
-                                    padding: [5, 7],
-                                    fontSize: 11,
-                                    lineHeight: 33,
-                                }
-                            },
-                            labelLine: {
-                                normal: {
-                                    lineStyle: {
-                                        color: 'white'
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            type: 'pie',
-                            radius: '55%',
-                            center: ['60%', '55%'],
-                            selectedMode: 'single',
-                            data: [
-                                {value: 305, name: '重庆公司', selected: true},
-                                {value: 250, name: '北京公司'},
-                                {value: 194, name: '上海公司'},
-                                {value: 135, name: '杭州公司'},
-                                {value: 145, name: '西安公司'}
-                            ],
-                            label: {
-                                normal: {
-                                    formatter: '{d}%\n{c}吨',
-                                    position: 'inner',
-                                    color: 'white',
-                                    fontSize: 11,
-                                }
-                            },
-                            labelLine: {
-                                normal: {
-                                    lineStyle: {
-                                        color: 'white'
-                                    }
-                                }
-                            }
-                        },
-                    ]
-                },
                 transacPieOptions: {
                     backgroundColor: '#1C2B44',
                     tooltip: {
