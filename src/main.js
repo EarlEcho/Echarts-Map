@@ -38,7 +38,6 @@ require('vue-video-player/src/custom-theme.css')
 
 // 路由配置
 const RouterConfig = {
-    mode: 'history',
     routes: Routers
 };
 const router = new VueRouter(RouterConfig);

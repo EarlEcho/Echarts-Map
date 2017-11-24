@@ -9,14 +9,11 @@
             height: 312px;
         }
         .transaction-item {
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: bolder;
             span {
                 color: #cccccc;
                 padding: 0 8px;
-            }
-            .el-row {
-                padding: 0 15px;
             }
             .el-col-8 {
                 text-align: right;
@@ -25,10 +22,14 @@
         .dark-item {
             height: 29px;
             line-height: 29px;
+            padding: 0 15px;
         }
         .light-item {
             height: 50px;
-            line-height: 50px;
+            line-height: 35px;
+            padding: 0 15px 0 15px;
+            &:after {
+            }
         }
     }
 
@@ -59,16 +60,89 @@
                         <el-col :span="8">
                             单日交易量：
                         </el-col>
-                        <el-col :span="16">
-                            <span>2124645</span>吨
+                        <el-col :span="9" :offset="3" class="right">
+                            <span>2124645</span>
+                        </el-col>
+                        <el-col :span="4">
+                            吨
                         </el-col>
                     </el-row>
                     <el-row class="light-item">
                         <el-col :span="8">
                             计：
                         </el-col>
-                        <el-col :span="16">
-                            <span>1578425</span>万元
+                        <el-col :span="9" :offset="3" class="right">
+                            <span>1578425</span>
+                        </el-col>
+                        <el-col :span="4">
+                            万元
+                            <br>
+                        </el-col>
+                    </el-row>
+                    <el-row class="dark-item">
+                        <el-col :span="8">
+                            本周交易量：
+                        </el-col>
+                        <el-col :span="9" :offset="3" class="right">
+                            <span>2124645</span>
+                        </el-col>
+                        <el-col :span="4">
+                            吨
+                        </el-col>
+                    </el-row>
+                    <el-row class="light-item">
+                        <el-col :span="8">
+                            计：
+                        </el-col>
+                        <el-col :span="9" :offset="3" class="right">
+                            <span>1578425</span>
+                        </el-col>
+                        <el-col :span="4">
+                            万元
+                        </el-col>
+                    </el-row>
+                    <el-row class="dark-item">
+                        <el-col :span="8">
+                            本月交易量：
+                        </el-col>
+                        <el-col :span="9" :offset="3" class="right">
+                            <span>2124645</span>
+                        </el-col>
+                        <el-col :span="4">
+                            吨
+                        </el-col>
+                    </el-row>
+                    <el-row class="light-item">
+                        <el-col :span="8">
+                            计：
+                        </el-col>
+                        <el-col :span="9" :offset="3" class="right">
+                            <span>1578425</span>
+                        </el-col>
+                        <el-col :span="4">
+                            万元
+                        </el-col>
+                    </el-row>
+                    <el-row class="dark-item">
+                        <el-col :span="8">
+                            累计交易量：
+                        </el-col>
+                        <el-col :span="9" :offset="3" class="right">
+                            <span>2124645</span>
+                        </el-col>
+                        <el-col :span="4">
+                            吨
+                        </el-col>
+                    </el-row>
+                    <el-row class="light-item">
+                        <el-col :span="8">
+                            计：
+                        </el-col>
+                        <el-col :span="9" :offset="3" class="right">
+                            <span>1578425</span>
+                        </el-col>
+                        <el-col :span="4">
+                            万元
                         </el-col>
                     </el-row>
                 </div>

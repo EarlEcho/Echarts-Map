@@ -1,4 +1,6 @@
-<style lang="less">
+<style scoped lang="less">
+    @import "../assets/css/common.css";
+
     .mian-box {
         width: 100%;
         div {
@@ -12,14 +14,6 @@
             height: 1080px;
             z-index: 0;
             box-sizing: border-box;
-        }
-        .sys-header-box {
-            position: absolute;
-            z-index: 10;
-            width: 100%;
-            height: 164px;
-            background: url(../assets/logo.png) no-repeat;
-            background-size: 100%;
         }
         .data-content-box {
             width: 100%;
@@ -37,6 +31,14 @@
             top: 164px;
             right: 35px;
             width: 820px;
+        }
+        #map-click-chart {
+            width: 600px;
+            height: 364px;
+            border: solid 1px white;
+            position: absolute;
+            top: 29%;
+            left: 32%;
         }
     }
 </style>
@@ -56,7 +58,6 @@
             <left-bottom-table></left-bottom-table>
             <!--左下方的数据图-->
         </div>
-
         <!--右侧数据-->
         <div class="right-data-wrapper clearfix">
             <!--右上方的数据-->
@@ -67,6 +68,9 @@
         </div>
 
 
+        <div id="map-click-chart" v-if="showMapChart">
+
+        </div>
     </div>
 
 </template>
@@ -107,6 +111,7 @@
         data() {
             return {
                 logoHeaderActive: '1',
+                showMapChart: false,
                 geoCoordMap: {
                     '上海': [121.4648, 31.2891],
                     '东莞': [113.8953, 22.901],

@@ -1,93 +1,138 @@
 <style lang="less">
-    .daily-volume-table {
-        width: 522px;
-        height: 500px;
-        margin-bottom: 13px;
-        background: url(../assets/rt1.png) no-repeat;
-        background-size: 100%;
-        float: right;
-        .data-content {
-            height: 405px;
-        }
-        .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
-            width: 132px;
-        }
-        .data-content .el-tabs__item {
-            width: 130px;
-        }
-    }
+    .right-top-table {
 
-    .right-line-charts-wrapper2 {
-        width: 820px;
-        height: 370px;
-        background-color: #1b3a57;
-        float: right;
-    }
+        .el-table th {
+            padding: 6px 0;
+        }
 
-    .popup-table {
-        height: 100%;
-    }
+        .el-table td {
+            padding: 3px 0;
+        }
+        .el-table td, .el-table th.is-leaf {
+            border-bottom: 3px solid #172f4b;
+        }
+        .el-table__body, .el-table__footer, .el-table__header{
+            border-bottom: 3px solid #172f4b;
+        }
 
-    .popup-content-wrapper {
-        margin: 37px 60px;
-        background: url(../assets/popupInner.png) no-repeat;
-        background-size: 100%;
-        height: 778px;
-        .tooltip {
-            text-align: right;
-            padding: 2px 10px 0 10px;
-            .el-button {
-                background: transparent;
-                color: white;
-                padding: 5px;
-                border: none;
-                font-size: 18px;
+        .daily-volume-table {
+            width: 522px;
+            height: 500px;
+            margin-bottom: 13px;
+            background: url(../assets/rt1.png) no-repeat;
+            background-size: 100%;
+            float: right;
+            .data-content {
+                height: 405px;
+
+            }
+            .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
+                width: 132px;
+            }
+            .data-content .el-tabs__item {
+                width: 130px;
             }
         }
-    }
 
-    .popup-title {
-        font-size: 28px;
-        color: white;
-        text-align: center;
-        line-height: 30px;
-    }
-
-    .expand-table-wrapper {
-        .data-content {
-            height: 550px;
+        .right-line-charts-wrapper {
+            width: 820px;
+            height: 500px;
+            background-color: #1b3a57;
+            margin-bottom: 10px;
+            float: right;
         }
-    }
 
-    .type2-chart-table-box {
-        padding: 0 10px;
-        height: 535px;
+        .popup-table {
+            height: 100%;
+        }
+
+        .popup-content-wrapper {
+            margin: 37px 60px;
+            background: url(../assets/popupInner.png) no-repeat;
+            background-size: 100%;
+            height: 778px;
+            .tooltip {
+                text-align: right;
+                padding: 2px 10px 0 10px;
+                .el-button {
+                    background: transparent;
+                    color: white;
+                    padding: 5px;
+                    border: none;
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .popup-title {
+            font-size: 28px;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+        }
+
         .expand-table-wrapper {
-            width: 30%;
+            .data-content {
+                height: 550px;
+            }
         }
-        .el-tabs__nav-wrap.is-scrollable {
-            padding: 0 !important;
+
+        .type2-chart-table-box {
+            padding: 0 10px;
+            height: 535px;
+            .expand-table-wrapper {
+                width: 30%;
+            }
+            .el-tabs__nav-wrap.is-scrollable {
+                padding: 0 !important;
+            }
+            .type2-data-table {
+                height: 460px !important;
+            }
+            .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
+                width: 103px;
+            }
+            .data-content .el-tabs__item {
+                width: 103px;
+            }
+            .expand-chart-wrapper {
+                width: 69%;
+                #popup-chart {
+                    width: 100%;
+                    height: 470px;
+                }
+            }
         }
-        .type2-data-table {
-            height: 460px !important;
+
+        .pages-group-center {
+            width: 58%;
+            display: inline-block;
+            text-align: right;
         }
-        .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
-            width: 103px;
+
+        .pages-group-right {
+            width: 40%;
+            display: inline-block;
+            text-align: right;
+            .el-button + .el-button {
+                margin-left: 0;
+            }
         }
-        .data-content .el-tabs__item {
-            width: 103px;
-        }
-        .expand-chart-wrapper {
-            width: 69%;
-            #popup-chart {
-                width: 100%;
-                height: 470px;
+
+        .numarrow {
+            display: inline-block;
+            width: 45px;
+            text-align: left;
+            i {
+                margin-right: -2px;
+                vertical-align: middle;
             }
         }
     }
+
 </style>
 <template>
-    <div>
+    <div class="right-top-table">
         <!--右侧数据-->
         <div class="daily-volume-table" v-show="!showDailyVolumeLine">
             <div class="data-header-box">
@@ -105,13 +150,26 @@
                         <el-table :data="dailyVolumeTable" size="small" fit>
                             <el-table-column prop="province" label="省份" width="50px"></el-table-column>
                             <el-table-column prop="city" label="城市" width="52px"></el-table-column>
-                            <el-table-column prop="name" label="品名" width="80px"></el-table-column>
+                            <el-table-column prop="name" label="品名" width="75px"></el-table-column>
                             <el-table-column prop="standard" label="规格" width="55px"></el-table-column>
                             <el-table-column prop="texture" label="材质" width="60px"></el-table-column>
                             <el-table-column prop="mill" label="钢厂" width="60px"></el-table-column>
                             <el-table-column prop="date" label="日期" width="50px"></el-table-column>
-                            <el-table-column prop="turnover" label="成交量" width="55px"></el-table-column>
-                            <el-table-column prop="upDowns" label="涨跌" width="60px"></el-table-column>
+                            <el-table-column prop="turnover" label="成交量" width="55px">
+                                <template slot-scope="scope">
+                                    <span :class="scope.row.turnover>2000?'red bold':'green bold'"
+                                          style="font-size: 13px">{{scope.row.turnover}}</span>
+                                </template>
+                            </el-table-column>
+
+                            <el-table-column prop="upDowns" label="涨跌" width="65px">
+                                <template slot-scope="scope">
+                                    <span :class="scope.row.upDowns>50?'red numarrow':'green numarrow'">
+                                        <i :class="scope.row.upDowns>50?'iconfont icon-up':'iconfont icon-dowm' "></i>
+                                        {{scope.row.upDowns}}
+                                    </span>
+                                </template>
+                            </el-table-column>
                         </el-table>
                     </el-tab-pane>
                     <el-tab-pane label="高线" name="second">配置管理</el-tab-pane>
@@ -121,19 +179,14 @@
 
             </div>
             <div class="data-footer-box clearfix">
-                <div class="action-group g-lf left">
-                    <el-button icon="icon iconfont icon-menu-copy" @click="expandData"
-                               class="menu-copy-btn"></el-button>
-                    <el-button icon="icon iconfont icon-jiugongge"></el-button>
-                </div>
-                <div class="action-group center">
+                <div class="pages-group-center tool-btn-group">
                     <el-button icon="icon iconfont icon-arrow-down-circle-left"
                                @click="expandData"></el-button>
                     <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                 </div>
-                <div class="action-group g-rt right">
+                <div class="pages-group-right tool-btn-group">
                     <el-button icon="icon iconfont icon-menu1" @click="dailyLineTable"></el-button>
-                    <el-button icon="icon iconfont icon-pie" @click="dailyLineChart"></el-button>
+                    <el-button icon="icon iconfont icon-weibiaoti111" @click="dailyLineChart"></el-button>
                 </div>
             </div>
         </div>
@@ -150,19 +203,14 @@
             </div>
             <div id="daily-line-chart" style="width: 820px;height: 410px;"></div>
             <div class="data-footer-box clearfix">
-                <div class="action-group g-lf left">
-                    <el-button icon="icon iconfont icon-menu-copy" @click="expandData"
-                               class="menu-copy-btn"></el-button>
-                    <el-button icon="icon iconfont icon-jiugongge"></el-button>
-                </div>
-                <div class="action-group center">
+                <div class="pages-group-center tool-btn-group">
                     <el-button icon="icon iconfont icon-arrow-down-circle-left"
                                @click="expandData"></el-button>
                     <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                 </div>
-                <div class="action-group g-rt right">
+                <div class="pages-group-right tool-btn-group">
                     <el-button icon="icon iconfont icon-menu1" @click="dailyLineTable"></el-button>
-                    <el-button icon="icon iconfont icon-pie" @click="dailyLineChart"></el-button>
+                    <el-button icon="icon iconfont icon-weibiaoti11" @click="dailyLineChart"></el-button>
                 </div>
             </div>
         </div>
@@ -532,15 +580,15 @@
                     allPrice: '21321'
                 }],
                 dailyVolumeTable: [{
-                    province: '陕西',
-                    city: '西安',
+                    province: '山东',
+                    city: '济南',
                     name: '螺纹钢',
-                    standard: '1#',
+                    standard: '12#',
                     texture: '铝合金',
                     mill: '重钢',
                     date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
+                    turnover: '3158',
+                    upDowns: '40'
                 }, {
                     province: '陕西',
                     city: '西安',
@@ -549,8 +597,28 @@
                     texture: '铝合金',
                     mill: '重钢',
                     date: '10.25',
-                    turnover: '132221',
+                    turnover: '1300',
+                    upDowns: '80'
+                }, {
+                    province: '重庆',
+                    city: '重庆',
+                    name: '螺纹钢',
+                    standard: '16#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '4102',
                     upDowns: '212'
+                }, {
+                    province: '山东',
+                    city: '济南',
+                    name: '螺纹钢',
+                    standard: '12#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '3158',
+                    upDowns: '40'
                 }, {
                     province: '陕西',
                     city: '西安',
@@ -559,8 +627,58 @@
                     texture: '铝合金',
                     mill: '重钢',
                     date: '10.25',
-                    turnover: '132221',
+                    turnover: '1300',
+                    upDowns: '80'
+                }, {
+                    province: '重庆',
+                    city: '重庆',
+                    name: '螺纹钢',
+                    standard: '16#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '4102',
                     upDowns: '212'
+                }, {
+                    province: '山东',
+                    city: '济南',
+                    name: '螺纹钢',
+                    standard: '12#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '3158',
+                    upDowns: '40'
+                }, {
+                    province: '陕西',
+                    city: '西安',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '1300',
+                    upDowns: '80'
+                }, {
+                    province: '重庆',
+                    city: '重庆',
+                    name: '螺纹钢',
+                    standard: '16#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '4102',
+                    upDowns: '212'
+                }, {
+                    province: '山东',
+                    city: '济南',
+                    name: '螺纹钢',
+                    standard: '12#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '3158',
+                    upDowns: '40'
                 }],
                 dailyLineOptions: {
                     backgroundColor: '#0E2A43',

@@ -1,60 +1,69 @@
-<style scoped lang="less">
-    .real-time-table {
-        width: 100%;
-        height: 435px;
-        margin-bottom: 35px;
-        background: url(../assets/boxBk.png) no-repeat;
-        background-size: 100%;
-        .data-content {
-            height: 340px;
-        }
-    }
+<style lang="less">
+    .left-top-table {
+        .real-time-table {
+            width: 100%;
+            height: 435px;
+            margin-bottom: 35px;
+            background: url(../assets/boxBk.png) no-repeat;
+            background-size: 100%;
+            .data-content {
+                height: 340px;
 
-
-
-    .popup-table {
-        height: 100%;
-    }
-
-    .popup-content-wrapper {
-        margin: 37px 60px;
-        background: url(../assets/popupInner.png) no-repeat;
-        background-size: 100%;
-        height: 778px;
-        .tooltip {
-            text-align: right;
-            padding: 2px 10px 0 10px;
-            .el-button {
-                background: transparent;
-                color: white;
-                padding: 5px;
-                border: none;
-                font-size: 18px;
             }
         }
-    }
+        .popup-table {
+            height: 100%;
+        }
+        .el-table th {
+            padding: 6px 0;
+        }
 
-    .popup-title {
-        font-size: 28px;
-        color: white;
-        text-align: center;
-        line-height: 30px;
-    }
+        .el-table td {
+            padding: 3px 0;
+        }
+        .el-table td, .el-table th.is-leaf {
+            border-bottom: 4px solid #172f4b;
+        }
+        .popup-content-wrapper {
+            margin: 37px 60px;
+            background: url(../assets/popupInner.png) no-repeat;
+            background-size: 100%;
+            height: 778px;
+            .tooltip {
+                text-align: right;
+                padding: 2px 10px 0 10px;
+                .el-button {
+                    background: transparent;
+                    color: white;
+                    padding: 5px;
+                    border: none;
+                    font-size: 18px;
+                }
+            }
+        }
+        .popup-title {
+            font-size: 28px;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+        }
 
-    .expand-table-wrapper {
-        .data-content {
-            height: 550px;
+        .expand-table-wrapper {
+            .data-content {
+                height: 550px;
+            }
+        }
+
+        .popup-bottom-wrapper {
+            width: 33%;
+            display: inline-block;
+            height: 100%;
         }
     }
 
-    .popup-bottom-wrapper {
-        width: 33%;
-        display: inline-block;
-        height: 100%;
-    }
 </style>
 <template>
-    <div>
+    <div class="left-top-table">
         <!--实时交易数据的表格-->
         <div class="real-time-table" v-show="showRealPie">
             <div class="data-header-box">
@@ -370,6 +379,35 @@
                         company: '某某公司',
                         type: '一类',
                         standard: '1#',
+                        num: '12',
+                        price: '354',
+                        allCount: '13213'
+
+                    }, {
+                        date: '11.30',
+                        area: '成都',
+                        company: '某某公司',
+                        type: '一类',
+                        standard: '1#',
+                        num: '12',
+                        price: '354',
+                        allCount: '13213'
+                    }, {
+                        date: '11.30',
+                        area: '成都',
+                        company: '某某公司',
+                        type: '一类',
+                        standard: '1#',
+                        num: '12',
+                        price: '354',
+                        allCount: '13213'
+
+                    }, {
+                        date: '11.30',
+                        area: '成都',
+                        company: '某某公司',
+                        type: '一类',
+                        standard: '1#',
                         num: '15870',
                         price: '354',
                         allCount: '1320001'
@@ -384,6 +422,25 @@
                         price: '354',
                         allCount: '13213'
 
+                    }, {
+                        date: '11.30',
+                        area: '成都',
+                        company: '某某公司',
+                        type: '一类',
+                        standard: '1#',
+                        num: '12',
+                        price: '354',
+                        allCount: '13213'
+
+                    }, {
+                        date: '11.30',
+                        area: '成都',
+                        company: '某某公司',
+                        type: '一类',
+                        standard: '1#',
+                        num: '12',
+                        price: '354',
+                        allCount: '13213'
                     }, {
                         date: '11.30',
                         area: '成都',

@@ -1,4 +1,6 @@
 <style scoped lang="less">
+    @import "../assets/css/common.css";
+
     .homepage-wrapper {
         border: solid 1px;
         width: 1920px;
@@ -147,6 +149,7 @@
 <template>
     <div class="homepage-wrapper">
         <sys-header-box></sys-header-box>
+
         <div class="data-content-box clearfix">
             <div class="data-left-wrapper g-lf">
                 <div class="data-modules">
@@ -239,24 +242,24 @@
                             <el-row>
                                 <el-col :span="12">
                                     <div class="videos-content-item">
-                                        <img src="/static/image/m0.jpg" alt="">
+                                        <img src="../assets/m0.jpg" alt="">
                                     </div>
                                 </el-col>
                                 <el-col :span="12">
                                     <div class="videos-content-item">
-                                        <img src="/static/image/m1.jpg" alt="">
+                                        <img src="../assets/m1.jpg" alt="">
                                     </div>
                                 </el-col>
                             </el-row>
                             <el-row>
                                 <el-col :span="12">
                                     <div class="videos-content-item">
-                                        <img src="/static/image/m2.jpg" alt="">
+                                        <img src="../assets/m2.jpg" alt="">
                                     </div>
                                 </el-col>
                                 <el-col :span="12">
                                     <div class="videos-content-item">
-                                        <img src="/static/image/m3.jpg" alt="">
+                                        <img src="../assets/m3.jpg" alt="">
                                     </div>
                                 </el-col>
                             </el-row>
@@ -284,6 +287,20 @@
     import SysHeaderBox from '@/components/SysHeader'
     import {videoPlayer} from 'vue-video-player'
 
+    import m0 from '../assets/m0.jpg';
+    import m1 from '../assets/m1.jpg';
+    import m2 from '../assets/m2.jpg';
+    import m3 from '../assets/m3.jpg';
+    import m4 from '../assets/m4.jpg';
+    import m5 from '../assets/m5.jpg';
+    import m6 from '../assets/m6.jpg';
+    import m7 from '../assets/m7.jpg';
+    import m8 from '../assets/m8.jpg';
+    import m9 from '../assets/m9.jpg';
+    import m10 from '../assets/m10.jpg';
+    import m11 from '../assets/m11.jpg';
+
+
 
     export default {
         name: 'HomePage',
@@ -300,7 +317,7 @@
                         type: "video/mp4",
                         src: "http://pic.ibaotu.com/00/25/86/008888piCNE6.mp4"
                     }],
-                    poster: "/static/image/m9.jpg",
+                    poster: m9,
                 },
 
                 logoHeaderActive: '1',
@@ -394,42 +411,42 @@
                 monitorItems: [
                     [{
                         key: '1',
-                        imgUrl: "/static/image/m4.jpg"
+                        imgUrl: m0
                     }, {
                         key: '1',
-                        imgUrl: '/static/image/m5.jpg'
+                        imgUrl: m5
                     }, {
                         key: '1',
-                        imgUrl: '/static/image/m6.jpg'
+                        imgUrl: m6
                     }, {
                         key: '1',
-                        imgUrl: '/static/image/m7.jpg'
+                        imgUrl: m7
                     }],
                     [{
                         key: '1',
-                        imgUrl: '/static/image/m8.jpg'
+                        imgUrl: m8
                     }, {
                         key: '1',
-                        imgUrl: '/static/image/m9.jpg'
+                        imgUrl: m9
                     }, {
                         key: '1',
-                        imgUrl: '/static/image/m10.jpg'
+                        imgUrl: m10
                     }, {
                         key: '1',
-                        imgUrl: '/static/image/m11.jpg'
+                        imgUrl: m11
                     }],
                     [{
                         key: '1',
-                        imgUrl: "/static/image/m6.jpg"
+                        imgUrl: m6
                     }, {
                         key: '1',
-                        imgUrl: '/static/image/m0.jpg'
+                        imgUrl: m0
                     }, {
                         key: '1',
-                        imgUrl: '/static/image/m2.jpg'
+                        imgUrl: m2
                     }, {
                         key: '1',
-                        imgUrl: '/static/image/m10.jpg'
+                        imgUrl: m10
                     }]
                 ]
             }

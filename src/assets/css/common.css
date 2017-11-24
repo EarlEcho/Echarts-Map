@@ -55,6 +55,9 @@
 .right {
     text-align: right;
 }
+.bold{
+    font-weight: bold;
+}
 
 .el-table th {
     background-color: #2f6189 !important;
@@ -77,10 +80,6 @@
     background-color: #2f6189;
 }
 
-.el-table td, .el-table th {
-    padding: 6px 0;
-}
-
 .el-table .cell, .el-table th div {
     padding-right: 0;
 }
@@ -90,9 +89,7 @@
     padding-left: 0;
 }
 
-.el-table td, .el-table th.is-leaf {
-    border-bottom: 3px solid #172f4b;
-}
+
 
 .el-table--border::after, .el-table--group::after, .el-table::before {
     background-color: #172f4b;
@@ -286,22 +283,7 @@
 }
 
 /*页面头部的通用样式*/
-.sys-header-box {
-    width: 100%;
-    height: 164px;
-    background: url(../logo.png) no-repeat;
-    background-size: 100%;
-}
 
-.sys-header-box .homepage-navbar {
-    padding-left: 7px;
-    height: 30px;
-    margin-bottom: 1px;
-}
-
-.sys-header-box .homepage-navbar .el-menu {
-    background: transparent;
-}
 
 /*row col 的间隔色*/
 .dark-item {
@@ -318,75 +300,7 @@
     color: #196ca5;
 }
 
-/*菜单栏*/
 
-.homepage-right-toolbar {
-    color: #007ccf;
-    width: 550px;
-    height: 40px;
-    line-height: 40px;
-    margin: 30px 30px;
-    font-size: 15px;
-}
-
-.homepage-right-toolbar .timer {
-    letter-spacing: 1px;
-}
-
-.homepage-right-toolbar .choose {
-    margin: 0 20px;
-}
-
-.homepage-right-toolbar .tool-group i {
-    margin: 0 7px;
-    vertical-align: middle;
-}
-
-.logo-header-navbar {
-    width: 400px;
-    margin: 70px 12%;
-    display: inline-block;
-    height: 30px;
-    line-height: 30px;
-    border-bottom: none;
-}
-
-.logo-header-navbar .el-menu-item {
-    height: 30px;
-    width: 106px;
-    text-align: center;
-    line-height: 30px;
-    border: 2px solid #2ca1f4;
-    color: white;
-    background-color: #11213a;
-    transform: skewX(40deg);
-    margin-right: 10px;
-    border-bottom-color: #2ca1f4 !important;
-}
-
-.logo-header-navbar .el-menu--horizontal .el-menu-item:focus, .el-menu--horizontal .el-menu-item:hover {
-    background-color: #11213A;
-    color: white;
-}
-
-.logo-header-navbar span {
-    display: inline-block;
-    -webkit-transform: skew(-40deg);
-    vertical-align: top;
-    line-height: 30px;
-}
-
-.logo-header-navbar .iconfont {
-    color: white;
-    vertical-align: bottom;
-    padding-right: 5px;
-    line-height: 30px;
-}
-
-.logo-header-navbar .el-menu-item.is-active {
-    background-color: #11213a;
-    color: white;
-}
 
 .popup-other-infos {
     width: 99.9%;
@@ -413,25 +327,26 @@
     padding: 5px;
     border: none;
     font-size: 18px;
-}
 
+}
+.tool-btn-group .el-button .iconfont {
+    font-size: 18px;
+}
 .data-header-box {
     height: 48px;
     line-height: 48px;
+    padding: 0 10px 0 15px;
 }
 
 .data-header-box .title {
     color: white;
     text-align: left;
-    padding: 0 15px;
     font-weight: bold;
-    float: left;
 }
 
 .data-header-box .action-group {
     width: 75px;
     height: 100%;
-    padding-right: 10px;
 }
 
 .data-header-box .action-group .el-button {
