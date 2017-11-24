@@ -6,7 +6,7 @@
         width: 1920px;
         min-height: 100%;
         background-color: #11213A;
-        padding: 0 35px;
+
         position: relative;
         z-index: 10;
         box-sizing: border-box;
@@ -18,6 +18,7 @@
     .data-content-box {
         width: 100%;
         height: 914px;
+        padding: 0 35px;
         .data-left-wrapper {
             width: 322px;
             height: 854px;

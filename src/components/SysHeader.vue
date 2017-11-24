@@ -4,8 +4,6 @@
         height: 164px;
         background: url(../assets/logo.png) no-repeat;
         background-size: 100%;
-        position: absolute;
-        z-index: 15;
     }
 
     .sys-header-box .homepage-navbar {

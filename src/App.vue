@@ -22,4 +22,7 @@
         background-color: #11213A;
         box-sizing: border-box;
     }
+    [v-cloak] {
+        display: none;
+    }
 </style>
