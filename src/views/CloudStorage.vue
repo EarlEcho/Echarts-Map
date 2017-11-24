@@ -38,96 +38,6 @@
             right: 35px;
             width: 820px;
         }
-        .transaction-data-table {
-            width: 322px;
-            height: 402px;
-            margin-bottom: 35px;
-            background: url(../assets/smallBox.png) no-repeat;
-            background-size: 100%;
-            .data-content {
-                height: 312px;
-            }
-            .transaction-item {
-                font-size: 14px;
-                font-weight: bold;
-                span {
-                    color: #cccccc;
-                    padding: 0 8px;
-                }
-                .el-row {
-                    padding: 0 15px;
-                }
-                .el-col-8 {
-                    text-align: right;
-                }
-            }
-            .dark-item {
-                height: 29px;
-                line-height: 29px;
-            }
-            .light-item {
-                height: 50px;
-                line-height: 50px;
-            }
-        }
-        .transaction-pie {
-            width: 100%;
-            height: 402px;
-            margin-bottom: 35px;
-            background: url(../assets/boxBk.png) no-repeat;
-            background-size: 100%;
-        }
-
-        .daily-volume-table {
-            width: 522px;
-            height: 500px;
-            margin-bottom: 13px;
-            background: url(../assets/rt1.png) no-repeat;
-            background-size: 100%;
-            float: right;
-            .data-content {
-                height: 405px;
-            }
-            .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
-                width: 132px;
-            }
-            .data-content .el-tabs__item {
-                width: 130px;
-            }
-        }
-        .daily-price-table {
-            width: 522px;
-            height: 362px;
-            background: url(../assets/rt2.png) no-repeat;
-            background-size: 100%;
-            float: right;
-            .data-content {
-                height: 272px;
-            }
-            .el-col-12 {
-                border-right: solid 1px #11213A;
-                border-left: solid 1px #11213A;
-            }
-        }
-        .real-pie-chart {
-            width: 450px;
-            height: 300px;
-        }
-
-        .right-line-charts-wrapper {
-            width: 820px;
-            height: 500px;
-            background-color: #1b3a57;
-            margin-bottom: 10px;
-            float: right;
-        }
-        .right-line-charts-wrapper2 {
-            width: 820px;
-            height: 370px;
-            background-color: #1b3a57;
-            float: right;
-        }
-
     }
 </style>
 <template>
@@ -149,45 +59,11 @@
 
         <!--右侧数据-->
         <div class="right-data-wrapper clearfix">
+            <!--右上方的数据-->
             <right-top-table></right-top-table>
 
-
-            <!--右下角的数据-->
-            <div class="daily-price-table" v-show="!showDailyPriceLine">
-                <data-header-box item-title="今日价格指数" :expand-popup="true" :type-num="2"></data-header-box>
-                <div class="data-content">
-                    <el-row>
-                        <el-col :span="12">
-                            <el-table :data="dailyVolumeTable" size="small" fit>
-                                <el-table-column prop="province" label="省份" width="45px"></el-table-column>
-                                <el-table-column prop="city" label="城市" width="45px"></el-table-column>
-                                <el-table-column prop="name" label="品名" width="69px"></el-table-column>
-                                <el-table-column prop="turnover" label="指数" width="50px"></el-table-column>
-                                <el-table-column prop="upDowns" label="涨跌" width="50px"></el-table-column>
-                            </el-table>
-                        </el-col>
-                        <el-col :span="12">
-                            <el-table :data="dailyVolumeTable" size="small" fit>
-                                <el-table-column prop="province" label="省份" width="45px"></el-table-column>
-                                <el-table-column prop="city" label="城市" width="45px"></el-table-column>
-                                <el-table-column prop="name" label="品名" width="69px"></el-table-column>
-                                <el-table-column prop="turnover" label="指数" width="50px"></el-table-column>
-                                <el-table-column prop="upDowns" label="涨跌" width="50px"></el-table-column>
-                            </el-table>
-                        </el-col>
-                    </el-row>
-                </div>
-                <right-bottom-tool :line-charts="dailyPriceChart" :pages="true"
-                                   :table-datas="dailyPriceTable"></right-bottom-tool>
-            </div>
-            <div class="right-line-charts-wrapper2" v-show="showDailyPriceLine">
-                <data-header-box item-title="今日价格指数" :expand-popup="true"></data-header-box>
-                <div id="daily-price-chart" style="width: 820px;height: 280px;">
-
-                </div>
-                <right-bottom-tool :line-charts="dailyPriceChart" :pages="false"
-                                   :table-datas="dailyPriceTable"></right-bottom-tool>
-            </div>
+            <!--右下方的数据-->
+            <right-bottom-table></right-bottom-table>
         </div>
 
 
@@ -213,55 +89,24 @@
     import LeftTopTable from '@/components/LeftTopTable'
     import LeftBottomTable from '@/components/LeftBottomTable'
     import RightTopTable from '@/components/RightTopTable'
+    import RightBottomTable from '@/components/RightBottomTable'
 
-    import DataHeaderBox from '@/components/ToolTop'
-    import DataFooterBox from '@/components/ToolBottom'
+
     import SysHeaderBox from '@/components/SysHeader'
-    import RightBottomTool from '@/components/RightBottomTool'
 
     export default {
         name: 'CloudStorage',
-        components: {DataHeaderBox, DataFooterBox, SysHeaderBox, RightBottomTool, LeftTopTable, LeftBottomTable,RightTopTable},
+        components: {
+            SysHeaderBox,
+            LeftTopTable,
+            LeftBottomTable,
+            RightTopTable,
+            RightBottomTable
+        },
         props: [],
         data() {
             return {
-                showRealPie: true,
-                tabActive: 'first',
                 logoHeaderActive: '1',
-                showTransacPie: false,
-                showDailyVolumeLine: false,
-                showDailyPriceLine: false,
-                dailyVolumeTable: [{
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }],
                 geoCoordMap: {
                     '上海': [121.4648, 31.2891],
                     '东莞': [113.8953, 22.901],
@@ -444,199 +289,9 @@
                 series: [],
                 fromdata: '北京',
                 color: ['#02ACB2', '#FFFF00', '#FFA011', '#A6141B', '#00FF01'],
-                transacPieOptions: {
-                    backgroundColor: '#1C2B44',
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
-                    },
-                    color: ['#02ACB2', '#FFFF00', '#FFA011', '#A6141B', '#00FF01'],
-                    legend: {
-                        itemWidth: 20,
-                        itemHeight: 10,
-                        orient: 'vertical',
-                        x: 'left',
-                        data: ['重庆公司', '北京公司', '上海公司', '杭州公司', '西安公司'],
-                        textStyle: {
-                            color: '#fff',
-                            fontSize: 11
-                        },
-                        backgroundColor: '#274f7d',
-                        borderColor: '#53657a',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                        shadowColor: '#29547d',
-                        shadowBlur: 10,
-                        shadowOffsetX: 5,
-                        shadowOffsetY: 5
-                    },
-                    series: [
-                        {
-                            type: 'pie',
-                            radius: '55%',
-                            center: ['60%', '55%'],
-                            selectedMode: 'single',
-                            data: [
-                                {value: 351, name: '重庆公司', selected: true},
-                                {value: 150, name: '北京公司'},
-                                {value: 94, name: '上海公司'},
-                                {value: 55, name: '杭州公司'},
-                                {value: 105, name: '西安公司'}
-                            ],
-                            label: {
-                                normal: {
-                                    backgroundColor: '#5c6c80',
-                                    borderColor: '#495c72',
-                                    borderWidth: 1,
-                                    borderRadius: 4,
-                                    color: 'white',
-                                    padding: [5, 7],
-                                    fontSize: 11,
-                                    lineHeight: 33,
-                                }
-                            },
-                            labelLine: {
-                                normal: {
-                                    lineStyle: {
-                                        color: 'white'
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            type: 'pie',
-                            radius: '55%',
-                            center: ['60%', '55%'],
-                            selectedMode: 'single',
-                            data: [
-                                {value: 351, name: '重庆公司', selected: true},
-                                {value: 150, name: '北京公司'},
-                                {value: 94, name: '上海公司'},
-                                {value: 55, name: '杭州公司'},
-                                {value: 105, name: '西安公司'}
-                            ],
-                            label: {
-                                normal: {
-                                    formatter: '{d}%\n{c}吨',
-                                    position: 'inner',
-                                    color: 'white',
-                                    fontSize: 11,
-                                }
-                            },
-                            labelLine: {
-                                normal: {
-                                    lineStyle: {
-                                        color: 'white'
-                                    }
-                                }
-                            }
-                        },
-                    ]
-                },
-                dailyLineOptions: {
-                    backgroundColor: '#0E2A43',
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    legend: {
-                        data: ['螺纹钢', '高线', '盘螺', '热轧板卷'],
-                        top: 'top',
-                        textStyle: {
-                            color: '#fff'
-                        },
-                    },
-                    grid: {
-                        left: '3%',
-                        right: '4%',
-                        containLabel: true
-                    },
-                    toolbox: {
-                        feature: {
-                            saveAsImage: {}
-                        }
-                    },
-                    xAxis: {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-                        axisLine: {
-                            lineStyle: {
-                                color: '#fff'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        axisLine: {
-                            lineStyle: {
-                                color: '#fff'
-                            }
-                        },
-                        splitLine: {
-                            lineStyle: {
-                                // 使用深浅的间隔色
-                                color: ['#aaa', '#ddd'],
-                                type: 'dashed'
-                            }
-                        },
-
-                    },
-                    series: [{
-                        name: '螺纹钢',
-                        type: 'line',
-                        data: [1800, 1710, 1815, 1902, 1987, 2010, 2111, 2401, 2300, 2671, 2974, 3544, 4237, 4704, 3210]
-                    }, {
-                        name: '高线',
-                        type: 'line',
-                        data: [1514, 1647, 1902, 1987, 1815, 2010, 2111, 3544, 4237, 4704, 3210, 2401, 2300, 2671, 2974]
-                    }, {
-                        name: '盘螺',
-                        type: 'line',
-                        data: [975, 1640, 1744, 2011, 2640, 2111, 2018, 2401, 2640, 2974, 3544, 4037, 4504, 2671, 2971]
-                    }, {
-                        name: '热轧板卷',
-                        type: 'line',
-                        data: [3101, 3321, 3401, 2987, 2874, 2610, 2310, 2000, 2971, 3607, 3974, 4358, 4781, 4012, 3710]
-                    }]
-                }
             }
         },
         methods: {
-            dailyPriceChart: function () {
-                let _this = this;
-                _this.showDailyPriceLine = true;
-                let LineChart = echarts.init(document.getElementById('daily-price-chart'));
-                LineChart.setOption(_this.dailyLineOptions);
-            },
-            dailyPriceTable: function () {
-                this.showDailyPriceLine = false;
-            },
-            dailyLineChart: function () {
-                let _this = this;
-                _this.showDailyVolumeLine = true;
-                let LineChart = echarts.init(document.getElementById('daily-line-chart'));
-                LineChart.setOption(_this.dailyLineOptions);
-            },
-            dailyLineTable: function () {
-                this.showDailyVolumeLine = false;
-            },
-            transacPieChart: function () {
-                let _this = this;
-                _this.showTransacPie = true;
-                let pieChart = echarts.init(document.getElementById('transaction-pie-chart'));
-                pieChart.setOption(_this.transacPieOptions);
-            },
-            transactionTableData: function () {
-                this.showTransacPie = false;
-            },
-            realPieChart: function () {
-                let _this = this;
-                _this.showRealPie = false;
-                let pieChart = echarts.init(document.getElementById('real-pie-chart'));
-                pieChart.setOption(_this.realPieOptions);
-            },
-            realTableData: function () {
-                this.showRealPie = true;
-            },
             expandData: function () {
                 console.log('展开');
             },
