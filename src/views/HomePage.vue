@@ -1,4 +1,4 @@
-<style scoped lang="less">
+<style lang="less">
     @import "../assets/css/common.css";
 
     .homepage-wrapper {
@@ -12,6 +12,19 @@
         box-sizing: border-box;
         div {
             box-sizing: border-box;
+        }
+        .el-table th {
+            padding: 6px 0;
+        }
+
+        .el-table td {
+            padding: 3px 0;
+        }
+        .el-table td, .el-table th.is-leaf {
+            border-bottom: 3px solid #172f4b;
+        }
+        .el-table__body, .el-table__footer, .el-table__header {
+            border-bottom: 3px solid #172f4b;
         }
     }
 
