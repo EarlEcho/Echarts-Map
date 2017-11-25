@@ -9,7 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 // import vue-video-player
 import VueVideoPlayer from 'vue-video-player'
 
-import {Table, TableColumn, Button, Tooltip, Row, Col, Tabs, TabPane, Dialog, Select, Option,Menu,MenuItem,DatePicker,Form,FormItem,Popover} from 'element-ui'
+import {Table, TableColumn, Button, Tooltip, Row, Col, Tabs, TabPane, Dialog, Select, Option,Menu,MenuItem,DatePicker,Form,FormItem,Popover,Radio,RadioGroup} from 'element-ui'
 
 
 Vue.use(VueRouter);
@@ -32,6 +32,8 @@ Vue.use(DatePicker);
 Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Popover);
+Vue.use(Radio);
+Vue.use(RadioGroup);
 // require videojs style [and custom videojs theme]
 require('video.js/dist/video-js.css')
 require('vue-video-player/src/custom-theme.css')

@@ -55,7 +55,8 @@
 .right {
     text-align: right;
 }
-.bold{
+
+.bold {
     font-weight: bold;
 }
 
@@ -88,8 +89,6 @@
     text-align: center;
     padding-left: 0;
 }
-
-
 
 .el-table--border::after, .el-table--group::after, .el-table::before {
     background-color: #172f4b;
@@ -284,7 +283,6 @@
 
 /*页面头部的通用样式*/
 
-
 /*row col 的间隔色*/
 .dark-item {
     background-color: #1d3c5b;
@@ -299,8 +297,6 @@
     line-height: 30px;
     color: #196ca5;
 }
-
-
 
 .popup-other-infos {
     width: 99.9%;
@@ -329,9 +325,11 @@
     font-size: 18px;
 
 }
+
 .tool-btn-group .el-button .iconfont {
     font-size: 18px;
 }
+
 .data-header-box {
     height: 48px;
     line-height: 48px;
@@ -355,4 +353,63 @@
     padding: 5px;
     border: none;
     font-size: 18px;
+}
+
+/*覆盖的单选按钮样式*/
+.checkbox-wrapper {
+    height: 40px;
+    box-sizing: border-box;
+    background-color: #16304F;
+    padding: 0 15px;
+}
+
+.el-radio {
+    color: white;
+    font-weight: 500;
+    line-height: 40px;
+    cursor: pointer;
+    white-space: nowrap;
+    outline: 0;
+}
+
+.el-radio__inner {
+    border: 1px solid #2CA1F4;
+    border-radius: 100%;
+    width: 18px;
+    height: 18px;
+    background-color: #16304F;
+    cursor: pointer;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.el-radio__input.is-checked .el-radio__inner {
+    border-color: #2CA1F4;
+    background: #2CA1F4;
+}
+
+.el-radio__input.is-checked .el-radio__inner::after {
+    background-color: white;
+}
+
+.el-radio__input.is-checked + .el-radio__label {
+    color: #2CA1F4;
+}
+
+.el-radio__label {
+    padding-left: 5px;
+}
+
+.el-radio + .el-radio {
+    margin-left: 10px;
+}
+
+.el-radio__input .el-radio__inner::after {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.el-radio__inner::after {
+    border: solid 1px #2CA1F4;
+    background-color: #16304F;
 }

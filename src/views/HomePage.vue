@@ -166,7 +166,7 @@
                             </el-col>
                         </el-row>
                     </div>
-                    <data-footer-box :left-item="false" :center-item="false"></data-footer-box>
+                    <!--<data-footer-box :left-item="false" :center-item="false"></data-footer-box>-->
                 </div>
                 <div class="data-modules">
                     <data-header-box item-title="云仓储待作业" :expand-popup="true"></data-header-box>
@@ -187,7 +187,7 @@
                             </el-col>
                         </el-row>
                     </div>
-                    <data-footer-box :left-item="false" :center-item="false"></data-footer-box>
+                    <!--<data-footer-box :left-item="false" :center-item="false"></data-footer-box>-->
                 </div>
                 <div class="data-modules">
                     <data-header-box item-title="集团库存数量" :expand-popup="true"></data-header-box>
@@ -202,7 +202,7 @@
                             </el-col>
                         </el-row>
                     </div>
-                    <data-footer-box :left-item="false" :center-item="false"></data-footer-box>
+                    <!--<data-footer-box :left-item="false" :center-item="false"></data-footer-box>-->
                 </div>
             </div>
             <div class="video-right-wrapper g-rt">

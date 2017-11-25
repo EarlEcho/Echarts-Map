@@ -15,6 +15,7 @@
     .sys-header-box .homepage-navbar .el-menu {
         background: transparent;
     }
+
     .logo-header-navbar {
         width: 400px;
         margin: 70px 12%;
@@ -26,7 +27,7 @@
 
     .logo-header-navbar .el-menu-item {
         height: 30px;
-        width: 106px;
+        width: 115px;
         text-align: center;
         line-height: 30px;
         border: 2px solid #2ca1f4;
@@ -82,7 +83,7 @@
 
     .homepage-right-toolbar .tool-group i {
         margin: 0 7px;
-        vertical-align: middle;
+        vertical-align: initial;
     }
 
 </style>
@@ -91,7 +92,7 @@
         <div class="homepage-navbar clearfix">
             <el-menu :default-active="logoHeaderActive" mode="horizontal" class="logo-header-navbar">
                 <router-link to="/">
-                    <el-menu-item index="1" ><span>首页</span></el-menu-item>
+                    <el-menu-item index="1"><span>首页</span></el-menu-item>
                 </router-link>
                 <router-link to="/cloud-storage">
                     <el-menu-item index="2"><span><i class="icon iconfont icon-tilewarehouse"></i>云仓储</span>
@@ -109,7 +110,7 @@
                     <i class="icon iconfont icon-yifu"></i>
                     <i class="icon iconfont icon-zhaopian"></i>
                     <i class="icon iconfont icon-windows"></i>
-                </span>
+            </span>
         </div>
     </div>
 </template>

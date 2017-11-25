@@ -11,7 +11,7 @@
         .el-table td, .el-table th.is-leaf {
             border-bottom: 3px solid #172f4b;
         }
-        .el-table__body, .el-table__footer, .el-table__header{
+        .el-table__body, .el-table__footer, .el-table__header {
             border-bottom: 3px solid #172f4b;
         }
 
@@ -118,7 +118,14 @@
                 margin-left: 0;
             }
         }
-
+        .pages-group-signle {
+            width: 99%;
+            display: inline-block;
+            text-align: right;
+            .el-button + .el-button {
+                margin-left: 0;
+            }
+        }
         .numarrow {
             display: inline-block;
             width: 45px;
@@ -195,22 +202,31 @@
             <div class="data-header-box">
                 <span class="title">今日成交价</span>
                 <div class="action-group g-rt right">
-                    <el-button icon="icon iconfont icon-fangda" @click="showDialogType1=true"></el-button>
+                    <el-button icon="icon iconfont icon-fangda" @click="showPopupTable"></el-button>
                     <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
                         <el-button icon="icon iconfont icon-wenhao"></el-button>
                     </el-tooltip>
                 </div>
             </div>
-            <div id="daily-line-chart" style="width: 820px;height: 410px;"></div>
+            <div class="checkbox-wrapper clearfix">
+                <el-radio-group v-model="radioValue1">
+                    <el-radio :label="3">螺纹钢</el-radio>
+                    <el-radio :label="6">高线</el-radio>
+                    <el-radio :label="9">盘螺</el-radio>
+                    <el-radio :label="1">热轧轧板</el-radio>
+
+                </el-radio-group>
+                <el-radio-group v-model="radioValue2" class="g-rt">
+                    <el-radio :label="3">1月</el-radio>
+                    <el-radio :label="6">3月</el-radio>
+                    <el-radio :label="9">6月</el-radio>
+                </el-radio-group>
+            </div>
+            <div id="daily-line-chart" style="width: 820px;height: 370px;"></div>
             <div class="data-footer-box clearfix">
-                <div class="pages-group-center tool-btn-group">
-                    <el-button icon="icon iconfont icon-arrow-down-circle-left"
-                               @click="expandData"></el-button>
-                    <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
-                </div>
-                <div class="pages-group-right tool-btn-group">
+                <div class="pages-group-signle tool-btn-group">
                     <el-button icon="icon iconfont icon-menu1" @click="dailyLineTable"></el-button>
-                    <el-button icon="icon iconfont icon-weibiaoti11" @click="dailyLineChart"></el-button>
+                    <el-button icon="icon iconfont icon-weibiaoti111" @click="dailyLineChart"></el-button>
                 </div>
             </div>
         </div>
@@ -222,33 +238,59 @@
                     <div class="popup-content-wrapper">
                         <p class="tooltip">
                             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                                <el-button icon="icon iconfont icon-wenhao1"></el-button>
+                                <el-button icon="icon iconfont icon-wenhao"></el-button>
                             </el-tooltip>
                         </p>
                         <p class="popup-title">成交价数据分析</p>
-                        <div class="select-group-wrapper">
-                            <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in varietyOptions" :key="item.value" :label="item.label"
-                                           :value="item.value">
-                                </el-option>
-                            </el-select>
-                            <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in varietyOptions" :key="item.value" :label="item.label"
-                                           :value="item.value">
-                                </el-option>
-                            </el-select>
-                            <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in varietyOptions" :key="item.value" :label="item.label"
-                                           :value="item.value">
-                                </el-option>
-                            </el-select>
-                            <el-select v-model="value" placeholder="请选择" size="small">
-                                <el-option v-for="item in varietyOptions" :key="item.value" :label="item.label"
-                                           :value="item.value">
-                                </el-option>
-                            </el-select>
-                            <el-button @click="showDialogType1 = true" size="small">搜索</el-button>
-                        </div>
+                        <el-form class="select-group-wrapper" ref="popupSearchData" :model="popupSearchData"
+                                 :inline="true">
+                            <el-form-item>
+                                <el-date-picker v-model="popupSearchData.timer1" type="date" placeholder="选择日期"
+                                                size="small"></el-date-picker>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-date-picker v-model="popupSearchData.timer2" type="date" placeholder="选择日期"
+                                                size="small"></el-date-picker>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-select v-model="popupSearchData.provice" placeholder="省份" size="small">
+                                    <el-option v-for="item in proviceOptions" :key="item.value" :label="item.label"
+                                               :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-select v-model="popupSearchData.city" placeholder="城市" size="small">
+                                    <el-option v-for="item in cityOptions" :key="item.value" :label="item.label"
+                                               :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-select v-model="popupSearchData.variety" placeholder="品种" size="small">
+                                    <el-option v-for="item in varietyOptions" :key="item.value" :label="item.label"
+                                               :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-select v-model="popupSearchData.standard" placeholder="规格" size="small">
+                                    <el-option v-for="item in standardOptions" :key="item.value" :label="item.label"
+                                               :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-select v-model="popupSearchData.company" placeholder="钢厂" size="small">
+                                    <el-option v-for="item in companyOptions" :key="item.value" :label="item.label"
+                                               :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button @click="showDialogType1 = true" size="small">搜索</el-button>
+                            </el-form-item>
+                        </el-form>
 
                         <div class="type2-chart-table-box clearfix">
                             <div class="expand-table-wrapper g-lf">
@@ -265,13 +307,26 @@
                                                 <el-table-column prop="texture" label="材质"
                                                                  width="55px"></el-table-column>
                                                 <el-table-column prop="mill" label="钢厂" width="60px"></el-table-column>
-                                                <el-table-column prop="turnover" label="成交量"
-                                                                 width="55px"></el-table-column>
+
+                                                <el-table-column prop="turnover" label="成交价"
+                                                                 width="55px">
+                                                    <template slot-scope="scope">
+                                                        <span :class="scope.row.turnover>3000?'red bold':'green bold'">
+                                                            {{scope.row.turnover}}
+                                                        </span>
+                                                    </template>
+                                                </el-table-column>
                                             </el-table>
                                         </el-tab-pane>
-                                        <el-tab-pane label="高线" name="second">配置管理</el-tab-pane>
-                                        <el-tab-pane label="盘螺" name="third">角色管理</el-tab-pane>
-                                        <el-tab-pane label="热轧板卷" name="fourth">定时任务补偿</el-tab-pane>
+                                        <el-tab-pane label="高线" name="second">
+                                            <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
+                                        </el-tab-pane>
+                                        <el-tab-pane label="盘螺" name="third">
+                                            <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
+                                        </el-tab-pane>
+                                        <el-tab-pane label="热轧板卷" name="fourth">
+                                            <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
+                                        </el-tab-pane>
                                     </el-tabs>
 
                                 </div>
@@ -334,6 +389,8 @@
         props: [],
         data() {
             return {
+                radioValue1:'',
+                radioValue2:'',
                 value: '',
                 tabActive: 'first',
                 showDialogType2: false,
@@ -341,12 +398,25 @@
                 popupSearchData: {
                     timer1: '',
                     timer2: '',
+                    provice: '',
                     city: '',
-                    company: '',
-                    user: '',
                     variety: '',
-                    standard: ''
+                    standard: '',
+                    company: ''
                 },
+                proviceOptions: [{
+                    value: '1',
+                    label: '浙江省'
+                }, {
+                    value: '2',
+                    label: '江西省'
+                }, {
+                    value: '3',
+                    label: '广东省'
+                }, {
+                    value: '4',
+                    label: '湖南省'
+                }],
                 cityOptions: [{
                     value: '1',
                     label: '北京'
@@ -360,147 +430,20 @@
                     value: '4',
                     label: '重庆'
                 }],
-                priceDataAnalyze: [{
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }, {
-                    province: '陕西111',
-                    city: '西安',
-                    name: '螺纹钢',
-                    standard: '1#',
-                    texture: '铝合金',
-                    mill: '重钢',
-                    date: '10.25',
-                    turnover: '132221',
-                    upDowns: '212'
-                }],
                 companyOptions: [{
                     value: '1',
-                    label: '北京公司'
+                    label: '北京钢厂'
                 }, {
                     value: '2',
-                    label: '上海公司'
+                    label: '上海钢厂'
                 }, {
                     value: '3',
-                    label: '广州公司'
+                    label: '广州钢厂'
                 }, {
                     value: '4',
-                    label: '重庆公司'
-                }],
-                userOptions: [{
-                    value: '1',
-                    label: '用户1'
-                }, {
-                    value: '2',
-                    label: '用户2'
-                }, {
-                    value: '3',
-                    label: '用户3'
-                }, {
-                    value: '4',
-                    label: '用户4'
+                    label: '重庆钢厂'
                 }],
                 varietyOptions: [{
-                    value: '1',
-                    label: '规格1'
-                }, {
-                    value: '2',
-                    label: '规格2'
-                }, {
-                    value: '3',
-                    label: '规格3'
-                }, {
-                    value: '4',
-                    label: '规格4'
-                }],
-                standardOptions: [{
                     value: '1',
                     label: '品种1'
                 }, {
@@ -513,6 +456,141 @@
                     value: '4',
                     label: '品种4'
                 }],
+                standardOptions: [{
+                    value: '1',
+                    label: '规格1'
+                }, {
+                    value: '2',
+                    label: '规格2'
+                }, {
+                    value: '3',
+                    label: '规格3'
+                }, {
+                    value: '4',
+                    label: '规格4'
+                }],
+                priceDataAnalyze: [{
+                    province: '陕西',
+                    city: '西安',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '1133',
+                    upDowns: '212'
+                }, {
+                    province: '四川',
+                    city: '成都',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '11.20',
+                    turnover: '3133',
+                    upDowns: '212'
+                }, {
+                    province: '湖北',
+                    city: '武汉',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '11.19',
+                    turnover: '6455',
+                    upDowns: '212'
+                }, {
+                    province: '陕西',
+                    city: '西安',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '1213',
+                    upDowns: '212'
+                }, {
+                    province: '陕西',
+                    city: '西安',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '1334',
+                    upDowns: '212'
+                }, {
+                    province: '陕西',
+                    city: '西安',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '5454',
+                    upDowns: '212'
+                }, {
+                    province: '陕西',
+                    city: '西安',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '6453',
+                    upDowns: '212'
+                }, {
+                    province: '陕西',
+                    city: '西安',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '3244',
+                    upDowns: '212'
+                }, {
+                    province: '陕西',
+                    city: '西安',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.25',
+                    turnover: '2243',
+                    upDowns: '212'
+                }, {
+                    province: '重庆',
+                    city: '重庆',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.02',
+                    turnover: '2323',
+                    upDowns: '212'
+                }, {
+                    province: '北京',
+                    city: '北京',
+                    name: '螺纹钢',
+                    standard: '12#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '11.21',
+                    turnover: '5666',
+                    upDowns: '212'
+                }, {
+                    province: '湖南',
+                    city: '长沙',
+                    name: '螺纹钢',
+                    standard: '1#',
+                    texture: '铝合金',
+                    mill: '重钢',
+                    date: '10.30',
+                    turnover: '2323',
+                    upDowns: '212'
+                }],
+
                 expandTableData: [{
                     date: '10.24',
                     time: '11:32',
@@ -685,17 +763,19 @@
                     tooltip: {
                         trigger: 'axis'
                     },
+                    grid: {
+                        top: '15px',
+                        bottom: '15px',
+                        left: '10px',
+                        right: '10px',
+                        containLabel: true
+                    },
                     legend: {
                         data: ['螺纹钢', '高线', '盘螺', '热轧板卷'],
-                        top: 'top',
+                        top: '30px',
                         textStyle: {
                             color: '#fff'
                         },
-                    },
-                    grid: {
-                        left: '3%',
-                        right: '4%',
-                        containLabel: true
                     },
                     toolbox: {
                         feature: {
@@ -753,18 +833,6 @@
                             lineStyle: {
                                 color: '#57617B'
                             }
-                        }
-                    },
-                    legend: {
-                        icon: 'rect',
-                        itemWidth: 25,
-                        itemHeight: 14,
-                        itemGap: 13,
-                        data: ['规格1', '规格2', '规格3'],
-                        right: '4%',
-                        textStyle: {
-                            fontSize: 12,
-                            color: '#F1F1F3'
                         }
                     },
                     grid: {

@@ -2,7 +2,6 @@
     .transaction-data-table {
         width: 322px;
         height: 402px;
-        margin-bottom: 35px;
         background: url(../assets/smallBox.png) no-repeat;
         background-size: 100%;
         .data-content {
@@ -35,8 +34,7 @@
 
     .transaction-pie {
         width: 100%;
-        height: 402px;
-        margin-bottom: 35px;
+        height: 432px;
         background: url(../assets/boxBk.png) no-repeat;
         background-size: 100%;
     }

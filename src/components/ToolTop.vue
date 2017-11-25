@@ -72,33 +72,6 @@
     }
 
     /*数据框的通用头部样式*/
-    .data-header-box {
-        height: 48px;
-        line-height: 48px;
-    }
-
-    .data-header-box .title {
-        color: white;
-        text-align: left;
-        padding: 0 15px;
-        font-weight: bold;
-        float: left;
-    }
-
-    .data-header-box .action-group {
-        width: 75px;
-        height: 100%;
-        padding-right: 10px;
-    }
-
-    .data-header-box .action-group .el-button {
-        background: transparent;
-        color: white;
-        padding: 5px;
-        border: none;
-        font-size: 18px;
-    }
-
     .pages-center {
         height: 100%;
         text-align: center;

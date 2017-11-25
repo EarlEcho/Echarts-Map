@@ -39,7 +39,7 @@
         </div>
         <div class="action-group g-rt right">
             <el-button icon="icon iconfont icon-msnui-menu" @click="showTableData"></el-button>
-            <el-button icon="icon iconfont icon-weibiaoti11" @click="showLineChart"></el-button>
+            <el-button icon="icon iconfont icon-weibiaoti111" @click="showLineChart"></el-button>
         </div>
     </div>
 </template>
