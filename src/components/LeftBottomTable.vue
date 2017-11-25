@@ -162,6 +162,17 @@
                     </el-tooltip>
                 </div>
             </div>
+            <div class="checkbox-wrapper clearfix">
+                <el-radio-group v-model="radioValue1">
+                    <el-radio :label="3">金额</el-radio>
+                    <el-radio :label="6">量</el-radio>
+                </el-radio-group>
+                <el-radio-group v-model="radioValue2" class="g-rt">
+                    <el-radio :label="3">今日</el-radio>
+                    <el-radio :label="6">本周</el-radio>
+                    <el-radio :label="9">本月</el-radio>
+                </el-radio-group>
+            </div>
             <div id="transaction-pie-chart" style="width: 450px;height: 300px;"></div>
             <div class="data-footer-box clearfix">
                 <div class="action-group g-rt right">
@@ -191,6 +202,8 @@
         props: [],
         data() {
             return {
+                radioValue1: '',
+                radioValue2: '',
                 showRealPie: true,
                 tabActive: 'first',
                 logoHeaderActive: '1',
@@ -209,6 +222,9 @@
                         itemWidth: 20,
                         itemHeight: 10,
                         orient: 'vertical',
+                        padding: [7, 10],
+                        top: '15px',
+                        left: '5px',
                         x: 'left',
                         data: ['重庆公司', '北京公司', '上海公司', '杭州公司', '西安公司'],
                         textStyle: {
@@ -228,7 +244,7 @@
                         {
                             type: 'pie',
                             radius: '55%',
-                            center: ['60%', '55%'],
+                            center: ['61%', '55%'],
                             selectedMode: 'single',
                             data: [
                                 {value: 351, name: '重庆公司', selected: true},
@@ -260,7 +276,7 @@
                         {
                             type: 'pie',
                             radius: '55%',
-                            center: ['60%', '55%'],
+                            center: ['61%', '55%'],
                             selectedMode: 'single',
                             data: [
                                 {value: 351, name: '重庆公司', selected: true},
