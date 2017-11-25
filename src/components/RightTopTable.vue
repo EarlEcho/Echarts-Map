@@ -179,9 +179,15 @@
                             </el-table-column>
                         </el-table>
                     </el-tab-pane>
-                    <el-tab-pane label="高线" name="second">配置管理</el-tab-pane>
-                    <el-tab-pane label="盘螺" name="third">角色管理</el-tab-pane>
-                    <el-tab-pane label="热轧板卷" name="fourth">定时任务补偿</el-tab-pane>
+                    <el-tab-pane label="高线" name="second">
+                        <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
+                    </el-tab-pane>
+                    <el-tab-pane label="盘螺" name="third">
+                        <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
+                    </el-tab-pane>
+                    <el-tab-pane label="热轧板卷" name="fourth">
+                        <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
+                    </el-tab-pane>
                 </el-tabs>
 
             </div>
