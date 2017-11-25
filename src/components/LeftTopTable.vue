@@ -115,19 +115,19 @@
                     </el-tooltip>
                 </div>
             </div>
-            <div class="checkbox-wrapper clearfix">
-                <el-radio-group v-model="radioValue1">
-                    <el-radio :label="3">公司</el-radio>
-                    <el-radio :label="6">品种</el-radio>
-                    <el-radio :label="9">终端</el-radio>
-                </el-radio-group>
-                <el-radio-group v-model="radioValue2" class="g-rt">
-                    <el-radio :label="3">1月</el-radio>
-                    <el-radio :label="6">3月</el-radio>
-                    <el-radio :label="9">6月</el-radio>
-                </el-radio-group>
-            </div>
             <div class="data-content">
+                <div class="checkbox-wrapper clearfix">
+                    <el-radio-group v-model="radioValue1">
+                        <el-radio :label="3">公司</el-radio>
+                        <el-radio :label="6">品种</el-radio>
+                        <el-radio :label="9">终端</el-radio>
+                    </el-radio-group>
+                    <el-radio-group v-model="radioValue2" class="g-rt">
+                        <el-radio :label="3">1月</el-radio>
+                        <el-radio :label="6">3月</el-radio>
+                        <el-radio :label="9">6月</el-radio>
+                    </el-radio-group>
+                </div>
                 <div id="real-pie-chart" style="width: 453px;height: 300px;">
                     <!--点击模块的饼图后的图表-->
                 </div>
