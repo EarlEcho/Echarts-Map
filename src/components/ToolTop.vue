@@ -172,7 +172,7 @@
                             </div>
                             <div class="expand-chart-wrapper g-rt">
                                 <div class="chart-content">
-                                    <div id="popup-chart" style="width: 100%; height: 470px;">
+                                    <div id="popup-chart" style="width: 100%; height: 470px;" ref="popupChart">
 
                                     </div>
                                 </div>
@@ -571,17 +571,12 @@
         methods: {
             showPopupTable: function () {
                 let _this = this;
-                if (_this.typeNum == 1) {
-                    _this.showDialogType1 = true;
 
-                } else {
-                    _this.showDialogType2 = true;
-                    let map = setInterval(function () {
-                        _this.drawLine();
-                        clearInterval(map);
-                    }, 1000)
-                }
-
+                _this.showDialogType2 = true;
+                let map = setInterval(function () {
+                    _this.drawLine();
+                    clearInterval(map);
+                }, 1000)
 
             },
             expandData: function () {
@@ -591,20 +586,12 @@
                 // 基于准备好的dom，初始化echarts实例
                 let _this = this;
                 if (myChart == '' || typeof(myChart) == 'undefined') {
-                    myChart = echarts.init(document.getElementById('popup-chart'));
-                    console.log(document.getElementById('popup-chart'));
-                    myChart.setOption(_this.chartOption);
-                    myChart.on('click', function (param) {
-                    });
+                    myChart = echarts.init(_this.$refs.popupChart);
+                    myChart.setOption(_this.chartOption, true);
                 } else {
-                    echarts.dispose(document.getElementById('popup-chart'));
-                    console.log(document.getElementById('popup-chart'));
-
-
-                    myChart = echarts.init(document.getElementById('popup-chart'));
+                    myChart.dispose();
+                    myChart = echarts.init(_this.$refs.popupChart);
                     myChart.setOption(_this.chartOption);
-                    myChart.on('click', function (param) {
-                    });
                 }
 
             },
