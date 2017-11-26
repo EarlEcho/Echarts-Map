@@ -6,6 +6,11 @@ import Routers from './router';
 import App from './app.vue';
 import 'element-ui/lib/theme-chalk/index.css'
 
+import 'element-ui/lib/theme-chalk/base.css';
+// collapse 展开折叠
+import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
+
+
 // import vue-video-player
 import VueVideoPlayer from 'vue-video-player'
 
@@ -34,6 +39,8 @@ Vue.use(FormItem);
 Vue.use(Popover);
 Vue.use(Radio);
 Vue.use(RadioGroup);
+Vue.component(CollapseTransition.name, CollapseTransition);
+
 // require videojs style [and custom videojs theme]
 require('video.js/dist/video-js.css')
 require('vue-video-player/src/custom-theme.css')

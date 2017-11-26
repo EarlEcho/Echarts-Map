@@ -77,7 +77,7 @@
 
     /*菜单栏*/
     .homepage-navbar {
-        padding-left: 7px;
+        /*padding-left: 7px;*/
         height: 30px;
         margin-bottom: 1px;
         .el-menu {
@@ -86,21 +86,39 @@
     }
 
     .video-navbar {
+        background-color: #1d3c5b !important;
         border: none;
+        /*border: 1px solid #2ca2f6;
+        border-bottom: none;
+        border-right: none;*/
         .el-menu-item {
             height: 30px;
             width: 106px;
             text-align: center;
             line-height: 30px;
-            border-right: 1px solid #11213A;
+            /*border-right: 1px solid #11213A;
             color: white;
             transform: skewX(-20deg);
-            background-color: #409EFF;
+            background-color: #409EFF;*/
             /*font-weight: 600;*/
+            &:hover {
+                background-color: #2ca2f6;
+                color: white;
+            }
+            &:focus {
+                background-color: transparent;
+                color: white;
+                border-bottom: 3px solid #2ca2f6;
+            }
         }
         .el-menu-item.is-active {
-            background-color: #409EFF;
-            color: #000;
+            border-bottom: 3px solid #409EFF;
+            color: white;
+            &:hover {
+                background-color: #2ca2f6;
+                color: white;
+                border-bottom: 3px solid white;
+            }
         }
     }
 
@@ -155,6 +173,7 @@
         height: 330px;
 
     }
+
     .vjs_video_3-dimensions {
         width: 100% !important;
         height: 330px !important;
@@ -220,7 +239,8 @@
             </div>
             <div class="video-right-wrapper g-rt">
                 <div class="homepage-navbar clearfix">
-                    <el-menu :default-active="activeIndex" class="video-navbar g-lf" mode="horizontal">
+                    <el-menu :default-active="activeIndex" class="video-navbar g-lf" mode="horizontal"
+                             @select="handleCitySelect">
                         <el-menu-item v-for="cityItem in monitorCitys" :index="cityItem.key" :key="cityItem.key">
                             {{cityItem.value}}
                         </el-menu-item>
@@ -231,62 +251,64 @@
                         <el-menu-item index="3"><i class="icon iconfont icon-icon3d"></i></el-menu-item>
                     </el-menu>
                 </div>
-                <div class="videos-content-wrapper">
-                    <el-row>
-                        <el-col :span="12">
-                            <!--大的视频-->
-                            <video-player class="vjs-custom-skin videos-content-item-big"
-                                          ref="videoPlayer"
-                                          :options="playerOptions"
-                                          :playsinline="true"
-                                          @play="onPlayerPlay($event)"
-                                          @pause="onPlayerPause($event)"
-                                          @ended="onPlayerEnded($event)"
-                                          @loadeddata="onPlayerLoadeddata($event)"
-                                          @waiting="onPlayerWaiting($event)"
-                                          @playing="onPlayerPlaying($event)"
-                                          @timeupdate="onPlayerTimeupdate($event)"
-                                          @canplay="onPlayerCanplay($event)"
-                                          @canplaythrough="onPlayerCanplaythrough($event)"
-                                          @ready="playerReadied"
-                                          @statechanged="playerStateChanged($event)">
-                            </video-player>
-                        </el-col>
-                        <el-col :span="12">
-                            <el-row>
-                                <el-col :span="12">
-                                    <div class="videos-content-item">
-                                        <img src="../assets/m0.jpg" alt="">
-                                    </div>
-                                </el-col>
-                                <el-col :span="12">
-                                    <div class="videos-content-item">
-                                        <img src="../assets/m1.jpg" alt="">
-                                    </div>
-                                </el-col>
-                            </el-row>
-                            <el-row>
-                                <el-col :span="12">
-                                    <div class="videos-content-item">
-                                        <img src="../assets/m2.jpg" alt="">
-                                    </div>
-                                </el-col>
-                                <el-col :span="12">
-                                    <div class="videos-content-item">
-                                        <img src="../assets/m3.jpg" alt="">
-                                    </div>
-                                </el-col>
-                            </el-row>
-                        </el-col>
-                    </el-row>
-                    <el-row v-for="(viedoItem,index) in monitorItems" :key="index">
-                        <el-col :span="6" v-for="items in viedoItem" :key="items.key">
-                            <div class="videos-content-item">
-                                <img :src="items.imgUrl" alt="">
-                            </div>
-                        </el-col>
-                    </el-row>
-                </div>
+                <transition name="el-fade-in-linear">
+                    <div class="videos-content-wrapper" v-show="showVideos">
+                        <el-row>
+                            <el-col :span="12">
+                                <!--大的视频-->
+                                <video-player class="vjs-custom-skin videos-content-item-big"
+                                              ref="videoPlayer"
+                                              :options="playerOptions"
+                                              :playsinline="true"
+                                              @play="onPlayerPlay($event)"
+                                              @pause="onPlayerPause($event)"
+                                              @ended="onPlayerEnded($event)"
+                                              @loadeddata="onPlayerLoadeddata($event)"
+                                              @waiting="onPlayerWaiting($event)"
+                                              @playing="onPlayerPlaying($event)"
+                                              @timeupdate="onPlayerTimeupdate($event)"
+                                              @canplay="onPlayerCanplay($event)"
+                                              @canplaythrough="onPlayerCanplaythrough($event)"
+                                              @ready="playerReadied"
+                                              @statechanged="playerStateChanged($event)">
+                                </video-player>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-row>
+                                    <el-col :span="12">
+                                        <div class="videos-content-item">
+                                            <img src="../assets/m0.jpg" alt="">
+                                        </div>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <div class="videos-content-item">
+                                            <img src="../assets/m1.jpg" alt="">
+                                        </div>
+                                    </el-col>
+                                </el-row>
+                                <el-row>
+                                    <el-col :span="12">
+                                        <div class="videos-content-item">
+                                            <img src="../assets/m2.jpg" alt="">
+                                        </div>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <div class="videos-content-item">
+                                            <img src="../assets/m3.jpg" alt="">
+                                        </div>
+                                    </el-col>
+                                </el-row>
+                            </el-col>
+                        </el-row>
+                        <el-row v-for="(viedoItem,index) in monitorItems" :key="index">
+                            <el-col :span="6" v-for="items in viedoItem" :key="items.key">
+                                <div class="videos-content-item">
+                                    <img :src="items.imgUrl" alt="">
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </transition>
 
 
             </div>
@@ -315,13 +337,13 @@
     import m11 from '../assets/m11.jpg';
 
 
-
     export default {
         name: 'HomePage',
         components: {DataHeaderBox, DataFooterBox, SysHeaderBox, videoPlayer},
         props: [],
         data() {
             return {
+                showVideos: true,
                 playerOptions: {
                     // videojs options
                     muted: true,
@@ -478,6 +500,15 @@
             }
         },
         methods: {
+            handleCitySelect(key, keyPath) {
+//                console.log(key, keyPath);
+                let _this = this;
+                _this.showVideos = false;
+                setTimeout(function () {
+                    _this.showVideos = true;
+                }, 500)
+
+            },
             // listen event
             onPlayerPlay(player) {
                 // console.log('player play!', player)

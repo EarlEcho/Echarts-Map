@@ -3,7 +3,7 @@
         .real-time-table {
             width: 100%;
             height: 435px;
-            margin-bottom: 35px;
+            margin-bottom: 20px;
             background: url(../assets/boxBk.png) no-repeat;
             background-size: 100%;
             .data-content {
@@ -154,7 +154,9 @@
         <!--弹出框-->
         <div class="popup-table">
             <div class="expand-dialog">
-                <el-dialog :visible.sync="showDialogType1" width="1486px" top="100px" :modal="false">
+
+
+                <el-dialog :visible.sync="showDialogType1" width="1486px" top="100px" :modal="false" >
                     <div class="popup-content-wrapper">
                         <p class="tooltip">
                             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">

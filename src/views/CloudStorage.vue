@@ -35,7 +35,7 @@
             position: absolute;
             top: 164px;
             right: 35px;
-            width: 820px;
+            /*width: 820px;*/
         }
 
     }
@@ -114,7 +114,7 @@
 
 
 
-        <el-popover popper-class="map-click-chart" v-model="showMapChart" ref="popover5" placement="top">
+         <el-popover popper-class="map-click-chart" transition="el-zoom-in-center" v-model="showMapChart" ref="popover5" placement="top">
                 <div class="title">
                     XX地区交易及价格信息
                 </div>
@@ -644,8 +644,9 @@
 
 
                 myChart.on('click', function (param) {
+
                     if (param.componentType == 'geo') {
-                        console.log('地图的点击事件：', param);
+//                        console.log('地图的点击事件：', param);
                         _this.mapClickEvent();
                     }
                 });
