@@ -4,6 +4,8 @@
         height: 402px;
         background: url(../assets/smallBox.png) no-repeat;
         background-size: 100%;
+        position: absolute;
+        bottom: 0;
         .data-content {
             height: 312px;
         }
@@ -37,150 +39,159 @@
         height: 432px;
         background: url(../assets/boxBk.png) no-repeat;
         background-size: 100%;
+        position: absolute;
+        bottom: 0;
     }
 
 </style>
 <template>
     <div class="mian-box">
         <!--左下方的数据图-->
-        <div class="transaction-data-table" v-show="!showTransacPie">
-            <div class="data-header-box">
-                <span class="title">交易数据分析</span>
-                <div class="tool-btn-group g-rt right">
-                    <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                        <el-button icon="icon iconfont icon-wenhao"></el-button>
-                    </el-tooltip>
+        <el-collapse-transition>
+            <div class="transaction-data-table" v-show="!showTransacPie">
+                <div class="data-header-box">
+                    <span class="title">交易数据分析</span>
+                    <div class="tool-btn-group g-rt right">
+                        <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
+                            <el-button icon="icon iconfont icon-wenhao"></el-button>
+                        </el-tooltip>
+                    </div>
+                </div>
+                <div class="data-content">
+                    <div class="transaction-item">
+                        <el-row class="dark-item">
+                            <el-col :span="8">
+                                单日交易量：
+                            </el-col>
+                            <el-col :span="9" :offset="3" class="right">
+                                <span>2124645</span>
+                            </el-col>
+                            <el-col :span="4">
+                                吨
+                            </el-col>
+                        </el-row>
+                        <el-row class="light-item">
+                            <el-col :span="8">
+                                计：
+                            </el-col>
+                            <el-col :span="9" :offset="3" class="right">
+                                <span>1578425</span>
+                            </el-col>
+                            <el-col :span="4">
+                                万元
+                                <br>
+                            </el-col>
+                        </el-row>
+                        <el-row class="dark-item">
+                            <el-col :span="8">
+                                本周交易量：
+                            </el-col>
+                            <el-col :span="9" :offset="3" class="right">
+                                <span>2124645</span>
+                            </el-col>
+                            <el-col :span="4">
+                                吨
+                            </el-col>
+                        </el-row>
+                        <el-row class="light-item">
+                            <el-col :span="8">
+                                计：
+                            </el-col>
+                            <el-col :span="9" :offset="3" class="right">
+                                <span>1578425</span>
+                            </el-col>
+                            <el-col :span="4">
+                                万元
+                            </el-col>
+                        </el-row>
+                        <el-row class="dark-item">
+                            <el-col :span="8">
+                                本月交易量：
+                            </el-col>
+                            <el-col :span="9" :offset="3" class="right">
+                                <span>2124645</span>
+                            </el-col>
+                            <el-col :span="4">
+                                吨
+                            </el-col>
+                        </el-row>
+                        <el-row class="light-item">
+                            <el-col :span="8">
+                                计：
+                            </el-col>
+                            <el-col :span="9" :offset="3" class="right">
+                                <span>1578425</span>
+                            </el-col>
+                            <el-col :span="4">
+                                万元
+                            </el-col>
+                        </el-row>
+                        <el-row class="dark-item">
+                            <el-col :span="8">
+                                累计交易量：
+                            </el-col>
+                            <el-col :span="9" :offset="3" class="right">
+                                <span>2124645</span>
+                            </el-col>
+                            <el-col :span="4">
+                                吨
+                            </el-col>
+                        </el-row>
+                        <el-row class="light-item">
+                            <el-col :span="8">
+                                计：
+                            </el-col>
+                            <el-col :span="9" :offset="3" class="right">
+                                <span>1578425</span>
+                            </el-col>
+                            <el-col :span="4">
+                                万元
+                            </el-col>
+                        </el-row>
+                    </div>
+                </div>
+                <div class="data-footer-box clearfix">
+                    <div class="action-group g-rt right">
+                        <el-button icon="icon iconfont icon-menu1 darkbule" @click="showTransacPie = !showTransacPie"></el-button>
+                        <el-button icon="icon iconfont icon-pie " @click="transacPieChart"></el-button>
+                    </div>
                 </div>
             </div>
-            <div class="data-content">
-                <div class="transaction-item">
-                    <el-row class="dark-item">
-                        <el-col :span="8">
-                            单日交易量：
-                        </el-col>
-                        <el-col :span="9" :offset="3" class="right">
-                            <span>2124645</span>
-                        </el-col>
-                        <el-col :span="4">
-                            吨
-                        </el-col>
-                    </el-row>
-                    <el-row class="light-item">
-                        <el-col :span="8">
-                            计：
-                        </el-col>
-                        <el-col :span="9" :offset="3" class="right">
-                            <span>1578425</span>
-                        </el-col>
-                        <el-col :span="4">
-                            万元
-                            <br>
-                        </el-col>
-                    </el-row>
-                    <el-row class="dark-item">
-                        <el-col :span="8">
-                            本周交易量：
-                        </el-col>
-                        <el-col :span="9" :offset="3" class="right">
-                            <span>2124645</span>
-                        </el-col>
-                        <el-col :span="4">
-                            吨
-                        </el-col>
-                    </el-row>
-                    <el-row class="light-item">
-                        <el-col :span="8">
-                            计：
-                        </el-col>
-                        <el-col :span="9" :offset="3" class="right">
-                            <span>1578425</span>
-                        </el-col>
-                        <el-col :span="4">
-                            万元
-                        </el-col>
-                    </el-row>
-                    <el-row class="dark-item">
-                        <el-col :span="8">
-                            本月交易量：
-                        </el-col>
-                        <el-col :span="9" :offset="3" class="right">
-                            <span>2124645</span>
-                        </el-col>
-                        <el-col :span="4">
-                            吨
-                        </el-col>
-                    </el-row>
-                    <el-row class="light-item">
-                        <el-col :span="8">
-                            计：
-                        </el-col>
-                        <el-col :span="9" :offset="3" class="right">
-                            <span>1578425</span>
-                        </el-col>
-                        <el-col :span="4">
-                            万元
-                        </el-col>
-                    </el-row>
-                    <el-row class="dark-item">
-                        <el-col :span="8">
-                            累计交易量：
-                        </el-col>
-                        <el-col :span="9" :offset="3" class="right">
-                            <span>2124645</span>
-                        </el-col>
-                        <el-col :span="4">
-                            吨
-                        </el-col>
-                    </el-row>
-                    <el-row class="light-item">
-                        <el-col :span="8">
-                            计：
-                        </el-col>
-                        <el-col :span="9" :offset="3" class="right">
-                            <span>1578425</span>
-                        </el-col>
-                        <el-col :span="4">
-                            万元
-                        </el-col>
-                    </el-row>
-                </div>
-            </div>
-            <div class="data-footer-box clearfix">
-                <div class="action-group g-rt right">
-                    <el-button icon="icon iconfont icon-menu1" @click="transactionTableData"></el-button>
-                    <el-button icon="icon iconfont icon-pie" @click="transacPieChart"></el-button>
-                </div>
-            </div>
-        </div>
+        </el-collapse-transition>
+
+
         <!--左下方的饼图-->
-        <div class="transaction-pie" v-show="showTransacPie">
-            <div class="data-header-box">
-                <span class="title">交易数据分析</span>
-                <div class="tool-btn-group g-rt right">
-                    <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                        <el-button icon="icon iconfont icon-wenhao"></el-button>
-                    </el-tooltip>
+        <transition name="el-zoom-in-center">
+            <div class="transaction-pie" v-show="showTransacPie">
+                <div class="data-header-box">
+                    <span class="title">交易数据分析</span>
+                    <div class="tool-btn-group g-rt right">
+                        <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
+                            <el-button icon="icon iconfont icon-wenhao"></el-button>
+                        </el-tooltip>
+                    </div>
+                </div>
+                <div class="checkbox-wrapper clearfix">
+                    <el-radio-group v-model="radioValue1">
+                        <el-radio :label="3">金额</el-radio>
+                        <el-radio :label="6">量</el-radio>
+                    </el-radio-group>
+                    <el-radio-group v-model="radioValue2" class="g-rt">
+                        <el-radio :label="3">今日</el-radio>
+                        <el-radio :label="6">本周</el-radio>
+                        <el-radio :label="9">本月</el-radio>
+                    </el-radio-group>
+                </div>
+                <div id="transaction-pie-chart" style="width: 450px;height: 300px;"></div>
+                <div class="data-footer-box clearfix">
+                    <div class="action-group g-rt right">
+                        <el-button icon="icon iconfont icon-menu1" @click="showTransacPie = !showTransacPie"></el-button>
+                        <el-button icon="icon iconfont icon-pie darkbule" @click="transacPieChart"></el-button>
+                    </div>
                 </div>
             </div>
-            <div class="checkbox-wrapper clearfix">
-                <el-radio-group v-model="radioValue1">
-                    <el-radio :label="3">金额</el-radio>
-                    <el-radio :label="6">量</el-radio>
-                </el-radio-group>
-                <el-radio-group v-model="radioValue2" class="g-rt">
-                    <el-radio :label="3">今日</el-radio>
-                    <el-radio :label="6">本周</el-radio>
-                    <el-radio :label="9">本月</el-radio>
-                </el-radio-group>
-            </div>
-            <div id="transaction-pie-chart" style="width: 450px;height: 300px;"></div>
-            <div class="data-footer-box clearfix">
-                <div class="action-group g-rt right">
-                    <el-button icon="icon iconfont icon-menu1" @click="transactionTableData"></el-button>
-                    <el-button icon="icon iconfont icon-pie" @click="transacPieChart"></el-button>
-                </div>
-            </div>
-        </div>
+        </transition>
+
 
     </div>
 
@@ -309,7 +320,7 @@
         methods: {
             transacPieChart: function () {
                 let _this = this;
-                _this.showTransacPie = true;
+                _this.showTransacPie = !_this.showTransacPie;
                 let pieChart = echarts.init(document.getElementById('transaction-pie-chart'));
                 pieChart.setOption(_this.transacPieOptions);
             },

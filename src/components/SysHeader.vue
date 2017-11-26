@@ -58,7 +58,7 @@
     }
 
     .logo-header-navbar .el-menu-item.is-active {
-        background-color: #11213a;
+        background-color: #2ca1f4;
         color: white;
     }
 
@@ -104,7 +104,7 @@
             </el-menu>
         </div>
         <div class="homepage-right-toolbar clearfix g-rt">
-            <span class="timer">2017-11-20 &emsp; 11:20:22 </span>
+            <span class="timer">{{nowDate | filterTime}}</span>
             <span class="choose">监测间隔 2分钟 </span>
             <span class="tool-group">
                     <i class="icon iconfont icon-yifu"></i>
@@ -119,12 +119,29 @@
     export default {
         name: 'sys-header-box',
         components: {},
-        props: [],
+        props: ['logoActive'],
         data() {
             return {
                 logoHeaderActive: '1',
+                nowDate: new Date(),
             }
         },
-        methods: {}
+        methods: {},
+        mounted: function () {
+            this.logoHeaderActive = this.logoActive;
+        },
+        filters: {
+            filterTime: function (date) {
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                m = m < 10 ? ('0' + m) : m;
+                var d = date.getDate();
+                d = d < 10 ? ('0' + d) : d;
+                var h = date.getHours();
+                var minute = date.getMinutes();
+                minute = minute < 10 ? ('0' + minute) : minute;
+                return y + '-' + m + '-' + d + ' ' + h + ':' + minute;
+            }
+        }
     }
 </script>

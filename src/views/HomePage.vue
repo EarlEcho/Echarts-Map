@@ -181,7 +181,7 @@
 </style>
 <template>
     <div class="homepage-wrapper">
-        <sys-header-box></sys-header-box>
+        <sys-header-box logo-active="1"></sys-header-box>
 
         <div class="data-content-box clearfix">
             <div class="data-left-wrapper g-lf">

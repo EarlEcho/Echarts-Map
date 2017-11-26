@@ -1,6 +1,6 @@
 <style lang="less">
     .right-top-table {
-
+        height: 500px;
         .el-table th {
             padding: 6px 0;
         }
@@ -135,6 +135,17 @@
                 vertical-align: middle;
             }
         }
+        .daily-volume-msg {
+            height: 60px;
+            width: 100%;
+            background-color: #0E2A43;
+            color: #1291de;
+            font-weight: 600;
+            padding-top: 10px;
+            span {
+                color: white;
+            }
+        }
     }
 
 </style>
@@ -198,7 +209,8 @@
                     <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                 </div>
                 <div class="pages-group-right tool-btn-group">
-                    <el-button icon="icon iconfont icon-menu1" @click="dailyLineTable"></el-button>
+                    <el-button icon="icon iconfont icon-menu1 darkbule"
+                               @click="showDailyVolumeLine = !showDailyVolumeLine"></el-button>
                     <el-button icon="icon iconfont icon-weibiaoti111" @click="dailyLineChart"></el-button>
                 </div>
             </div>
@@ -228,15 +240,33 @@
                     <el-radio :label="9">6月</el-radio>
                 </el-radio-group>
             </div>
-            <div id="daily-line-chart" style="width: 820px;height: 370px;"></div>
+            <div class="daily-volume-msg">
+                <el-row>
+                    <el-col :span="12" class="center">
+                        <p>成交价：<span>&emsp;212133吨</span></p>
+                    </el-col>
+                    <el-col :span="12" class="center">
+                        <p>平均单价<span>&emsp;2144元/吨</span></p>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="12" class="center">
+                        <p>成交金额：<span>&emsp;22313万元</span></p>
+                    </el-col>
+                    <el-col :span="12" class="center">
+                        <p>单价整幅&emsp;<i class="iconfont icon-up red">11.5%</i></p>
+                    </el-col>
+                </el-row>
+            </div>
+            <div id="daily-line-chart" style="width: 820px;height: 310px;"></div>
             <div class="data-footer-box clearfix">
                 <div class="pages-group-signle tool-btn-group">
-                    <el-button icon="icon iconfont icon-menu1" @click="dailyLineTable"></el-button>
-                    <el-button icon="icon iconfont icon-weibiaoti111" @click="dailyLineChart"></el-button>
+                    <el-button icon="icon iconfont icon-menu1"
+                               @click="showDailyVolumeLine = !showDailyVolumeLine"></el-button>
+                    <el-button icon="icon iconfont icon-weibiaoti111 darkbule" @click="dailyLineChart"></el-button>
                 </div>
             </div>
         </div>
-
 
         <div class="popup-table">
             <div class="expand-dialog">
@@ -395,8 +425,8 @@
         props: [],
         data() {
             return {
-                radioValue1:'',
-                radioValue2:'',
+                radioValue1: '',
+                radioValue2: '',
                 value: '',
                 tabActive: 'first',
                 showDialogType2: false,
@@ -982,7 +1012,7 @@
             },
             dailyLineChart: function () {
                 let _this = this;
-                _this.showDailyVolumeLine = true;
+                _this.showDailyVolumeLine = !_this.showDailyVolumeLine;
                 let LineChart = echarts.init(document.getElementById('daily-line-chart'));
                 LineChart.setOption(_this.dailyLineOptions);
             },

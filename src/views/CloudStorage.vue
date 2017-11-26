@@ -3,7 +3,7 @@
 
     .mian-box {
         width: 100%;
-        .sys-header-box{
+        .sys-header-box {
             position: absolute;
             z-index: 15;
         }
@@ -29,7 +29,7 @@
             left: 35px;
             top: 164px;
             width: 453px;
-            height: 880px;
+            height: 875px;
         }
         .right-data-wrapper {
             position: absolute;
@@ -39,10 +39,12 @@
         }
 
     }
-    .el-popover{
+
+    .el-popover {
         padding: 0;
         border-radius: 0;
     }
+
     .map-click-chart {
         width: 600px;
         height: 364px;
@@ -89,11 +91,11 @@
 </style>
 <template>
     <div class="mian-box">
-        <div id="main" >
+        <div id="main">
 
         </div>
         <!--页面头部的logo 导航-->
-        <sys-header-box></sys-header-box>
+        <sys-header-box logo-active="2"></sys-header-box>
         <!--左侧数据-->
         <div class="left-data-wrapper g-lf">
 
@@ -113,23 +115,32 @@
         </div>
 
 
+        <el-popover popper-class="map-click-chart" transition="el-zoom-in-center" v-model="showMapChart" ref="popover5"
+                    placement="top">
+            <div class="title">
+                XX地区交易及价格信息
+            </div>
+            <div class="chart-tabs">
+                <el-tabs v-model="chartActive" type="card">
+                    <el-tab-pane label="交易数据分析" name="first"></el-tab-pane>
+                    <el-tab-pane label="价格信息分析" name="second"></el-tab-pane>
+                </el-tabs>
+            </div>
+            <div class="checkbox-wrapper clearfix">
+                <el-radio-group v-model="radioValue1">
+                    <el-radio :label="3">按量</el-radio>
+                    <el-radio :label="6">按金额</el-radio>
+                    <el-radio :label="9">按品种</el-radio>
+                </el-radio-group>
+                <el-radio-group v-model="radioValue2" class="g-rt">
+                    <el-radio :label="3">1月</el-radio>
+                    <el-radio :label="6">3月</el-radio>
+                    <el-radio :label="9">6月</el-radio>
+                </el-radio-group>
+            </div>
+            <div id="map-innner-chart" style="width: 100%;height: 245px;">
 
-         <el-popover popper-class="map-click-chart" transition="el-zoom-in-center" v-model="showMapChart" ref="popover5" placement="top">
-                <div class="title">
-                    XX地区交易及价格信息
-                </div>
-                <div class="chart-tabs">
-                    <el-tabs v-model="chartActive" type="card">
-                        <el-tab-pane label="交易数据分析" name="first"></el-tab-pane>
-                        <el-tab-pane label="价格信息分析" name="second"></el-tab-pane>
-                    </el-tabs>
-                </div>
-                <div class="chart-tabs">
-
-                </div>
-                <div id="map-innner-chart"  style="width: 100%;height: 245px;">
-
-                </div>
+            </div>
 
         </el-popover>
     </div>
@@ -173,6 +184,8 @@
         props: [],
         data() {
             return {
+                radioValue1: 3,
+                radioValue2: 3,
                 showClickItem: 'false',
                 logoHeaderActive: '1',
                 chartActive: 'first',
@@ -605,14 +618,9 @@
                         value: 90
                     }]
                 ],
-                planePath:
-                    'arrow',
-                series:
-                    [],
-                fromdata:
-                    '北京',
-                color:
-                    ['#02ACB2', '#FFFF00', '#FFA011', '#A6141B', '#00FF01'],
+                planePath: 'arrow',
+                series: [],
+                fromdata: '北京'
             }
         },
         methods: {
@@ -620,10 +628,10 @@
                 let innerChart;
                 let _this = this;
 
-                if(_this.showMapChart){
+                if (_this.showMapChart) {
                     _this.showMapChart = false;
 
-                }else{
+                } else {
                     _this.showMapChart = true;
                     setTimeout(function () {
                         innerChart = echarts.init(document.getElementById('map-innner-chart'));
@@ -646,7 +654,6 @@
                 myChart.on('click', function (param) {
 
                     if (param.componentType == 'geo') {
-//                        console.log('地图的点击事件：', param);
                         _this.mapClickEvent();
                     }
                 });
@@ -661,7 +668,7 @@
                         left: '34%',
                         bottom: '5%',
                         zlevel: 10,
-                        color: ['#50a3ba', '#f1c40f', '#e67e22', '#d94e5d'],
+                        color: ['#80F1BE', '#fec42c', '#dd4444', '#64FFFF'],
                         textStyle: {
                             color: '#fff'
                         }
@@ -697,8 +704,6 @@
             convertData: function (data) {
                 var res = [];
                 let _this = this;
-                console.log(data);
-
                 for (var i = 0; i < data.length; i++) {
                     var dataItem = data[i];
                     var fromCoord = _this.geoCoordMap[dataItem[0].name];
@@ -714,7 +719,6 @@
             },
         },
         mounted() {
-
 
         },
         created() {
@@ -795,7 +799,7 @@
                                 shadowOffsetX: 0,
                                 shadowOffsetY: -12,
                                 shadowBlur: 120,
-                                opacity: 1,
+                                opacity: 1
                             }
 
                         },
@@ -1019,8 +1023,6 @@
                                     [1, '#1e5a67']
                                 ],
                                 width: width,
-
-
                                 opacity: 1,
                             }
 
@@ -1103,7 +1105,7 @@
                     {
                         type: 'pie',
                         zlevel: 2,
-                        radius: ['72%', '85%'],
+                        radius: ['70%', '81%'],
                         label: {
                             normal: {
                                 position: 'center'
@@ -1116,9 +1118,29 @@
                             },
                             itemStyle: {
                                 normal: {
-                                    color: '#4dfaff',
                                     opacity: 0.2
                                 }
+                            }
+                        }]
+                    },
+                    {
+                        type: 'pie',
+                        zlevel: 2,
+                        radius: ['55%', '60%'],
+                        label: {
+                            normal: {
+                                position: 'center'
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                opacity: 0.5
+                            }
+                        },
+                        data: [{
+                            value: 200,
+                            tooltip: {
+                                show: false
                             }
                         }]
                     },

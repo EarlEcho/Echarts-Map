@@ -1,5 +1,6 @@
 <style lang="less">
     .right-bottom-table {
+        height: 362px;
         .popup-table {
             height: 100%;
         }
@@ -124,6 +125,19 @@
                 vertical-align: middle;
             }
         }
+        .daily-price-msg {
+            height: 240px;
+            width: 130px;
+            float: left;
+            background-color: #0E2A43;
+            color: #1291de;
+            font-weight: 600;
+            padding: 25px 15px;
+            text-align: center;
+            span {
+                color: white;
+            }
+        }
     }
 
 
@@ -131,9 +145,9 @@
 <template>
     <div class="right-bottom-table">
         <!--右侧数据-->
-        <div class="daily-price-table" v-show="!showDailyPriceLine">
+        <div class="daily-price-table clearfix" v-show="!showDailyPriceLine">
             <div class="data-header-box clearfix">
-                <span class="title">今日价格指数 <small>&emsp;2017年11月23日</small></span>
+                <span class="title">今日价格指数 <small>&emsp;2017年11月27日</small></span>
                 <div class="action-group g-rt right">
                     <el-button icon="icon iconfont icon-fangda" @click="showPopupTable"></el-button>
                     <el-tooltip class="item tool-btn-group" effect="dark" content="提示文字" placement="top-start">
@@ -197,12 +211,14 @@
                     <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                 </div>
                 <div class="pages-group-right tool-btn-group">
-                    <el-button icon="icon iconfont icon-menu1" @click="dailyPriceTable"></el-button>
+                    <el-button icon="icon iconfont icon-menu1 darkbule"
+                               @click="showDailyPriceLine = !showDailyPriceLine"></el-button>
                     <el-button icon="icon iconfont icon-weibiaoti111" @click="dailyPriceChart"></el-button>
                 </div>
             </div>
         </div>
-        <div class="right-line-charts-wrapper2" v-show="showDailyPriceLine">
+
+        <div class="right-line-charts-wrapper2 clearfix" v-show="showDailyPriceLine">
             <div class="data-header-box">
                 <span class="title">今日价格指数</span>
                 <div class="action-group g-rt right">
@@ -225,16 +241,24 @@
                     <el-radio :label="9">6月</el-radio>
                 </el-radio-group>
             </div>
-            <div id="daily-price-chart" style="width: 820px;height: 240px;">
+            <div class="daily-price-msg">
+                <p>成交价：<span>212133吨</span></p>
+                <p>平均单价：<span>2144元/吨</span></p>
+                <p>成交金额：<span>22313万元</span></p>
+                <p>单价整幅：<i class="iconfont icon-up red">11.5%</i></p>
+            </div>
+            <div id="daily-price-chart" style="width: 690px;height: 240px;float: right">
 
             </div>
             <div class="data-footer-box clearfix">
                 <div class="pages-group-signle tool-btn-group">
-                    <el-button icon="icon iconfont icon-menu1" @click="dailyPriceTable"></el-button>
-                    <el-button icon="icon iconfont icon-weibiaoti111" @click="dailyPriceChart"></el-button>
+                    <el-button icon="icon iconfont icon-menu1"
+                               @click="showDailyPriceLine = !showDailyPriceLine"></el-button>
+                    <el-button icon="icon iconfont icon-weibiaoti111 darkbule" @click="dailyPriceChart"></el-button>
                 </div>
             </div>
         </div>
+
 
         <div class="popup-table">
             <div class="expand-dialog">
@@ -841,12 +865,9 @@
             },
             dailyPriceChart: function () {
                 let _this = this;
-                _this.showDailyPriceLine = true;
+                _this.showDailyPriceLine = !_this.showDailyPriceLine;
                 let LineChart = echarts.init(document.getElementById('daily-price-chart'));
                 LineChart.setOption(_this.dailyLineOptions);
-            },
-            dailyPriceTable: function () {
-                this.showDailyPriceLine = false;
             },
             expandData: function () {
                 console.log('展开');

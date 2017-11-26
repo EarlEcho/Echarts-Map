@@ -1,5 +1,6 @@
 <style lang="less">
     .left-top-table {
+        display: flex;
         .real-time-table {
             width: 100%;
             height: 435px;
@@ -63,100 +64,105 @@
 
 </style>
 <template>
-    <div class="left-top-table">
+    <div class="left-top-table" v-cloak>
         <!--实时交易数据的表格-->
-        <div class="real-time-table" v-show="showRealPie">
-            <div class="data-header-box">
-                <span class="title">实时交易数据</span>
-                <div class="action-group g-rt right">
-                    <el-button icon="icon iconfont icon-fangda" @click="showDialogType1=true"></el-button>
-                    <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                        <el-button icon="icon iconfont icon-wenhao"></el-button>
-                    </el-tooltip>
+
+        <el-collapse-transition>
+            <div class="real-time-table" v-show="showRealPie">
+                <div class="data-header-box">
+                    <span class="title">实时交易数据</span>
+                    <div class="action-group g-rt right">
+                        <el-button icon="icon iconfont icon-fangda" @click="showDialogType1=true"></el-button>
+                        <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
+                            <el-button icon="icon iconfont icon-wenhao"></el-button>
+                        </el-tooltip>
+                    </div>
+                </div>
+                <div class="data-content">
+                    <el-table :data="realTimeData" size="small" fit>
+                        <el-table-column prop="date" label="时间" width="40px"></el-table-column>
+                        <el-table-column prop="area" label="地区" width="50px"></el-table-column>
+                        <el-table-column prop="company" label="公司" width="79px"></el-table-column>
+                        <el-table-column prop="type" label="品种" width="75px"></el-table-column>
+                        <el-table-column prop="standard" label="规格" width="55px"></el-table-column>
+                        <el-table-column prop="num" label="数量" width="50px"></el-table-column>
+                        <el-table-column prop="price" label="单价" width="51px"></el-table-column>
+                        <el-table-column prop="allCount" label="总价" width="53px"></el-table-column>
+                    </el-table>
+                </div>
+                <div class="data-footer-box clearfix">
+                    <div class="action-group g-lf left">
+                        <el-button icon="icon iconfont icon-menu-copy darkbule" @click="expandData"
+                                   class="menu-copy-btn"></el-button>
+                        <el-button icon="icon iconfont icon-jiugongge"></el-button>
+                    </div>
+                    <div class="action-group center">
+                        <el-button icon="icon iconfont icon-arrow-down-circle-left"
+                                   @click="expandData"></el-button>
+                        <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
+                    </div>
+                    <div class="action-group g-rt right">
+                        <el-button icon="icon iconfont icon-menu1 darkbule" @click="showRealPie = !showRealPie"></el-button>
+                        <el-button icon="icon iconfont icon-pie" @click="realPieChart"></el-button>
+                    </div>
                 </div>
             </div>
-            <div class="data-content">
-                <el-table :data="realTimeData" size="small" fit>
-                    <el-table-column prop="date" label="时间" width="40px"></el-table-column>
-                    <el-table-column prop="area" label="地区" width="50px"></el-table-column>
-                    <el-table-column prop="company" label="公司" width="79px"></el-table-column>
-                    <el-table-column prop="type" label="品种" width="75px"></el-table-column>
-                    <el-table-column prop="standard" label="规格" width="55px"></el-table-column>
-                    <el-table-column prop="num" label="数量" width="50px"></el-table-column>
-                    <el-table-column prop="price" label="单价" width="51px"></el-table-column>
-                    <el-table-column prop="allCount" label="总价" width="53px"></el-table-column>
-                </el-table>
-            </div>
-            <div class="data-footer-box clearfix">
-                <div class="action-group g-lf left">
-                    <el-button icon="icon iconfont icon-menu-copy" @click="expandData"
-                               class="menu-copy-btn"></el-button>
-                    <el-button icon="icon iconfont icon-jiugongge"></el-button>
-                </div>
-                <div class="action-group center">
-                    <el-button icon="icon iconfont icon-arrow-down-circle-left"
-                               @click="expandData"></el-button>
-                    <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
-                </div>
-                <div class="action-group g-rt right">
-                    <el-button icon="icon iconfont icon-menu1" @click="realTableData"></el-button>
-                    <el-button icon="icon iconfont icon-pie" @click="realPieChart"></el-button>
-                </div>
-            </div>
-        </div>
+        </el-collapse-transition>
+
+
         <!--实时交易数据的图表-->
-        <div class="real-time-table" v-show="!showRealPie">
-            <div class="data-header-box">
-                <span class="title">实时交易数据</span>
-                <div class="action-group g-rt right">
-                    <el-button icon="icon iconfont icon-fangda" @click="showDialogType1=true"></el-button>
-                    <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                        <el-button icon="icon iconfont icon-wenhao"></el-button>
-                    </el-tooltip>
+        <transition name="el-zoom-in-center">
+            <div class="real-time-table" v-show="!showRealPie">
+                <div class="data-header-box">
+                    <span class="title">实时交易数据</span>
+                    <div class="action-group g-rt right">
+                        <el-button icon="icon iconfont icon-fangda" @click="showDialogType1=true"></el-button>
+                        <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
+                            <el-button icon="icon iconfont icon-wenhao"></el-button>
+                        </el-tooltip>
+                    </div>
+                </div>
+                <div class="data-content">
+                    <div class="checkbox-wrapper clearfix">
+                        <el-radio-group v-model="radioValue1">
+                            <el-radio :label="3">公司</el-radio>
+                            <el-radio :label="6">品种</el-radio>
+                            <el-radio :label="9">终端</el-radio>
+                        </el-radio-group>
+                        <el-radio-group v-model="radioValue2" class="g-rt">
+                            <el-radio :label="3">1月</el-radio>
+                            <el-radio :label="6">3月</el-radio>
+                            <el-radio :label="9">6月</el-radio>
+                        </el-radio-group>
+                    </div>
+                    <div id="real-pie-chart" style="width: 453px;height: 300px;">
+                        <!--点击模块的饼图后的图表-->
+                    </div>
+                </div>
+                <div class="data-footer-box clearfix">
+                    <div class="action-group g-lf left">
+                        <el-button icon="icon iconfont icon-menu-copy" @click="expandData"
+                                   class="menu-copy-btn"></el-button>
+                        <el-button icon="icon iconfont icon-jiugongge"></el-button>
+                    </div>
+                    <div class="action-group center">
+                        <el-button icon="icon iconfont icon-arrow-down-circle-left"
+                                   @click="expandData"></el-button>
+                        <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
+                    </div>
+                    <div class="action-group g-rt right">
+                        <el-button icon="icon iconfont icon-menu1" @click="showRealPie = !showRealPie"></el-button>
+                        <el-button icon="icon iconfont icon-pie darkbule" @click="realPieChart"></el-button>
+                    </div>
                 </div>
             </div>
-            <div class="data-content">
-                <div class="checkbox-wrapper clearfix">
-                    <el-radio-group v-model="radioValue1">
-                        <el-radio :label="3">公司</el-radio>
-                        <el-radio :label="6">品种</el-radio>
-                        <el-radio :label="9">终端</el-radio>
-                    </el-radio-group>
-                    <el-radio-group v-model="radioValue2" class="g-rt">
-                        <el-radio :label="3">1月</el-radio>
-                        <el-radio :label="6">3月</el-radio>
-                        <el-radio :label="9">6月</el-radio>
-                    </el-radio-group>
-                </div>
-                <div id="real-pie-chart" style="width: 453px;height: 300px;">
-                    <!--点击模块的饼图后的图表-->
-                </div>
-            </div>
-            <div class="data-footer-box clearfix">
-                <div class="action-group g-lf left">
-                    <el-button icon="icon iconfont icon-menu-copy" @click="expandData"
-                               class="menu-copy-btn"></el-button>
-                    <el-button icon="icon iconfont icon-jiugongge"></el-button>
-                </div>
-                <div class="action-group center">
-                    <el-button icon="icon iconfont icon-arrow-down-circle-left"
-                               @click="expandData"></el-button>
-                    <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
-                </div>
-                <div class="action-group g-rt right">
-                    <el-button icon="icon iconfont icon-menu1" @click="realTableData"></el-button>
-                    <el-button icon="icon iconfont icon-pie" @click="realPieChart"></el-button>
-                </div>
-            </div>
-        </div>
+        </transition>
 
 
         <!--弹出框-->
         <div class="popup-table">
             <div class="expand-dialog">
-
-
-                <el-dialog :visible.sync="showDialogType1" width="1486px" top="100px" :modal="false" >
+                <el-dialog :visible.sync="showDialogType1" width="1486px" top="100px" :modal="false">
                     <div class="popup-content-wrapper">
                         <p class="tooltip">
                             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
@@ -746,7 +752,7 @@
             },
             realPieChart: function () {
                 let _this = this;
-                _this.showRealPie = false;
+                _this.showRealPie = !_this.showRealPie;
                 let pieChart = echarts.init(document.getElementById('real-pie-chart'));
                 pieChart.setOption(_this.realPieOptions);
             },
