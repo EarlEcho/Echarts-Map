@@ -88,6 +88,89 @@
 
         }
     }
+
+    .dialog-fade-enter-active {
+        -webkit-animation: dialog-fade-in .8s;
+        animation: dialog-fade-in .8s
+    }
+
+    .dialog-fade-leave-active {
+        -webkit-animation: dialog-fade-out .8s;
+        animation: dialog-fade-out .8s
+    }
+
+    @-webkit-keyframes dialog-fade-in {
+        0% {
+            -webkit-transform: rotate(180deg, 90deg);
+            transform: rotate(180deg, 90deg);
+            width: 0;
+            height: 0;
+            opacity: 0
+        }
+        100% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            opacity: 1
+        }
+    }
+
+    @keyframes dialog-fade-in {
+        0% {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+            width: 0;
+            height: 0;
+            opacity: 0
+        }
+        100% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            opacity: 1
+        }
+    }
+
+    @-webkit-keyframes dialog-fade-out {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            opacity: 1
+        }
+        100% {
+            -webkit-transform: rotate(-160deg);
+            transform: rotate(-160deg);
+            width: 0;
+            height: 0;
+            opacity: 0
+        }
+    }
+
+    @keyframes dialog-fade-out {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            opacity: 1
+        }
+        100% {
+            -webkit-transform: rotate(-160deg);
+            transform: rotate(-160deg);
+            width: 0;
+            height: 0;
+            opacity: 0
+        }
+    }
+
 </style>
 <template>
     <div class="mian-box">
@@ -156,11 +239,12 @@
     require('echarts/lib/chart/map');
     require('echarts/lib/chart/lines');
     require('echarts/lib/chart/gauge');
-    require('echarts/lib/chart/pie');
+
     require('echarts/lib/component/geo');
     // 引入提示框和标题组件
     require('echarts/lib/component/tooltip');
     require('echarts/lib/component/title');
+
 
     import LeftTopTable from '@/components/LeftTopTable'
     import LeftBottomTable from '@/components/LeftBottomTable'
@@ -668,7 +752,7 @@
                         left: '34%',
                         bottom: '5%',
                         zlevel: 10,
-                        color: ['#80F1BE', '#fec42c', '#dd4444', '#64FFFF'],
+                        color: ['#ff3333', 'orange', 'yellow', 'lime', 'aqua'],
                         textStyle: {
                             color: '#fff'
                         }
@@ -727,15 +811,17 @@
             var width = 4;
             [[this.fromdata, this.BJData]].forEach(function (item, i) {
                 _this.series.push(
-                    /*{
+                    {
                         type: 'lines',
-                        zlevel: 2,
-                        effect: {  show: true,  period: 4,  trailLength: 0,  symbol: 'arrow',  symbolSize: 7,
+                        zlevel: 15,
+                        effect: {
+                            show: true, period: 4, trailLength: 0, symbol: 'arrow', symbolSize: 7,
                         },
-                        lineStyle: {  normal: {      width: 1.2,      opacity: 0.6,      curveness: 0.2,      color: '#02ACB2'  }
+                        lineStyle: {
+                            normal: {width: 1.2, opacity: 0.6, curveness: 0.2, color: '#F19000'}
                         },
                         data: _this.convertData(item[1])
-                    },*/
+                    },
                     //出发点
                     {
                         type: 'effectScatter',
@@ -749,7 +835,7 @@
                             return 4 + val[2] / 10;
                         },
                         itemStyle: {
-                            normal: {show: true, color: '#00FFFF'}, emphasis: {show: true, color: '#00FFFF'}
+                            normal: {show: true, color: '#FA4D41'}
                         },
                         data: [{
                             name: _this.fromdata, value: _this.geoCoordMap[item[0]].concat([100]),
@@ -764,13 +850,14 @@
                         },
                         zlevel: 15,
                         label: {
-                            normal: {show: true, position: 'right', offset: [5, 0], formatter: '{b}'},
-                            emphasis: {show: true}
+                            normal: {show: true, position: 'right', offset: [5, 0], formatter: '{b}'}
                         },
                         symbol: 'circle',
                         symbolSize: 15,
                         itemStyle: {
-                            normal: {show: false, color: '#00FFFF', textStyle: {color: "white"}}
+                            normal: {
+                                color: '#F19000'
+                            }
                         },
                         data: item[1].map(function (dataItem) {
                             return {
@@ -792,7 +879,7 @@
                             lineStyle: {
                                 color: [
                                     [0.2, '#d70029'],
-                                    [1, '#d70029']
+                                    [1, 'pink']
                                 ],
                                 width: 4,
                                 shadowColor: '#d70029',
