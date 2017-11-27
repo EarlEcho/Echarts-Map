@@ -1,6 +1,87 @@
 <style lang="less">
     @import "../assets/css/common.css";
 
+    .dialog-fade-enter-active {
+        -webkit-animation: dialog-fade-in .8s;
+        animation: dialog-fade-in .8s
+    }
+
+    .dialog-fade-leave-active {
+        -webkit-animation: dialog-fade-out .8s;
+        animation: dialog-fade-out .8s
+    }
+
+    @-webkit-keyframes dialog-fade-in {
+        0% {
+            -webkit-transform: rotate(180deg, 90deg);
+            transform: rotate(180deg, 90deg);
+            width: 0;
+            height: 0;
+            opacity: 0
+        }
+        100% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            opacity: 1
+        }
+    }
+
+    @keyframes dialog-fade-in {
+        0% {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+            width: 0;
+            height: 0;
+            opacity: 0
+        }
+        100% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            opacity: 1
+        }
+    }
+
+    @-webkit-keyframes dialog-fade-out {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            opacity: 1
+        }
+        100% {
+            -webkit-transform: rotate(-160deg);
+            transform: rotate(-160deg);
+            width: 0;
+            height: 0;
+            opacity: 0
+        }
+    }
+
+    @keyframes dialog-fade-out {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            opacity: 1
+        }
+        100% {
+            -webkit-transform: rotate(-160deg);
+            transform: rotate(-160deg);
+            width: 0;
+            height: 0;
+            opacity: 0
+        }
+    }
     .homepage-wrapper {
         border: solid 1px;
         width: 1920px;
