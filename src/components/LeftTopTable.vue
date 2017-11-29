@@ -1,17 +1,6 @@
 <style lang="less">
     .left-top-table {
         display: flex;
-        .real-time-table {
-            width: 100%;
-            height: 435px;
-            margin-bottom: 20px;
-            background: url(../assets/boxBk.png) no-repeat;
-            background-size: 100%;
-            .data-content {
-                height: 340px;
-
-            }
-        }
         .popup-table {
             height: 100%;
         }
@@ -60,15 +49,63 @@
             display: inline-block;
             height: 100%;
         }
+        /*.real-time-table {
+            width: 100%;
+            height: 435px;
+            margin-bottom: 20px;
+            !*background: url(../assets/boxBk.png) no-repeat;*!
+            background-size: 100%;
+            .data-content {
+                height: 340px;
+            }
+        }*/
+        .border-box {
+            width: 453px;
+            height: 435px;
+            margin-bottom: 20px;
+            background-color: #1C2B44;
+            border: solid 2px #96E6EC;
+            margin-bottom: 23px;
+            position: static;
+            #border1 {
+                width: 453px;
+                height: 387px;
+                background-color: #1C2B44;
+                position: relative;
+                top: 22px;
+                left: -2px;
+            }
+            #border2 {
+                width: 405px;
+                height: 435px;
+                background-color: #1C2B44;
+                position: relative;
+                top: -24px;
+                left: 25px;
+            }
+            .border-inner-content {
+                width: 453px;
+                height: 435px;
+                position: relative;
+                top: 2px;
+                left: -25px;
+            }
+            .data-content{
+                height: 340px;
+            }
+        }
     }
 
 </style>
 <template>
     <div class="left-top-table" v-cloak>
         <!--实时交易数据的表格-->
-
         <el-collapse-transition>
-            <div class="real-time-table" v-show="showRealPie">
+           <!-- <border-box>
+
+            </border-box>-->
+
+            <border-box v-show="showRealPie">
                 <div class="data-header-box">
                     <span class="title">实时交易数据</span>
                     <div class="action-group g-rt right">
@@ -106,7 +143,7 @@
                         <el-button icon="icon iconfont icon-pie" @click="realPieChart"></el-button>
                     </div>
                 </div>
-            </div>
+            </border-box>
         </el-collapse-transition>
 
 
@@ -291,6 +328,8 @@
 
 <script>
     import ggdp from '@/functions/common'
+    import BorderBox from '@/components/BoderCompontents'
+
     // 按需引入 ECharts 主模块
     let echarts = require('echarts/lib/echarts');
     require('echarts/lib/chart/pie');
@@ -300,7 +339,7 @@
     let myChart;
     export default {
         name: 'leftTopTable',
-        components: {},
+        components: {BorderBox},
         props: [],
         data() {
             return {

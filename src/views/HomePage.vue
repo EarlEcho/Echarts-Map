@@ -1,114 +1,6 @@
 <style lang="less">
     @import "../assets/css/common.css";
 
-    .dialog-fade-enter-active {
-        -webkit-animation: dialog-fade-in .8s;
-        animation: dialog-fade-in .8s
-    }
-
-    .dialog-fade-leave-active {
-        -webkit-animation: dialog-fade-out .8s;
-        animation: dialog-fade-out .8s
-    }
-
-    @-webkit-keyframes dialog-fade-in {
-        0% {
-            -webkit-transform: rotate(180deg, 90deg);
-            transform: rotate(180deg, 90deg);
-            width: 0;
-            height: 0;
-            opacity: 0
-        }
-        100% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-            opacity: 1
-        }
-    }
-
-    @keyframes dialog-fade-in {
-        0% {
-            -webkit-transform: rotate(180deg);
-            transform: rotate(180deg);
-            width: 0;
-            height: 0;
-            opacity: 0
-        }
-        100% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-            opacity: 1
-        }
-    }
-
-    @-webkit-keyframes dialog-fade-out {
-        0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-            opacity: 1
-        }
-        100% {
-            -webkit-transform: rotate(-160deg);
-            transform: rotate(-160deg);
-            width: 0;
-            height: 0;
-            opacity: 0
-        }
-    }
-
-    @keyframes dialog-fade-out {
-        0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-            opacity: 1
-        }
-        100% {
-            -webkit-transform: rotate(-160deg);
-            transform: rotate(-160deg);
-            width: 0;
-            height: 0;
-            opacity: 0
-        }
-    }
-    .homepage-wrapper {
-        border: solid 1px;
-        width: 1920px;
-        min-height: 100%;
-        background-color: #11213A;
-
-        position: relative;
-        z-index: 10;
-        box-sizing: border-box;
-        div {
-            box-sizing: border-box;
-        }
-        .el-table th {
-            padding: 6px 0;
-        }
-
-        .el-table td {
-            padding: 3px 0;
-        }
-        .el-table td, .el-table th.is-leaf {
-            border-bottom: 3px solid #172f4b;
-        }
-        .el-table__body, .el-table__footer, .el-table__header {
-            border-bottom: 3px solid #172f4b;
-        }
-    }
-
     .data-content-box {
         width: 100%;
         height: 914px;
@@ -123,37 +15,6 @@
             height: 854px;
         }
 
-    }
-
-    .data-modules {
-        width: 320px;
-        height: 260px;
-        margin-bottom: 23px;
-        background: url(../assets/homebox.png) no-repeat;
-        background-size: 100%;
-        .data-list-item {
-            height: 170px;
-            font-size: 14px;
-            font-weight: bold;
-            .inner-span {
-                color: #cccccc;
-                padding: 0 8px;
-            }
-            .el-row {
-                padding: 0 15px;
-            }
-        }
-        .dark-item {
-            height: 31px;
-            line-height: 31px;
-        }
-        .light-item {
-            height: 31px;
-            line-height: 31px;
-        }
-        &:last-child {
-            margin-bottom: 0px;
-        }
     }
 
     /*菜单栏*/
@@ -259,6 +120,88 @@
         width: 100% !important;
         height: 330px !important;
     }
+
+    .homepage-wrapper {
+        border: solid 1px;
+        width: 1920px;
+        min-height: 100%;
+        background-color: #11213A;
+
+        position: relative;
+        z-index: 10;
+        box-sizing: border-box;
+        div {
+            box-sizing: border-box;
+        }
+        .el-table th {
+            padding: 6px 0;
+        }
+
+        .el-table td {
+            padding: 3px 0;
+        }
+        .el-table td, .el-table th.is-leaf {
+            border-bottom: 3px solid #172f4b;
+        }
+        .el-table__body, .el-table__footer, .el-table__header {
+            border-bottom: 3px solid #172f4b;
+        }
+
+        .border-box {
+            width: 320px;
+            height: 260px;
+            background-color: #1C2B44;
+            border: solid 2px #96E6EC;
+            margin-bottom: 23px;
+            position: static;
+            #border1 {
+                width: 321px;
+                height: 210px;
+                background-color: #1C2B44;
+                position: relative;
+                top: 22px;
+                left: -3px;
+            }
+            #border2 {
+                width: 270px;
+                height: 261px;
+                background-color: #1C2B44;
+                position: relative;
+                top: -25px;
+                left: 25px;
+            }
+            .border-inner-content {
+                width: 321px;
+                height: 254px;
+                position: relative;
+                top: 3px;
+                left: -25px;
+                .data-list-item {
+                    height: 170px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    .inner-span {
+                        color: #cccccc;
+                        padding: 0 8px;
+                    }
+                    .el-row {
+                        padding: 0 15px;
+                    }
+                }
+                .dark-item {
+                    height: 31px;
+                    line-height: 31px;
+                }
+                .light-item {
+                    height: 31px;
+                    line-height: 31px;
+                }
+                &:last-child {
+                    margin-bottom: 0px;
+                }
+            }
+        }
+    }
 </style>
 <template>
     <div class="homepage-wrapper">
@@ -266,7 +209,7 @@
 
         <div class="data-content-box clearfix">
             <div class="data-left-wrapper g-lf">
-                <div class="data-modules">
+                <border-box>
                     <data-header-box item-title="云仓储数据" :expand-popup="true"></data-header-box>
                     <div class="data-list-item">
                         <el-row v-for="(item,index) in homeLeftDatas.storeData" :key="index"
@@ -279,9 +222,10 @@
                             </el-col>
                         </el-row>
                     </div>
-                    <!--<data-footer-box :left-item="false" :center-item="false"></data-footer-box>-->
-                </div>
-                <div class="data-modules">
+                </border-box>
+
+
+                <border-box>
                     <data-header-box item-title="云仓储待作业" :expand-popup="true"></data-header-box>
                     <div class="data-list-item">
                         <el-row v-for="(item,index) in homeLeftDatas.notStoreData" :key="index"
@@ -301,8 +245,10 @@
                         </el-row>
                     </div>
                     <!--<data-footer-box :left-item="false" :center-item="false"></data-footer-box>-->
-                </div>
-                <div class="data-modules">
+                </border-box>
+
+
+                <border-box>
                     <data-header-box item-title="集团库存数量" :expand-popup="true"></data-header-box>
                     <div class="data-list-item">
                         <el-row v-for="(item,index) in homeLeftDatas.groupStoreData" :key="index"
@@ -316,7 +262,7 @@
                         </el-row>
                     </div>
                     <!--<data-footer-box :left-item="false" :center-item="false"></data-footer-box>-->
-                </div>
+                </border-box>
             </div>
             <div class="video-right-wrapper g-rt">
                 <div class="homepage-navbar clearfix">
@@ -402,7 +348,10 @@
 
     import DataFooterBox from '@/components/ToolBottom'
     import SysHeaderBox from '@/components/SysHeader'
+    import BorderBox from '@/components/BoderCompontents'
+
     import {videoPlayer} from 'vue-video-player'
+
 
     import m0 from '../assets/m0.jpg';
     import m1 from '../assets/m1.jpg';
@@ -420,7 +369,7 @@
 
     export default {
         name: 'HomePage',
-        components: {DataHeaderBox, DataFooterBox, SysHeaderBox, videoPlayer},
+        components: {DataHeaderBox, DataFooterBox, SysHeaderBox, videoPlayer, BorderBox},
         props: [],
         data() {
             return {
