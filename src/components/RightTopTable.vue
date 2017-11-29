@@ -46,24 +46,6 @@
             height: 100%;
         }
 
-        .popup-content-wrapper {
-            margin: 37px 60px;
-            background: url(../assets/popupInner.png) no-repeat;
-            background-size: 100%;
-            height: 778px;
-            .tooltip {
-                text-align: right;
-                padding: 2px 10px 0 10px;
-                .el-button {
-                    background: transparent;
-                    color: white;
-                    padding: 5px;
-                    border: none;
-                    font-size: 18px;
-                }
-            }
-        }
-
         .popup-title {
             font-size: 28px;
             color: white;
@@ -271,7 +253,7 @@
         <div class="popup-table">
             <div class="expand-dialog">
                 <el-dialog :visible.sync="showDialogType2" width="1486px" top="100px" :modal="false">
-                    <div class="popup-content-wrapper">
+                    <border-box>
                         <p class="tooltip">
                             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
                                 <el-button icon="icon iconfont icon-wenhao"></el-button>
@@ -384,20 +366,14 @@
 
                         </div>
                         <div class="popup-other-infos">
-                            <p class="other-item">2017年10月1日至2017年10月25日，<span class="yellow">xxxx</span>地区，
-                                合同数量<span class="blue">222</span>件，总交易量<span class="pink">111111</span>吨，
-                                总交易金额<span class="orange">111111</span>万元，
-                                已出库<span class="green">xxxx</span>吨，
-                                未出库<span class="red">xxxx</span>吨。
-                            </p>
-                            <p class="other-item">2017年10月1日至2017年10月25日，<span class="yellow">xxxx</span>地区，
+                            <p class="other-item" v-for="i in 2">2017年10月1日至2017年10月25日，<span class="yellow">xxxx</span>地区，
                                 合同数量<span class="blue">222</span>件，总交易量<span class="pink">111111</span>吨，
                                 总交易金额<span class="orange">111111</span>万元，
                                 已出库<span class="green">xxxx</span>吨，
                                 未出库<span class="red">xxxx</span>吨。
                             </p>
                         </div>
-                    </div>
+                    </border-box>
 
                 </el-dialog>
             </div>
@@ -409,6 +385,7 @@
 </template>
 
 <script>
+    import BorderBox from '@/components/BoderCompontents'
     // 按需引入 ECharts 主模块
     let echarts = require('echarts/lib/echarts');
 
@@ -421,7 +398,7 @@
 
     export default {
         name: 'RightTopTable',
-        components: {},
+        components: {BorderBox},
         props: [],
         data() {
             return {
@@ -862,7 +839,7 @@
                     }]
                 },
                 chartOption: {
-                    backgroundColor: '#172f4b',
+                    backgroundColor: '#1C2B44',
                     tooltip: {
                         trigger: 'axis',
                         axisPointer: {
