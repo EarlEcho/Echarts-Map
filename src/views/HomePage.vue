@@ -9,6 +9,60 @@
             width: 322px;
             height: 854px;
             padding-top: 30px;
+            .border-box {
+                width: 320px;
+                height: 260px;
+                background-color: #1C2B44;
+                border: solid 2px #96E6EC;
+                margin-bottom: 23px;
+                position: static;
+                #border1 {
+                    width: 321px;
+                    height: 210px;
+                    background-color: #1C2B44;
+                    position: relative;
+                    top: 22px;
+                    left: -3px;
+                }
+                #border2 {
+                    width: 270px;
+                    height: 261px;
+                    background-color: #1C2B44;
+                    position: relative;
+                    top: -25px;
+                    left: 25px;
+                }
+                .border-inner-content {
+                    width: 321px;
+                    height: 254px;
+                    position: relative;
+                    top: 3px;
+                    left: -25px;
+                    .data-list-item {
+                        height: 170px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        .inner-span {
+                            color: #cccccc;
+                            padding: 0 8px;
+                        }
+                        .el-row {
+                            padding: 0 15px;
+                        }
+                    }
+                    .dark-item {
+                        height: 31px;
+                        line-height: 31px;
+                    }
+                    .light-item {
+                        height: 31px;
+                        line-height: 31px;
+                    }
+                    &:last-child {
+                        margin-bottom: 0px;
+                    }
+                }
+            }
         }
         .video-right-wrapper {
             width: 1492px;
@@ -30,19 +84,11 @@
     .video-navbar {
         background-color: #1d3c5b !important;
         border: none;
-        /*border: 1px solid #2ca2f6;
-        border-bottom: none;
-        border-right: none;*/
         .el-menu-item {
             height: 30px;
             width: 106px;
             text-align: center;
             line-height: 30px;
-            /*border-right: 1px solid #11213A;
-            color: white;
-            transform: skewX(-20deg);
-            background-color: #409EFF;*/
-            /*font-weight: 600;*/
             &:hover {
                 background-color: #2ca2f6;
                 color: white;
@@ -147,60 +193,7 @@
             border-bottom: 3px solid #172f4b;
         }
 
-        .border-box {
-            width: 320px;
-            height: 260px;
-            background-color: #1C2B44;
-            border: solid 2px #96E6EC;
-            margin-bottom: 23px;
-            position: static;
-            #border1 {
-                width: 321px;
-                height: 210px;
-                background-color: #1C2B44;
-                position: relative;
-                top: 22px;
-                left: -3px;
-            }
-            #border2 {
-                width: 270px;
-                height: 261px;
-                background-color: #1C2B44;
-                position: relative;
-                top: -25px;
-                left: 25px;
-            }
-            .border-inner-content {
-                width: 321px;
-                height: 254px;
-                position: relative;
-                top: 3px;
-                left: -25px;
-                .data-list-item {
-                    height: 170px;
-                    font-size: 14px;
-                    font-weight: bold;
-                    .inner-span {
-                        color: #cccccc;
-                        padding: 0 8px;
-                    }
-                    .el-row {
-                        padding: 0 15px;
-                    }
-                }
-                .dark-item {
-                    height: 31px;
-                    line-height: 31px;
-                }
-                .light-item {
-                    height: 31px;
-                    line-height: 31px;
-                }
-                &:last-child {
-                    margin-bottom: 0px;
-                }
-            }
-        }
+
     }
 </style>
 <template>

@@ -433,37 +433,37 @@
 }
 
 .popup-table .border-box {
-    width: 1370px;
-    height: 780px;
-    margin: 37px 60px;
-    background-color: #1C2B44;
-    border: solid 2px #96E6EC;
-    position: static;
+    width: 1370px !important;
+    height: 780px !important;
+    margin: 37px 60px !important;
+    background-color: #1C2B44 !important;
+    border: solid 2px #96E6EC !important;
+    position: static !important;
 }
 
 .popup-table #border1 {
-    width: 1370px;
-    height: 730px;
-    background-color: #1C2B44;
-    position: relative;
-    top: 22px;
-    left: -2px;
+    width: 1370px !important;
+    height: 730px !important;
+    background-color: #1C2B44 !important;
+    position: relative !important;
+    top: 22px !important;
+    left: -2px !important;
 }
 
 .popup-table #border2 {
-    width: 1320px;
-    height: 780px;
-    background-color: #1C2B44;
-    position: relative;
-    top: -24px;
-    left: 25px;
+    width: 1320px !important;
+    height: 780px !important;
+    background-color: #1C2B44 !important;
+    position: relative !important;
+    top: -24px !important;
+    left: 25px !important;
 }
 
 .popup-table .border-inner-content {
-    width: 1370px;
-    height: 780px;
-    position: relative;
-    top: 0;
-    left: -25px;
+    width: 1370px !important;
+    height: 780px !important;
+    position: relative !important;
+    top: 0 !important;
+    left: -25px !important;
 }
 

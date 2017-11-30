@@ -785,7 +785,7 @@
                         /*markPoint 表示  高亮点*/
                         /*markPoint: {  symbol: 'circle',  symbolSize: 6,  label: {      normal: {          show: false      }  },  itemStyle: {      normal: {          color: 'red'      },      emphasis: {          color: 'red'      }  },  data: [      {          name: '广东',          value: 10,          coord: [113.23, 23.16]      }, {          name: '深圳',          coord: [114.07, 22.62]      }, {          name: '成都',          coord: [102.56, 30.92]      }, {          name: '南京',          coord: [118.78, 32.04]      }, {          name: '兰州',          coord: [103.73, 35.03]      }, {          name: '武汉',          coord: [114.31, 30.5]      }, {          name: '义乌',          coord: [120.06, 29.32]      }, {          name: '抚顺',          coord: [123.97, 41.97]      }, {          name: '拉萨',          coord: [91.11, 30.97]      }, {          name: '曲靖',          coord: [103.79, 25.51]      }, {          name: '嘉峪关',          coord: [98.289152, 39.77313]      }, {          name: '张家口',          coord: [114.87, 40.82]      }, {          name: '铜川',          coord: [109.11, 35.09]      }  ]
                         }*/
-                    }, {
+                    }/*, {
                         name: '左下红弧',
                         type: 'gauge',
                         radius: '99%',
@@ -1147,12 +1147,12 @@
                                 show: false
                             }
                         }]
-                    },
+                    },*/
                 );
             });
             let map = setInterval(function () {
-                /*_this.drawLine();
-                clearInterval(map);*/
+                _this.drawLine();
+                clearInterval(map);
             }, 500)
         }
     }

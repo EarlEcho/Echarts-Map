@@ -50,7 +50,7 @@
                 margin-bottom: 20px;
                 background-color: #1C2B44;
                 border: solid 2px #96E6EC;
-                margin-bottom: 23px;
+                margin-bottom: 21px;
                 position: static;
                 #border1 {
                     width: 453px;

@@ -7,24 +7,6 @@
         height: 100%;
     }
 
-    .popup-content-wrapper {
-        margin: 37px 60px;
-        background: url(../assets/popupInner.png) no-repeat;
-        background-size: 100%;
-        height: 778px;
-        .tooltip {
-            text-align: right;
-            padding: 2px 10px 0 10px;
-            .el-button {
-                background: transparent;
-                color: white;
-                padding: 5px;
-                border: none;
-                font-size: 18px;
-            }
-        }
-    }
-
     .popup-title {
         font-size: 28px;
         color: white;
@@ -101,7 +83,7 @@
         <div class="popup-table">
             <div class="expand-dialog">
                 <el-dialog :visible.sync="showDialogType2" width="1486px" top="100px" :modal="false">
-                    <div class="popup-content-wrapper">
+                    <border-box>
                         <p class="tooltip">
                             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
                                 <el-button icon="icon iconfont icon-wenhao"></el-button>
@@ -193,7 +175,7 @@
                                 未出库<span class="red">xxxx</span>吨。
                             </p>
                         </div>
-                    </div>
+                    </border-box>
 
                 </el-dialog>
             </div>
@@ -204,6 +186,8 @@
 </template>
 
 <script>
+    import BorderBox from '@/components/BoderCompontents'
+
     // 按需引入 ECharts 主模块
     let echarts = require('echarts/lib/echarts');
 
@@ -215,6 +199,7 @@
     let myChart;
     export default {
         name: 'data-header-box',
+        components:{BorderBox},
         props: ['itemTitle', 'expandPopup', 'typeNum'],
         data() {
             return {

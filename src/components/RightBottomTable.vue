@@ -14,25 +14,6 @@
         .el-table td, .el-table th.is-leaf {
             border-bottom: 3px solid #172f4b;
         }
-        .popup-content-wrapper {
-            margin: 37px 60px;
-            background: url(../assets/popupInner.png) no-repeat;
-            background-size: 100%;
-            height: 778px;
-            .tooltip {
-                text-align: right;
-                padding: 2px 10px 0 10px;
-                .el-button {
-                    background: transparent;
-                    color: white;
-                    padding: 5px;
-                    border: none;
-                    font-size: 18px;
-
-                }
-            }
-        }
-
         .popup-title {
             font-size: 28px;
             color: white;
@@ -46,20 +27,7 @@
             }
         }
 
-        .daily-price-table {
-            width: 522px;
-            height: 362px;
-            background: url(../assets/rt2.png) no-repeat;
-            background-size: 100%;
-            float: right;
-            .data-content {
-                height: 272px;
-            }
-            .el-col-12 {
-                border-right: solid 1px #11213A;
-                border-left: solid 1px #11213A;
-            }
-        }
+
 
         .pages-group-center {
             width: 58%;
@@ -138,6 +106,47 @@
                 color: white;
             }
         }
+        .daily-price-table {
+            float: right;
+            .border-box {
+                width: 522px;
+                height: 362px;
+                margin-bottom: 13px;
+                background-color: #1C2B44;
+                border: solid 2px #96E6EC;
+                position: static;
+                #border1 {
+                    width: 522px;
+                    height: 310px;
+                    position: relative;
+                    background-color: #1C2B44;
+                    top: 24px;
+                    left: -2px;
+                }
+                #border2 {
+                    width: 474px;
+                    height: 362px;
+                    background-color: #1C2B44;
+                    position: relative;
+                    top: -26px;
+                    left: 24px;
+                }
+                .border-inner-content {
+                    width: 522px;
+                    height: 362px;
+                    position: relative;
+                    top: -1px;
+                    left: -24px;
+                }
+                .data-content {
+                    height: 272px;
+                }
+            }
+            .el-col-12 {
+                border-right: solid 1px #11213A;
+                border-left: solid 1px #11213A;
+            }
+        }
     }
 
 
@@ -146,77 +155,80 @@
     <div class="right-bottom-table">
         <!--右侧数据-->
         <div class="daily-price-table clearfix" v-show="!showDailyPriceLine">
-            <div class="data-header-box clearfix">
-                <span class="title">今日价格指数 <small>&emsp;2017年11月27日</small></span>
-                <div class="action-group g-rt right">
-                    <el-button icon="icon iconfont icon-fangda" @click="showPopupTable"></el-button>
-                    <el-tooltip class="item tool-btn-group" effect="dark" content="提示文字" placement="top-start">
-                        <el-button icon="icon iconfont icon-wenhao"></el-button>
-                    </el-tooltip>
+            <border-box >
+                <div class="data-header-box clearfix">
+                    <span class="title">今日价格指数 <small>&emsp;2017年11月27日</small></span>
+                    <div class="action-group g-rt right">
+                        <el-button icon="icon iconfont icon-fangda" @click="showPopupTable"></el-button>
+                        <el-tooltip class="item tool-btn-group" effect="dark" content="提示文字" placement="top-start">
+                            <el-button icon="icon iconfont icon-wenhao"></el-button>
+                        </el-tooltip>
+                    </div>
                 </div>
-            </div>
-            <div class="data-content clearfix">
-                <el-row>
-                    <el-col :span="12">
-                        <el-table :data="dailyVolumeTable" size="small" fit>
-                            <el-table-column prop="province" label="省份" width="45px"></el-table-column>
-                            <el-table-column prop="city" label="城市" width="45px"></el-table-column>
-                            <el-table-column prop="name" label="品名" width="69px"></el-table-column>
+                <div class="data-content clearfix">
+                    <el-row>
+                        <el-col :span="12">
+                            <el-table :data="dailyVolumeTable" size="small" fit>
+                                <el-table-column prop="province" label="省份" width="45px"></el-table-column>
+                                <el-table-column prop="city" label="城市" width="45px"></el-table-column>
+                                <el-table-column prop="name" label="品名" width="69px"></el-table-column>
 
-                            <el-table-column prop="turnover" label="指数" width="50px">
-                                <template slot-scope="scope">
+                                <el-table-column prop="turnover" label="指数" width="50px">
+                                    <template slot-scope="scope">
                                     <span :class="scope.row.turnover>2000?'red bold':'green bold'"
                                           style="font-size: 13px">{{scope.row.turnover}}</span>
-                                </template>
-                            </el-table-column>
+                                    </template>
+                                </el-table-column>
 
-                            <el-table-column prop="upDowns" label="涨跌" width="50px">
-                                <template slot-scope="scope">
+                                <el-table-column prop="upDowns" label="涨跌" width="50px">
+                                    <template slot-scope="scope">
                                     <span :class="scope.row.upDowns>50?'red numarrow':'green numarrow'">
                                         <i :class="scope.row.upDowns>50?'iconfont icon-up':'iconfont icon-dowm' "></i>
                                         {{scope.row.upDowns}}
                                     </span>
-                                </template>
-                            </el-table-column>
-                        </el-table>
-                    </el-col>
-                    <el-col :span="12">
-                        <el-table :data="dailyVolumeTable" size="small" fit>
-                            <el-table-column prop="province" label="省份" width="45px"></el-table-column>
-                            <el-table-column prop="city" label="城市" width="45px"></el-table-column>
-                            <el-table-column prop="name" label="品名" width="69px"></el-table-column>
-                            <el-table-column prop="turnover" label="指数" width="50px">
-                                <template slot-scope="scope">
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-table :data="dailyVolumeTable" size="small" fit>
+                                <el-table-column prop="province" label="省份" width="45px"></el-table-column>
+                                <el-table-column prop="city" label="城市" width="45px"></el-table-column>
+                                <el-table-column prop="name" label="品名" width="69px"></el-table-column>
+                                <el-table-column prop="turnover" label="指数" width="50px">
+                                    <template slot-scope="scope">
                                     <span :class="scope.row.turnover>2000?'red bold':'green bold'"
                                           style="font-size: 13px">{{scope.row.turnover}}</span>
-                                </template>
-                            </el-table-column>
+                                    </template>
+                                </el-table-column>
 
-                            <el-table-column prop="upDowns" label="涨跌" width="50px">
-                                <template slot-scope="scope">
+                                <el-table-column prop="upDowns" label="涨跌" width="50px">
+                                    <template slot-scope="scope">
                                     <span :class="scope.row.upDowns>50?'red numarrow':'green numarrow'">
                                         <i :class="scope.row.upDowns>50?'iconfont icon-up':'iconfont icon-dowm' "></i>
                                         {{scope.row.upDowns}}
                                     </span>
-                                </template>
-                            </el-table-column>
-                        </el-table>
-                    </el-col>
-                </el-row>
-            </div>
-            <div class="data-footer-box clearfix">
-                <div class="pages-group-center tool-btn-group">
-                    <el-button icon="icon iconfont icon-arrow-down-circle-left"
-                               @click="expandData"></el-button>
-                    <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-col>
+                    </el-row>
                 </div>
-                <div class="pages-group-right tool-btn-group">
-                    <el-button icon="icon iconfont icon-menu1 darkbule"
-                               @click="showDailyPriceLine = !showDailyPriceLine"></el-button>
-                    <el-button icon="icon iconfont icon-weibiaoti111" @click="dailyPriceChart"></el-button>
+                <div class="data-footer-box clearfix">
+                    <div class="pages-group-center tool-btn-group">
+                        <el-button icon="icon iconfont icon-arrow-down-circle-left"
+                                   @click="expandData"></el-button>
+                        <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
+                    </div>
+                    <div class="pages-group-right tool-btn-group">
+                        <el-button icon="icon iconfont icon-menu1 darkbule"
+                                   @click="showDailyPriceLine = !showDailyPriceLine"></el-button>
+                        <el-button icon="icon iconfont icon-weibiaoti111" @click="dailyPriceChart"></el-button>
+                    </div>
                 </div>
-            </div>
+            </border-box>
         </div>
+
 
         <div class="right-line-charts-wrapper2 clearfix" v-show="showDailyPriceLine">
             <div class="data-header-box">
@@ -263,7 +275,7 @@
         <div class="popup-table">
             <div class="expand-dialog">
                 <el-dialog :visible.sync="showDialogType2" width="1486px" top="100px" :modal="false">
-                    <div class="popup-content-wrapper">
+                    <border-box>
                         <p class="tooltip">
                             <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
                                 <el-button icon="icon iconfont icon-wenhao"></el-button>
@@ -357,7 +369,7 @@
                                 未出库<span class="red">xxxx</span>吨。
                             </p>
                         </div>
-                    </div>
+                    </border-box>
 
                 </el-dialog>
             </div>
@@ -369,6 +381,8 @@
 </template>
 
 <script>
+    import BorderBox from '@/components/BoderCompontents'
+
     // 按需引入 ECharts 主模块
     let echarts = require('echarts/lib/echarts');
 
@@ -381,7 +395,7 @@
 
     export default {
         name: 'RightTopTable',
-        components: {},
+        components: {BorderBox},
         props: [],
         data() {
             return {

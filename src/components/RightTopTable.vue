@@ -15,25 +15,6 @@
             border-bottom: 3px solid #172f4b;
         }
 
-        .daily-volume-table {
-            width: 522px;
-            height: 500px;
-            margin-bottom: 13px;
-            background: url(../assets/rt1.png) no-repeat;
-            background-size: 100%;
-            float: right;
-            .data-content {
-                height: 405px;
-
-            }
-            .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
-                width: 132px;
-            }
-            .data-content .el-tabs__item {
-                width: 130px;
-            }
-        }
-
         .right-line-charts-wrapper {
             width: 820px;
             height: 500px;
@@ -128,75 +109,124 @@
                 color: white;
             }
         }
+
     }
 
+    .daily-volume-table {
+        float: right;
+        .border-box {
+            width: 522px;
+            height: 500px;
+            margin-bottom: 13px;
+            background-color: #1C2B44;
+            border: solid 2px #96E6EC;
+            position: static;
+            #border1 {
+                width: 522px;
+                height: 448px;
+                background-color: #1C2B44;
+                position: relative;
+                top: 23px;
+                left: -2px;
+            }
+            #border2 {
+                width: 474px;
+                height: 500px;
+                background-color: #1C2B44;
+                position: relative;
+                top: -25px;
+                left: 24px
+            }
+            .border-inner-content {
+                width: 522px;
+                height: 500px;
+                position: relative;
+                top: 0px;
+                left: -24px;
+            }
+            .data-content {
+                height: 410px;
+
+            }
+        }
+
+        .data-content .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
+            width: 132px;
+        }
+        .data-content .el-tabs__item {
+            width: 130px;
+        }
+    }
 </style>
 <template>
     <div class="right-top-table">
         <!--右侧数据-->
-        <div class="daily-volume-table" v-show="!showDailyVolumeLine">
-            <div class="data-header-box">
-                <span class="title">今日成交价</span>
-                <div class="action-group g-rt right">
-                    <el-button icon="icon iconfont icon-fangda" @click="showPopupTable"></el-button>
-                    <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
-                        <el-button icon="icon iconfont icon-wenhao"></el-button>
-                    </el-tooltip>
+        <div class="daily-volume-table">
+            <border-box v-show="!showDailyVolumeLine">
+                <div class="data-header-box">
+                    <span class="title">今日成交价</span>
+                    <div class="action-group g-rt right">
+                        <el-button icon="icon iconfont icon-fangda" @click="showPopupTable"></el-button>
+                        <el-tooltip class="item" effect="dark" content="提示文字" placement="top-start">
+                            <el-button icon="icon iconfont icon-wenhao"></el-button>
+                        </el-tooltip>
+                    </div>
                 </div>
-            </div>
-            <div class="data-content">
-                <el-tabs v-model="tabActive" type="card">
-                    <el-tab-pane label="螺纹钢" name="first">
-                        <el-table :data="dailyVolumeTable" size="small" fit>
-                            <el-table-column prop="province" label="省份" width="50px"></el-table-column>
-                            <el-table-column prop="city" label="城市" width="52px"></el-table-column>
-                            <el-table-column prop="name" label="品名" width="75px"></el-table-column>
-                            <el-table-column prop="standard" label="规格" width="55px"></el-table-column>
-                            <el-table-column prop="texture" label="材质" width="60px"></el-table-column>
-                            <el-table-column prop="mill" label="钢厂" width="60px"></el-table-column>
-                            <el-table-column prop="date" label="日期" width="50px"></el-table-column>
-                            <el-table-column prop="turnover" label="成交量" width="55px">
-                                <template slot-scope="scope">
+                <div class="data-content">
+                    <el-tabs v-model="tabActive" type="card">
+                        <el-tab-pane label="螺纹钢" name="first">
+                            <el-table :data="dailyVolumeTable" size="small" fit>
+                                <el-table-column prop="province" label="省份" width="50px"></el-table-column>
+                                <el-table-column prop="city" label="城市" width="52px"></el-table-column>
+                                <el-table-column prop="name" label="品名" width="75px"></el-table-column>
+                                <el-table-column prop="standard" label="规格" width="55px"></el-table-column>
+                                <el-table-column prop="texture" label="材质" width="60px"></el-table-column>
+                                <el-table-column prop="mill" label="钢厂" width="60px"></el-table-column>
+                                <el-table-column prop="date" label="日期" width="50px"></el-table-column>
+                                <el-table-column prop="turnover" label="成交量" width="55px">
+                                    <template slot-scope="scope">
                                     <span :class="scope.row.turnover>2000?'red bold':'green bold'"
                                           style="font-size: 13px">{{scope.row.turnover}}</span>
-                                </template>
-                            </el-table-column>
+                                    </template>
+                                </el-table-column>
 
-                            <el-table-column prop="upDowns" label="涨跌" width="65px">
-                                <template slot-scope="scope">
+                                <el-table-column prop="upDowns" label="涨跌" width="65px">
+                                    <template slot-scope="scope">
                                     <span :class="scope.row.upDowns>50?'red numarrow':'green numarrow'">
                                         <i :class="scope.row.upDowns>50?'iconfont icon-up':'iconfont icon-dowm' "></i>
                                         {{scope.row.upDowns}}
                                     </span>
-                                </template>
-                            </el-table-column>
-                        </el-table>
-                    </el-tab-pane>
-                    <el-tab-pane label="高线" name="second">
-                        <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
-                    </el-tab-pane>
-                    <el-tab-pane label="盘螺" name="third">
-                        <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
-                    </el-tab-pane>
-                    <el-tab-pane label="热轧板卷" name="fourth">
-                        <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
-                    </el-tab-pane>
-                </el-tabs>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-tab-pane>
+                        <el-tab-pane label="高线" name="second">
+                            <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
+                        </el-tab-pane>
+                        <el-tab-pane label="盘螺" name="third">
+                            <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
+                        </el-tab-pane>
+                        <el-tab-pane label="热轧板卷" name="fourth">
+                            <p style="padding-top:60px;color: white;text-align: center">暂无数据</p>
+                        </el-tab-pane>
+                    </el-tabs>
 
-            </div>
-            <div class="data-footer-box clearfix">
-                <div class="pages-group-center tool-btn-group">
-                    <el-button icon="icon iconfont icon-arrow-down-circle-left"
-                               @click="expandData"></el-button>
-                    <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
                 </div>
-                <div class="pages-group-right tool-btn-group">
-                    <el-button icon="icon iconfont icon-menu1 darkbule"
-                               @click="showDailyVolumeLine = !showDailyVolumeLine"></el-button>
-                    <el-button icon="icon iconfont icon-weibiaoti111" @click="dailyLineChart"></el-button>
+                <div class="data-footer-box clearfix">
+                    <div class="pages-group-center tool-btn-group">
+                        <el-button icon="icon iconfont icon-arrow-down-circle-left"
+                                   @click="expandData"></el-button>
+                        <el-button icon="icon iconfont icon-arrow-down-circle-right"></el-button>
+                    </div>
+                    <div class="pages-group-right tool-btn-group">
+                        <el-button icon="icon iconfont icon-menu1 darkbule"
+                                   @click="showDailyVolumeLine = !showDailyVolumeLine"></el-button>
+                        <el-button icon="icon iconfont icon-weibiaoti111" @click="dailyLineChart"></el-button>
+                    </div>
                 </div>
-            </div>
+            </border-box>
         </div>
+
 
         <div class="right-line-charts-wrapper" v-show="showDailyVolumeLine">
             <div class="data-header-box">
