@@ -11,5 +11,12 @@ const routers = [
         name: 'CloudStorage',
         component: (resolve) => require(['../views/CloudStorage.vue'], resolve)
     }
+    ,
+    {
+        path: '/navbar',
+        meta: {title: "navbar"},
+        name: 'navbar',
+        component: (resolve) => require(['../views/navbar.vue'], resolve)
+    }
 ];
 export default routers;

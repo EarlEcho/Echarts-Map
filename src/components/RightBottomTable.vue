@@ -26,9 +26,6 @@
                 height: 550px;
             }
         }
-
-
-
         .pages-group-center {
             width: 58%;
             display: inline-block;
@@ -152,9 +149,9 @@
 
 </style>
 <template>
-    <div class="right-bottom-table">
+    <div class="right-bottom-table clearfix">
         <!--右侧数据-->
-        <div class="daily-price-table clearfix" v-show="!showDailyPriceLine">
+        <div class="daily-price-table" v-show="!showDailyPriceLine">
             <border-box >
                 <div class="data-header-box clearfix">
                     <span class="title">今日价格指数 <small>&emsp;2017年11月27日</small></span>
@@ -240,7 +237,7 @@
                     </el-tooltip>
                 </div>
             </div>
-            <div class="checkbox-wrapper clearfix">
+            <div class="checkbox-wrapper">
                 <el-radio-group v-model="radioValue1">
                     <el-radio :label="3">螺纹钢</el-radio>
                     <el-radio :label="6">高线</el-radio>

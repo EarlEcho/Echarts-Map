@@ -159,11 +159,11 @@
     }
 </style>
 <template>
-    <div class="right-top-table">
+    <div class="right-top-table clearfix">
         <!--右侧数据-->
         <div class="daily-volume-table">
             <border-box v-show="!showDailyVolumeLine">
-                <div class="data-header-box">
+                <div class="data-header-box clearfix">
                     <span class="title">今日成交价</span>
                     <div class="action-group g-rt right">
                         <el-button icon="icon iconfont icon-fangda" @click="showPopupTable"></el-button>
@@ -228,7 +228,7 @@
         </div>
 
 
-        <div class="right-line-charts-wrapper" v-show="showDailyVolumeLine">
+        <div class="right-line-charts-wrapper clearfix" v-show="showDailyVolumeLine">
             <div class="data-header-box">
                 <span class="title">今日成交价</span>
                 <div class="action-group g-rt right">

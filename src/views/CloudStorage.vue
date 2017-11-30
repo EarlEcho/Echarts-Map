@@ -1,10 +1,11 @@
 <style lang="less">
     @import "../assets/css/common.css";
+
     .mian-box {
         width: 100%;
         .sys-header-box {
             position: absolute;
-            z-index: 15;
+            z-index: 2;
         }
         div {
             box-sizing: border-box;
@@ -17,7 +18,7 @@
             height: 1080px;
             z-index: 0;
             box-sizing: border-box;
-            background-color: #11213A;
+            background-color: transparent;
         }
         .data-content-box {
             width: 100%;
@@ -25,16 +26,19 @@
         }
         .left-data-wrapper {
             position: absolute;
-            left: 35px;
+            left: 30px;
             top: 164px;
             width: 453px;
-            height: 875px;
+            height: 890px;
+            overflow: hidden;
+            float: left;
         }
         .right-data-wrapper {
             position: absolute;
             top: 164px;
-            right: 35px;
-            /*width: 820px;*/
+            right: 30px;
+            overflow: hidden;
+            float: right;
         }
 
     }
@@ -91,22 +95,34 @@
 </style>
 <template>
     <div class="mian-box">
-        <div id="main">
+        <!--最底部的旋转动画-->
+        <rotate-cricle></rotate-cricle>
 
-        </div>
+
+        <!--中间底部的旋转球体-->
+        <bottom-gloab></bottom-gloab>
+
+
+        <!--地图-->
+        <div id="main"></div>
+
+
         <!--页面头部的logo 导航-->
         <sys-header-box logo-active="2"></sys-header-box>
-        <!--左侧数据-->
-        <div class="left-data-wrapper g-lf">
 
+
+        <!--左侧数据-->
+        <div class="left-data-wrapper">
             <!--左上方表格-->
             <left-top-table></left-top-table>
 
             <left-bottom-table></left-bottom-table>
             <!--左下方的数据图-->
         </div>
+
+
         <!--右侧数据-->
-        <div class="right-data-wrapper clearfix">
+        <div class="right-data-wrapper g-rt">
             <!--右上方的数据-->
             <right-top-table></right-top-table>
 
@@ -115,6 +131,7 @@
         </div>
 
 
+        <!--点击地图的弹出框-->
         <el-popover popper-class="map-click-chart" transition="el-zoom-in-center" v-model="showMapChart" ref="popover5"
                     placement="top">
             <div class="title">
@@ -167,7 +184,8 @@
     import LeftBottomTable from '@/components/LeftBottomTable'
     import RightTopTable from '@/components/RightTopTable'
     import RightBottomTable from '@/components/RightBottomTable'
-    import MapClickChart from '@/components/MapClickChart'
+    import RotateCricle from '@/components/rotateCricle'
+    import BottomGloab from '@/components/bottomGloab'
 
 
     import SysHeaderBox from '@/components/SysHeader'
@@ -180,7 +198,8 @@
             LeftBottomTable,
             RightTopTable,
             RightBottomTable,
-            MapClickChart
+            RotateCricle,
+            BottomGloab
         },
         props: [],
         data() {
@@ -661,7 +680,7 @@
 
                 // 绘制图表
                 myChart.setOption({
-                    backgroundColor: '#11213A',
+
                     visualMap: {
                         min: 1000,
                         max: 5000,
@@ -785,369 +804,7 @@
                         /*markPoint 表示  高亮点*/
                         /*markPoint: {  symbol: 'circle',  symbolSize: 6,  label: {      normal: {          show: false      }  },  itemStyle: {      normal: {          color: 'red'      },      emphasis: {          color: 'red'      }  },  data: [      {          name: '广东',          value: 10,          coord: [113.23, 23.16]      }, {          name: '深圳',          coord: [114.07, 22.62]      }, {          name: '成都',          coord: [102.56, 30.92]      }, {          name: '南京',          coord: [118.78, 32.04]      }, {          name: '兰州',          coord: [103.73, 35.03]      }, {          name: '武汉',          coord: [114.31, 30.5]      }, {          name: '义乌',          coord: [120.06, 29.32]      }, {          name: '抚顺',          coord: [123.97, 41.97]      }, {          name: '拉萨',          coord: [91.11, 30.97]      }, {          name: '曲靖',          coord: [103.79, 25.51]      }, {          name: '嘉峪关',          coord: [98.289152, 39.77313]      }, {          name: '张家口',          coord: [114.87, 40.82]      }, {          name: '铜川',          coord: [109.11, 35.09]      }  ]
                         }*/
-                    }/*, {
-                        name: '左下红弧',
-                        type: 'gauge',
-                        radius: '99%',
-                        startAngle: -160,
-                        endAngle: -170,
-                        zlevel: 2,
-                        axisLine: {
-                            lineStyle: {
-                                color: [
-                                    [0.2, '#d70029'],
-                                    [1, 'pink']
-                                ],
-                                width: 4,
-                                shadowColor: '#d70029',
-                                shadowOffsetX: 0,
-                                shadowOffsetY: -12,
-                                shadowBlur: 120,
-                                opacity: 1
-                            }
-
-                        },
-                        splitLine: {
-                            show: false,
-                        },
-                        axisLabel: {
-                            show: false,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        detail: {
-                            show: false
-                        }
-                    }, {
-                        name: '右上红弧',
-                        type: 'gauge',
-                        radius: '99%',
-                        startAngle: -340,
-                        endAngle: -350,
-                        zlevel: 2,
-                        axisLine: {
-                            lineStyle: {
-                                color: [
-                                    [0.2, '#d70029'],
-                                    [1, '#d70029']
-                                ],
-                                width: 4,
-                                shadowColor: '#d70029',
-                                shadowOffsetX: 0,
-                                shadowOffsetY: -12,
-                                shadowBlur: 120,
-                                opacity: 1,
-                            }
-
-                        },
-                        splitLine: {
-                            show: false,
-                        },
-                        axisLabel: {
-                            show: false,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        detail: {
-                            show: false
-                        }
-                    },
-                    {
-                        name: '右外圈',
-                        type: 'gauge',
-                        radius: '99%',
-                        zlevel: 2,
-                        startAngle: -320,
-                        endAngle: -400,
-                        axisLine: {
-                            lineStyle: {
-                                color: [
-                                    [0.2, '#0e313f'],
-                                    [0.8, '#0e313f'],
-                                    [1, '#0e313f']
-                                ],
-                                width: 4,
-                                // shadowColor: '#d70029',
-                                shadowOffsetX: 0,
-                                shadowOffsetY: -12,
-                                shadowBlur: 120,
-                                opacity: 1,
-                            }
-
-                        },
-                        splitLine: {
-                            show: false,
-                        },
-                        axisLabel: {
-                            show: false,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        detail: {
-                            show: false
-                        }
-                    },
-
-                    {
-                        name: '左外圈',
-                        type: 'gauge',
-                        radius: '99%',
-                        startAngle: -140,
-                        endAngle: -220,
-                        zlevel: 2,
-                        axisLine: {
-                            lineStyle: {
-                                color: [
-                                    [0.2, '#0e313f'],
-                                    [0.8, '#0e313f'],
-                                    [1, '#0e313f']
-                                ],
-                                width: 4,
-                                // shadowColor: '#d70029',
-                                shadowOffsetX: 0,
-                                shadowOffsetY: -12,
-                                shadowBlur: 120,
-                                opacity: 1,
-                            }
-
-                        },
-                        splitLine: {
-                            show: false,
-                        },
-                        axisLabel: {
-                            show: false,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        detail: {
-                            show: false
-                        }
-                    }, {
-                        name: '蓝色外圈1',
-                        type: 'gauge',
-                        radius: '80%',
-                        zlevel: 2,
-                        startAngle: -90 + rotate,
-                        endAngle: -135 + rotate,
-                        splitNumber: 5,
-                        axisLine: {
-                            lineStyle: {
-                                color: [
-                                    [1, '#1e5a67']
-                                ],
-                                width: width,
-                                opacity: 1,
-                            }
-                        },
-                        splitLine: {
-                            show: false,
-                        },
-                        axisLabel: {
-                            show: false,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        detail: {
-                            show: false
-                        }
-                    }, {
-                        name: '蓝色外圈1',
-                        type: 'gauge',
-                        radius: '99%',
-                        zlevel: 2,
-                        startAngle: -85 + rotate,
-                        endAngle: -115 + rotate,
-                        splitNumber: 4,
-                        axisLine: {
-                            lineStyle: {
-                                color: [
-                                    [1, '#1e5a67']
-                                ],
-                                width: width,
-                                opacity: 1,
-                            }
-                        },
-                        splitLine: {
-                            show: false,
-                        },
-                        axisLabel: {
-                            show: false,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        detail: {
-                            show: false
-                        }
-                    }, {
-                        name: '蓝色外圈2',
-                        type: 'gauge',
-                        radius: '99%',
-                        zlevel: 2,
-                        startAngle: -155 + rotate,
-                        endAngle: 175 + rotate,
-                        splitNumber: 4,
-                        axisLine: {
-                            lineStyle: {
-                                color: [
-                                    [1, '#1e5a67']
-                                ],
-                                width: width,
-                                opacity: 1,
-                            }
-                        },
-                        splitLine: {
-                            show: false,
-                        },
-                        axisLabel: {
-                            show: false,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        detail: {
-                            show: false
-                        }
-                    }, {
-                        name: '蓝色外圈3',
-                        type: 'gauge',
-                        radius: '99%',
-                        zlevel: 2,
-                        startAngle: 25 + rotate,
-                        endAngle: -5 + rotate,
-                        splitNumber: 4,
-                        axisLine: {
-                            lineStyle: {
-                                color: [
-                                    [1, '#1e5a67']
-                                ],
-                                width: width,
-                                opacity: 1,
-                            }
-
-                        },
-                        splitLine: {
-                            show: false,
-                        },
-                        axisLabel: {
-                            show: false,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        detail: {
-                            show: false
-                        }
-                    }, {
-                        name: '蓝色外圈4',
-                        type: 'gauge',
-                        radius: '99%',
-                        zlevel: 2,
-                        startAngle: 95 + rotate,
-                        endAngle: 65 + rotate,
-                        splitNumber: 4,
-                        axisLine: {
-
-                            lineStyle: {
-                                color: [
-                                    [1, '#1e5a67']
-                                ],
-                                width: width,
-                                opacity: 1,
-                            }
-
-                        },
-                        splitLine: {
-                            show: false,
-                        },
-                        axisLabel: {
-                            show: false,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        detail: {
-                            show: false
-                        }
-                    },
-                    {
-                        name: '蓝色外圈5',
-                        type: 'gauge',
-                        radius: '80%',
-                        zlevel: 2,
-                        startAngle: 70 + rotate,
-                        endAngle: -10 + rotate,
-                        splitNumber: 4,
-                        axisLine: {
-                            lineStyle: {
-                                color: [
-                                    [1, '#1e5a67']
-                                ],
-                                width: width,
-                                opacity: 1,
-                            }
-
-                        },
-                        splitLine: {
-                            show: false,
-                        },
-                        axisLabel: {
-                            show: false,
-                        },
-                        axisTick: {
-                            show: false,
-                        },
-                        detail: {
-                            show: false
-                        }
-                    },
-                    {
-                        type: 'pie',
-                        zlevel: 2,
-                        radius: ['70%', '81%'],
-                        label: {
-                            normal: {
-                                position: 'center'
-                            }
-                        },
-                        data: [{
-                            value: 1000,
-                            tooltip: {
-                                show: false
-                            },
-                            itemStyle: {
-                                normal: {
-                                    opacity: 0.2
-                                }
-                            }
-                        }]
-                    },
-                    {
-                        type: 'pie',
-                        zlevel: 2,
-                        radius: ['55%', '60%'],
-                        label: {
-                            normal: {
-                                position: 'center'
-                            }
-                        },
-                        itemStyle: {
-                            normal: {
-                                opacity: 0.5
-                            }
-                        },
-                        data: [{
-                            value: 200,
-                            tooltip: {
-                                show: false
-                            }
-                        }]
-                    },*/
+                    }
                 );
             });
             let map = setInterval(function () {

@@ -193,7 +193,6 @@
             border-bottom: 3px solid #172f4b;
         }
 
-
     }
 </style>
 <template>
@@ -302,7 +301,7 @@
                                     </el-col>
                                     <el-col :span="12">
                                         <div class="videos-content-item">
-                                            <img src="../assets/m1.jpg" alt="">
+                                            <img src="../assets/m10.jpg" alt="">
                                         </div>
                                     </el-col>
                                 </el-row>
@@ -314,7 +313,7 @@
                                     </el-col>
                                     <el-col :span="12">
                                         <div class="videos-content-item">
-                                            <img src="../assets/m3.jpg" alt="">
+                                            <img src="../assets/m6.jpg" alt="">
                                         </div>
                                     </el-col>
                                 </el-row>
@@ -339,7 +338,6 @@
 <script>
     import DataHeaderBox from '@/components/ToolTop'
 
-    import DataFooterBox from '@/components/ToolBottom'
     import SysHeaderBox from '@/components/SysHeader'
     import BorderBox from '@/components/BoderCompontents'
 
@@ -347,22 +345,17 @@
 
 
     import m0 from '../assets/m0.jpg';
-    import m1 from '../assets/m1.jpg';
     import m2 from '../assets/m2.jpg';
-    import m3 from '../assets/m3.jpg';
-    import m4 from '../assets/m4.jpg';
     import m5 from '../assets/m5.jpg';
     import m6 from '../assets/m6.jpg';
     import m7 from '../assets/m7.jpg';
-    import m8 from '../assets/m8.jpg';
     import m9 from '../assets/m9.jpg';
     import m10 from '../assets/m10.jpg';
-    import m11 from '../assets/m11.jpg';
 
 
     export default {
         name: 'HomePage',
-        components: {DataHeaderBox, DataFooterBox, SysHeaderBox, videoPlayer, BorderBox},
+        components: {DataHeaderBox, SysHeaderBox, videoPlayer, BorderBox},
         props: [],
         data() {
             return {
@@ -483,7 +476,7 @@
                     }],
                     [{
                         key: '1',
-                        imgUrl: m8
+                        imgUrl: m7
                     }, {
                         key: '1',
                         imgUrl: m9
@@ -492,7 +485,7 @@
                         imgUrl: m10
                     }, {
                         key: '1',
-                        imgUrl: m11
+                        imgUrl: m5
                     }],
                     [{
                         key: '1',
@@ -511,7 +504,6 @@
             }
         },
         mounted: function () {
-            // console.log('this is current player instance object', this.player)
             setTimeout(() => {
                 // console.log('dynamic change options', this.player)
                 this.player.muted(false)

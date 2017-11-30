@@ -33,45 +33,26 @@
             display: inline-block;
             height: 100%;
         }
-        /*.real-time-table {
-            width: 100%;
-            height: 435px;
-            margin-bottom: 20px;
-            !*background: url(../assets/boxBk.png) no-repeat;*!
-            background-size: 100%;
-            .data-content {
-                height: 340px;
-            }
-        }*/
         .temp-wrapper {
             .border-box {
                 width: 453px;
                 height: 435px;
                 margin-bottom: 20px;
-                background-color: #1C2B44;
-                border: solid 2px #96E6EC;
-                margin-bottom: 21px;
-                position: static;
                 #border1 {
                     width: 453px;
                     height: 387px;
-                    background-color: #1C2B44;
-                    position: relative;
                     top: 22px;
                     left: -2px;
                 }
                 #border2 {
                     width: 405px;
                     height: 435px;
-                    background-color: #1C2B44;
-                    position: relative;
                     top: -24px;
                     left: 25px;
                 }
                 .border-inner-content {
                     width: 453px;
                     height: 435px;
-                    position: relative;
                     top: 2px;
                     left: -25px;
                 }

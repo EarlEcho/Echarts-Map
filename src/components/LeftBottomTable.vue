@@ -1,32 +1,26 @@
 <style lang="less">
     .transaction-data-table {
+
         .border-box {
             width: 322px;
             height: 402px;
             margin-bottom: 13px;
-            background-color: #1C2B44;
-            border: solid 2px #96E6EC;
             position: static;
             #border1 {
                 width: 322px;
                 height: 350px;
-                position: relative;
-                background-color: #1C2B44;
                 top: 24px;
                 left: -2px;
             }
             #border2 {
                 width: 274px;
                 height: 402px;
-                background-color: #1C2B44;
-                position: relative;
                 top: -26px;
                 left: 24px;
             }
             .border-inner-content {
                 width: 322px;
                 height: 402px;
-                position: relative;
                 top: 0px;
                 left: -24px;
             }

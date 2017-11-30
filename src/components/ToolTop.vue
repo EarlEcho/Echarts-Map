@@ -134,7 +134,7 @@
                                                          width="58px"></el-table-column>
                                         <el-table-column prop="city" label="城市" width="58px"></el-table-column>
                                         <el-table-column prop="name" label="品名" width="63px"></el-table-column>
-                                        <el-table-column prop="num" label="指数" width="67px">
+                                        <el-table-column prop="num" label="指数" width="68px">
                                             <template slot-scope="scope">
                                                         <span :class="scope.row.num>3000?'red bold':'green bold'">
                                                             {{scope.row.num}}
@@ -162,13 +162,8 @@
 
                         </div>
                         <div class="popup-other-infos">
-                            <p class="other-item">2017年10月1日至2017年10月25日，<span class="yellow">xxxx</span>地区，
-                                合同数量<span class="blue">222</span>件，总交易量<span class="pink">111111</span>吨，
-                                总交易金额<span class="orange">111111</span>万元，
-                                已出库<span class="green">xxxx</span>吨，
-                                未出库<span class="red">xxxx</span>吨。
-                            </p>
-                            <p class="other-item">2017年10月1日至2017年10月25日，<span class="yellow">xxxx</span>地区，
+                            <p class="other-item" v-for="i in 2">
+                                2017年10月1日至2017年10月25日，<span class="yellow">xxxx</span>地区，
                                 合同数量<span class="blue">222</span>件，总交易量<span class="pink">111111</span>吨，
                                 总交易金额<span class="orange">111111</span>万元，
                                 已出库<span class="green">xxxx</span>吨，
@@ -401,7 +396,6 @@
                     allPrice: '21321'
                 }],
                 chartOption: {
-                    backgroundColor: '#172f4b',
                     tooltip: {
                         trigger: 'axis',
                         axisPointer: {

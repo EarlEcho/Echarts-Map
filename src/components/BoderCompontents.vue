@@ -1,36 +1,22 @@
 <style scoped lang="less">
-    /*.border-box {
-        width: 260px;
-        height: 220px;
-        margin: 0 auto;
-        background-color: #11213A;
-        border: solid 3px #96E6EC;
+    .border-box {
+
+        background-color: #1C2B44;
+        border: solid 2px #96E6EC;
         position: static;
         #border1 {
-            width: 260px;
-            height: 180px;
-            background-color: #11213A;
             position: relative;
-            top: 20px;
-            left: -3px;
+            background-color: #1C2B44;
         }
         #border2 {
-            width: 210px;
-            height: 220px;
-            background-color: #11213A;
+            background-color: #1C2B44;
             position: relative;
-            top: -24px;
-            left: 22px;
         }
         .border-inner-content {
-            !*border: solid 1px white;*!
-            width: 260px;
-            height: 220px;
             position: relative;
-            top: 1px;
-            left: -22px;
         }
-    }*/
+
+    }
 </style>
 <template>
     <div class="border-box">
