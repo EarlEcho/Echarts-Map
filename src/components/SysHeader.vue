@@ -91,14 +91,14 @@
     <div class="sys-header-box">
         <div class="homepage-navbar clearfix">
             <el-menu :default-active="logoHeaderActive" mode="horizontal" class="logo-header-navbar">
-                <router-link to="/">
-                    <el-menu-item index="1"><span>首页</span></el-menu-item>
-                </router-link>
                 <router-link to="/cloud-storage">
-                    <el-menu-item index="2"><span><i class="icon iconfont icon-tilewarehouse"></i>云仓储</span>
+                    <el-menu-item index="2"><span>首页</span></el-menu-item>
+                </router-link>
+                <router-link to="/">
+                    <el-menu-item index="1"><span><i class="icon iconfont icon-tilewarehouse"></i>云仓储</span>
                     </el-menu-item>
                 </router-link>
-                <router-link to="/">
+                <router-link to="#">
                     <el-menu-item index="3"><span><i class="icon iconfont icon-chart"></i>交易监控</span></el-menu-item>
                 </router-link>
             </el-menu>

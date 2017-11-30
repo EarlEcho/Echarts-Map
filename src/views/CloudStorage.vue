@@ -91,6 +91,59 @@
 
         }
     }
+    .dialog-fade-enter-active {
+        -webkit-animation: dialog-fade-in 1.5s;
+        animation: dialog-fade-in 1.5s
+    }
+
+    .dialog-fade-leave-active {
+        -webkit-animation: dialog-fade-out 1.5s;
+        animation: dialog-fade-out 1.5s
+    }
+
+    @-webkit-keyframes dialog-fade-in {
+        0% {
+            transform: scale(1.23);
+            opacity: 0
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1
+        }
+    }
+
+    @keyframes dialog-fade-in {
+        0% {
+            transform: scale(1.23);
+            opacity: 0
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1
+        }
+    }
+
+    @-webkit-keyframes dialog-fade-out {
+        0% {
+            transform: scale(1);
+            opacity: 1
+        }
+        100% {
+            transform: scale(1.23);
+            opacity: 0
+        }
+    }
+
+    @keyframes dialog-fade-out {
+        0% {
+            transform: scale(1);
+            opacity: 1
+        }
+        100% {
+            transform: scale(1.23);
+            opacity: 0
+        }
+    }
 
 </style>
 <template>
@@ -122,7 +175,7 @@
 
 
         <!--右侧数据-->
-        <div class="right-data-wrapper g-rt">
+        <div class="right-data-wrapper clearfix">
             <!--右上方的数据-->
             <right-top-table></right-top-table>
 
@@ -685,8 +738,8 @@
                         min: 1000,
                         max: 5000,
                         calculable: true,
-                        left: '34%',
-                        bottom: '5%',
+                        right: '32%',
+                        bottom: '6%',
                         zlevel: 10,
                         color: ['#ff3333', 'orange', 'yellow', 'lime', 'aqua'],
                         textStyle: {
@@ -722,12 +775,12 @@
                 return Math.round(Math.random() * 1000);
             },
             convertData: function (data) {
-                var res = [];
+                let res = [];
                 let _this = this;
-                for (var i = 0; i < data.length; i++) {
-                    var dataItem = data[i];
-                    var fromCoord = _this.geoCoordMap[dataItem[0].name];
-                    var toCoord = _this.geoCoordMap[dataItem[1].name];
+                for (let i = 0; i < data.length; i++) {
+                    let dataItem = data[i];
+                    let fromCoord = _this.geoCoordMap[dataItem[0].name];
+                    let toCoord = _this.geoCoordMap[dataItem[1].name];
                     if (fromCoord && toCoord) {
                         res.push({
                             fromName: dataItem[0].name, toName: dataItem[1].name, coords: [fromCoord, toCoord]
@@ -743,8 +796,8 @@
         },
         created() {
             let _this = this;
-            var rotate = 45;
-            var width = 4;
+            let rotate = 45;
+            let width = 4;
             [[this.fromdata, this.BJData]].forEach(function (item, i) {
                 _this.series.push(
                     {

@@ -1,169 +1,139 @@
 <style scoped lang="less">
-    .rotate-cricle-wrapper {
-        position: absolute;
-        padding-top: 140px;
-        z-index: -10;
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: 1080px;
+        height: 100%;
         background-color: #11213A;
     }
 
-    .out_circle {
-        width: 440px;
-        height: 440px;
-        border: 1px solid;
-        border-radius: 50%;
-        margin: 0 auto;
+    #loader {
+        display: block;
         position: relative;
-        /*background-color: #f5f5f5;*/
-        border: solid 5px white;
+        left: 50%;
+        top: 50%;
+        width: 1000px;
+        height: 1000px;
+        margin: -450px 0 0 -500px;
+        border-radius: 50%;
+        border: 30px solid transparent;
+        border-top-color: #152d46;
+        -webkit-animation: spin 8s linear infinite;
+        animation: spin 8s linear infinite;
     }
 
-    .nav_circle {
-        width: 8px;
-        height: 434px;
-        float: left;
+    #loader-inner {
+        width: 600px;
+        height: 600px;
+        background: -webkit-radial-gradient(circle, #051C27, #18364D, #11213A); /* Safari 5.1 - 6.0 */
+        background: -o-radial-gradient(circle, #051C27, #18364D, #11213A); /* Opera 11.6 - 12.0 */
+        background: -moz-radial-gradient(circle, #051C27, #18364D, #11213A); /* Firefox 3.6 - 15 */
+        background: radial-gradient(circle, #051C27, #18364D, #11213A); /* 标准的语法 */
+        -moz-box-shadow: 0px 0px 100px #11213A;
+        -webkit-box-shadow: 0px 0px 100px #11213A;
+        box-shadow: 0px 0px 50px #18364D;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        margin: -280px 0 0 -280px;
+        border-radius: 50%;
+        -webkit-animation: spin 15s linear infinite;
+        animation: spin 15s linear infinite;
+        &:after {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: #2E6793;
+            -webkit-animation: spin 5s linear infinite;
+            animation: spin 5s linear infinite;
+        }
+        &:before {
+            content: "";
+            position: absolute;
+            top: 90px;
+            left: 90px;
+            right: 90px;
+            bottom: 90px;
+            border-radius: 50%;
+            border: 10px solid transparent;
+            border-top-color: #12588b;
+            -webkit-animation: spin 10s linear infinite;
+            animation: spin 10s linear infinite;
+        }
+
+    }
+
+    #loader:before {
+        content: "";
         position: absolute;
-        background-color: white;
-        top: -1px;
-        left: 210px;
-        text-align: center;
-        /* border-radius: 60px; */
+        top: 30px;
+        left: 30px;
+        right: 30px;
+        bottom: 30px;
+        border-radius: 50%;
+        border: 10px solid transparent;
+        border-top-color: #3ec4cd;
+        -webkit-animation: spin 5s linear infinite;
+        animation: spin 5s linear infinite;
     }
 
-    .r1 {
-        transform: rotate(0deg) skew(0deg) scale(1);
-        -ms-transform: rotate(0deg) skew(0deg) scale(1); /* IE 9 */
-        -moz-transform: rotate(0deg) skew(0deg) scale(1); /* Firefox */
-        -webkit-transform: rotate(0deg) skew(0deg) scale(1); /* Safari ºÍ Chrome */
-        -o-transform: rotate(0deg) skew(0deg) scale(1);
-        animation: rotate 10s linear infinite;
-        -webkit-animation: rotate 10s linear infinite;
-        -moz-animation: rotate 10s linear infinite;
-        -o-animation: rotate 10s linear infinite;
+    #loader:after {
+        content: "";
+        position: absolute;
+        top: 90px;
+        left: 90px;
+        right: 90px;
+        bottom: 90px;
+        border-radius: 50%;
+        border: 8px solid transparent;
+        border-top-color: #12588b;
+        -webkit-animation: spin 10s linear infinite;
+        animation: spin 10s linear infinite;
     }
 
-    .r2 {
-        transform: rotate(45deg) skew(0deg) scale(1);
-        -ms-transform: rotate(45deg) skew(0deg) scale(1); /* IE 9 */
-        -moz-transform: rotate(45deg) skew(0deg) scale(1); /* Firefox */
-        -webkit-transform: rotate(45deg) skew(0deg) scale(1); /* Safari ºÍ Chrome */
-        -o-transform: rotate(45deg) skew(0deg) scale(1);
-        animation: rotatef 10s linear infinite;
-        -webkit-animation: rotatef 10s linear infinite;
-        -moz-animation: rotatef 10s linear infinite;
-        -o-animation: rotatef 10s linear infinite;
-    }
-
-    .r3 {
-        transform: rotate(90deg) skew(0deg) scale(1);
-        -ms-transform: rotate(90deg) skew(0deg) scale(1); /* IE 9 */
-        -moz-transform: rotate(90deg) skew(0deg) scale(1); /* Firefox */
-        -webkit-transform: rotate(90deg) skew(0deg) scale(1); /* Safari ºÍ Chrome */
-        -o-transform: rotate(90deg) skew(0deg) scale(1);
-        animation: rotates 10s linear infinite;
-        -webkit-animation: rotates 10s linear infinite;
-        -moz-animation: rotates 10s linear infinite;
-        -o-animation: rotates 10s linear infinite;
-    }
-
-    .r4 {
-        transform: rotate(135deg) skew(0deg) scale(1);
-        -ms-transform: rotate(135deg) skew(0deg) scale(1); /* IE 9 */
-        -moz-transform: rotate(135deg) skew(0deg) scale(1); /* Firefox */
-        -webkit-transform: rotate(135deg) skew(0deg) scale(1); /* Safari ºÍ Chrome */
-        -o-transform: rotate(135deg) skew(0deg) scale(1);
-        animation: rotatet 10s linear infinite;
-        -webkit-animation: rotatet 10s linear infinite;
-        -moz-animation: rotatet 10s linear infinite;
-        -o-animation: rotatet 10s linear infinite;
-    }
-
-    /*@keyframes rotate {
+    @-webkit-keyframes spin {
         0% {
-            transform: rotate(0deg) skew(0deg) scale(1);
-            -ms-transform: rotate(0deg) skew(0deg) scale(1); !* IE 9 *!
-            -moz-transform: rotate(0deg) skew(0deg) scale(1); !* Firefox *!
-            -webkit-transform: rotate(0deg) skew(0deg) scale(1); !* Safari ºÍ Chrome *!
-            -o-transform: rotate(0deg) skew(0deg) scale(1);
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
         }
         100% {
-            transform: rotate(360deg) skew(0deg) scale(1);
-            -ms-transform: rotate(360deg) skew(0deg) scale(1); !* IE 9 *!
-            -moz-transform: rotate(360deg) skew(0deg) scale(1); !* Firefox *!
-            -webkit-transform: rotate(360deg) skew(0deg) scale(1); !* Safari ºÍ Chrome *!
-            -o-transform: rotate(360deg) skew(0deg) scale(1);
+            -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
         }
     }
 
-    @keyframes rotatef {
+    @keyframes spin {
         0% {
-            transform: rotate(45deg) skew(0deg) scale(1);
-            -ms-transform: rotate(45deg) skew(0deg) scale(1); !* IE 9 *!
-            -moz-transform: rotate(45deg) skew(0deg) scale(1); !* Firefox *!
-            -webkit-transform: rotate(45deg) skew(0deg) scale(1); !* Safari ºÍ Chrome *!
-            -o-transform: rotate(45deg) skew(0deg) scale(1);
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
         }
         100% {
-            transform: rotate(405deg) skew(0deg) scale(1);
-            -ms-transform: rotate(405deg) skew(0deg) scale(1); !* IE 9 *!
-            -moz-transform: rotate(405deg) skew(0deg) scale(1); !* Firefox *!
-            -webkit-transform: rotate(405deg) skew(0deg) scale(1); !* Safari ºÍ Chrome *!
-            -o-transform: rotate(405deg) skew(0deg) scale(1);
+            -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
         }
     }
 
-    @keyframes rotates {
-        0% {
-            transform: rotate(90deg) skew(0deg) scale(1);
-            -ms-transform: rotate(90deg) skew(0deg) scale(1); !* IE 9 *!
-            -moz-transform: rotate(90deg) skew(0deg) scale(1); !* Firefox *!
-            -webkit-transform: rotate(90deg) skew(0deg) scale(1); !* Safari ºÍ Chrome *!
-            -o-transform: rotate(90deg) skew(0deg) scale(1);
-        }
-        100% {
-            transform: rotate(450deg) skew(0deg) scale(1);
-            -ms-transform: rotate(450deg) skew(0deg) scale(1); !* IE 9 *!
-            -moz-transform: rotate(450deg) skew(0deg) scale(1); !* Firefox *!
-            -webkit-transform: rotate(450deg) skew(0deg) scale(1); !* Safari ºÍ Chrome *!
-            -o-transform: rotate(450deg) skew(0deg) scale(1);
-        }
-    }
-
-    @keyframes rotatet {
-        0% {
-            transform: rotate(135deg) skew(0deg) scale(1);
-            -ms-transform: rotate(135deg) skew(0deg) scale(1); !* IE 9 *!
-            -moz-transform: rotate(135deg) skew(0deg) scale(1); !* Firefox *!
-            -webkit-transform: rotate(135deg) skew(0deg) scale(1); !* Safari ºÍ Chrome *!
-            -o-transform: rotate(135deg) skew(0deg) scale(1);
-        }
-        100% {
-            transform: rotate(495deg) skew(0deg) scale(1);
-            -ms-transform: rotate(495deg) skew(0deg) scale(1); !* IE 9 *!
-            -moz-transform: rotate(495deg) skew(0deg) scale(1); !* Firefox *!
-            -webkit-transform: rotate(495deg) skew(0deg) scale(1); !* Safari ºÍ Chrome *!
-            -o-transform: rotate(495deg) skew(0deg) scale(1);
-        }
-    }*/
 </style>
 <template>
     <div class="rotate-cricle-wrapper">
-        <!--<div class="out_circle">
-            <div class="slide"></div>
-            <div class="nav_circle r1">
+        <div id="preloader">
+            <div id="loader">
+                <div id="loader-inner">
+                </div>
             </div>
-            <div class="nav_circle r2">
-            </div>
-            <div class="nav_circle r3">
-            </div>
-            <div class="nav_circle r4">
-            </div>
-        </div>-->
+        </div>
     </div>
-
 </template>
-
 <script>
     export default {
         name: '',
