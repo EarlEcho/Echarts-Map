@@ -8,130 +8,90 @@
         background-color: #11213A;
     }
 
-    #loader {
-        display: block;
-        position: relative;
-        left: 50%;
-        top: 50%;
-        width: 1000px;
-        height: 1000px;
-        margin: -450px 0 0 -500px;
-        border-radius: 50%;
-        border: 30px solid transparent;
-        border-top-color: #152d46;
-        -webkit-animation: spin 8s linear infinite;
-        animation: spin 8s linear infinite;
+    .main-content {
+        width: 62%;
+        height: 62%;
+        margin: 0 auto;
     }
 
-    #loader-inner {
-        width: 600px;
-        height: 600px;
-        background: -webkit-radial-gradient(circle, #051C27, #18364D, #11213A); /* Safari 5.1 - 6.0 */
-        background: -o-radial-gradient(circle, #051C27, #18364D, #11213A); /* Opera 11.6 - 12.0 */
-        background: -moz-radial-gradient(circle, #051C27, #18364D, #11213A); /* Firefox 3.6 - 15 */
-        background: radial-gradient(circle, #051C27, #18364D, #11213A); /* 标准的语法 */
-        -moz-box-shadow: 0px 0px 100px #11213A;
-        -webkit-box-shadow: 0px 0px 100px #11213A;
-        box-shadow: 0px 0px 50px #18364D;
-        position: relative;
-        left: 50%;
-        top: 50%;
-        margin: -280px 0 0 -280px;
-        border-radius: 50%;
-        -webkit-animation: spin 15s linear infinite;
-        animation: spin 15s linear infinite;
-        &:after {
-            content: "";
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            right: 30px;
-            bottom: 30px;
-            border-radius: 50%;
-            border: 5px solid transparent;
-            border-top-color: #2E6793;
-            -webkit-animation: spin 5s linear infinite;
-            animation: spin 5s linear infinite;
+    svg circle:first-child {
+        animation: anticlockwise-trans 12s linear infinite;
+        -webkit-animation: anticlockwise-trans 12s linear infinite;
+        -webkit-transform-origin: 50px 50px;
+        -moz-animation: anticlockwise 12s linear infinite;
+        -o-animation: anticlockwise 12s linear infinite;
+    }
+    svg circle:nth-child(2) {
+        animation: clockwise-trans 7s linear infinite;
+        -webkit-animation: clockwise-trans 7s linear infinite;
+        -webkit-transform-origin: 50px 50px;
+        -moz-animation: clockwise 7s linear infinite;
+        -o-animation: clockwise 8s linear infinite;
+    }
+    svg circle:last-child {
+        animation: anticlockwise-trans 10s linear infinite;
+        -webkit-animation: anticlockwise-trans 10s linear infinite;
+        -webkit-transform-origin: 50px 50px;
+        -moz-animation: anticlockwise 10s linear infinite;
+        -o-animation: anticlockwise 10s linear infinite;
+    }
+    @keyframes anticlockwise {
+        from {
+            transform: rotate(0)
         }
-        &:before {
-            content: "";
-            position: absolute;
-            top: 90px;
-            left: 90px;
-            right: 90px;
-            bottom: 90px;
-            border-radius: 50%;
-            border: 10px solid transparent;
-            border-top-color: #12588b;
-            -webkit-animation: spin 10s linear infinite;
-            animation: spin 10s linear infinite;
-        }
-
-    }
-
-    #loader:before {
-        content: "";
-        position: absolute;
-        top: 30px;
-        left: 30px;
-        right: 30px;
-        bottom: 30px;
-        border-radius: 50%;
-        border: 10px solid transparent;
-        border-top-color: #3ec4cd;
-        -webkit-animation: spin 5s linear infinite;
-        animation: spin 5s linear infinite;
-    }
-
-    #loader:after {
-        content: "";
-        position: absolute;
-        top: 90px;
-        left: 90px;
-        right: 90px;
-        bottom: 90px;
-        border-radius: 50%;
-        border: 8px solid transparent;
-        border-top-color: #12588b;
-        -webkit-animation: spin 10s linear infinite;
-        animation: spin 10s linear infinite;
-    }
-
-    @-webkit-keyframes spin {
-        0% {
-            -webkit-transform: rotate(0deg);
-            -ms-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-        100% {
-            -webkit-transform: rotate(360deg);
-            -ms-transform: rotate(360deg);
-            transform: rotate(360deg);
+        to {
+            transform: rotate(360deg)
         }
     }
 
-    @keyframes spin {
-        0% {
-            -webkit-transform: rotate(0deg);
-            -ms-transform: rotate(0deg);
-            transform: rotate(0deg);
+    @keyframes anticlockwise-trans {
+        from {
+            transform: rotate(360deg)
         }
-        100% {
-            -webkit-transform: rotate(360deg);
-            -ms-transform: rotate(360deg);
-            transform: rotate(360deg);
+        to {
+            transform: rotate(0)
+        }
+    }
+    @keyframes clockwise {
+        from {
+            transform: rotate(-360deg)
+        }
+        to {
+            transform: rotate(0)
         }
     }
 
+    @keyframes clockwise-trans {
+        from {
+            transform: rotate(-360deg)
+        }
+        to {
+            transform: rotate(0)
+        }
+    }
 </style>
 <template>
     <div class="rotate-cricle-wrapper">
         <div id="preloader">
-            <div id="loader">
+            <div class="main-content">
+                <svg version="1.1" id="L1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                    <circle fill="none" stroke="#18354B" stroke-width="5" stroke-miterlimit="15" stroke-dasharray="14.2472,14.2472" cx="50" cy="50" r="47" >
+                        <!--<animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="12s" from="0 50 50" to="360 50 50" repeatCount="indefinite" />-->
+                    </circle>
+                    <circle fill="none" stroke="#0D1C29" stroke-width="1" stroke-miterlimit="10" stroke-dasharray="10,10" cx="50" cy="50" r="39">
+                        <!--<animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="12s" from="0 50 50" to="-360 50 50" repeatCount="indefinite" />-->
+                    </circle>
+                    <circle fill="none" stroke="#96E6EC" stroke-width="1" cx="50" cy="50" r="30" style="opacity:0.5;"/>
+                    <circle fill="#11213A" stroke="#96E6EC" stroke-width="1" cx="50" cy="20" r="2" class="aaaa">
+                    </circle>
+                </svg>
+            </div>
+            <!--<div id="loader">
                 <div id="loader-inner">
                 </div>
-            </div>
+            </div>-->
         </div>
+
     </div>
 </template>
 <script>

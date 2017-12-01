@@ -17,7 +17,7 @@
         position: absolute;
         z-index: 5;
         bottom: 25px;
-        left: 42%;
+        left: 44%;
         width: 200px;
         height: 200px;
         background-color: transparent;
@@ -55,12 +55,18 @@
         width: 100%;
         height: 100%;
         border-radius: 100%;
-        border: solid 1px #fff;
         position: absolute;
+        /*border: solid 1px white;*/
         top: 50%;
         left: 50%;
         margin: -50% 0 0 -50%;
         transform-style: preserve-3d;
+    }
+    .ball div:nth-child(odd){
+        border: solid 1px #2b7080;
+    }
+    .ball div:nth-child(even){
+        border: solid 1px #96E6EC;
     }
 
     .ball .x1 {
