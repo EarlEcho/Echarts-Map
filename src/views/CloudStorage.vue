@@ -91,59 +91,6 @@
 
         }
     }
-    .dialog-fade-enter-active {
-        -webkit-animation: dialog-fade-in 1.5s;
-        animation: dialog-fade-in 1.5s
-    }
-
-    .dialog-fade-leave-active {
-        -webkit-animation: dialog-fade-out 1.5s;
-        animation: dialog-fade-out 1.5s
-    }
-
-    @-webkit-keyframes dialog-fade-in {
-        0% {
-            transform: scale(1.23);
-            opacity: 0
-        }
-        100% {
-            transform: scale(1);
-            opacity: 1
-        }
-    }
-
-    @keyframes dialog-fade-in {
-        0% {
-            transform: scale(1.23);
-            opacity: 0
-        }
-        100% {
-            transform: scale(1);
-            opacity: 1
-        }
-    }
-
-    @-webkit-keyframes dialog-fade-out {
-        0% {
-            transform: scale(1);
-            opacity: 1
-        }
-        100% {
-            transform: scale(1.23);
-            opacity: 0
-        }
-    }
-
-    @keyframes dialog-fade-out {
-        0% {
-            transform: scale(1);
-            opacity: 1
-        }
-        100% {
-            transform: scale(1.23);
-            opacity: 0
-        }
-    }
 
 </style>
 <template>
@@ -225,7 +172,6 @@
 
     require('echarts/lib/chart/map');
     require('echarts/lib/chart/lines');
-    require('echarts/lib/chart/gauge');
 
     require('echarts/lib/component/geo');
     // 引入提示框和标题组件
@@ -239,7 +185,6 @@
     import RightBottomTable from '@/components/RightBottomTable'
     import RotateCricle from '@/components/rotateCricle'
     import BottomGloab from '@/components/bottomGloab'
-
 
     import SysHeaderBox from '@/components/SysHeader'
 

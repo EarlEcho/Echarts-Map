@@ -332,7 +332,7 @@
                                         </el-table-column>
 
 
-                                        <el-table-column prop="date" label="日期" width="104px"></el-table-column>
+                                        <el-table-column prop="date" label="日期" width="105px"></el-table-column>
                                     </el-table>
                                 </div>
                                 <div class="data-footer-box clearfix">
@@ -345,7 +345,7 @@
                             </div>
                             <div class="expand-chart-wrapper g-rt">
                                 <div class="chart-content">
-                                    <div id="popup-chart" style="width: 100%; height: 470px;">
+                                    <div id="popup-chart" ref="popupChart" style="width: 100%; height: 470px;">
 
                                     </div>
                                 </div>
@@ -726,7 +726,6 @@
                     }]
                 },
                 chartOption: {
-                    backgroundColor: '#172f4b',
                     tooltip: {
                         trigger: 'axis',
                         axisPointer: {
@@ -867,12 +866,20 @@
                 let _this = this;
                 _this.showDialogType2 = true;
                 let map = setInterval(function () {
-                    myChart = echarts.init(document.getElementById('popup-chart'));
-                    myChart.setOption(_this.chartOption);
+                    if (myChart == '' || typeof(myChart) == 'undefined') {
+                        myChart = echarts.init(_this.$refs.popupChart);
+                        myChart.setOption(_this.chartOption, true);
+                    } else {
+                        myChart.dispose();
+                        myChart = echarts.init(_this.$refs.popupChart);
+                        myChart.setOption(_this.chartOption);
+                    }
                     clearInterval(map);
-                    myChart.on('click', function (param) {
-                    });
                 }, 1000)
+
+
+
+
             },
             dailyPriceChart: function () {
                 let _this = this;

@@ -357,7 +357,7 @@
                                                 <el-table-column prop="mill" label="钢厂" width="60px"></el-table-column>
 
                                                 <el-table-column prop="turnover" label="成交价"
-                                                                 width="55px">
+                                                                 width="56px">
                                                     <template slot-scope="scope">
                                                         <span :class="scope.row.turnover>3000?'red bold':'green bold'">
                                                             {{scope.row.turnover}}

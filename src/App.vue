@@ -25,4 +25,58 @@
     [v-cloak] {
         display: none;
     }
+    .dialog-fade-enter-active {
+        -webkit-animation: dialog-fade-in 1.2s;
+        animation: dialog-fade-in 1.2s
+    }
+
+    .dialog-fade-leave-active {
+        -webkit-animation: dialog-fade-out 1.2s;
+        animation: dialog-fade-out 1.2s
+    }
+
+    @-webkit-keyframes dialog-fade-in {
+        0% {
+            transform: scale(1.23);
+            opacity: 0
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1
+        }
+    }
+
+    @keyframes dialog-fade-in {
+        0% {
+            transform: scale(1.23);
+            opacity: 0
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1
+        }
+    }
+
+    @-webkit-keyframes dialog-fade-out {
+        0% {
+            transform: scale(1);
+            opacity: 1
+        }
+        100% {
+            transform: scale(1.23);
+            opacity: 0
+        }
+    }
+
+    @keyframes dialog-fade-out {
+        0% {
+            transform: scale(1);
+            opacity: 1
+        }
+        100% {
+            transform: scale(1.23);
+            opacity: 0
+        }
+    }
+
 </style>

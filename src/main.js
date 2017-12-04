@@ -11,9 +11,6 @@ import 'element-ui/lib/theme-chalk/base.css';
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 
 
-// import vue-video-player
-import VueVideoPlayer from 'vue-video-player'
-
 import {Table, TableColumn, Button, Tooltip, Row, Col, Tabs, TabPane, Dialog, Select, Option,Menu,MenuItem,DatePicker,Form,FormItem,Popover,Radio,RadioGroup} from 'element-ui'
 
 
