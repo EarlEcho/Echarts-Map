@@ -296,7 +296,7 @@
                                 <el-row>
                                     <el-col :span="12">
                                         <div class="videos-content-item">
-                                            <img src="../assets/m0.jpg" alt="">
+                                            <img src="../assets/m0.png" alt="">
                                         </div>
                                     </el-col>
                                     <el-col :span="12">
@@ -344,7 +344,7 @@
     import {videoPlayer} from 'vue-video-player'
 
 
-    import m0 from '../assets/m0.jpg';
+    import m0 from '../assets/m0.png';
     import m2 from '../assets/m2.jpg';
     import m5 from '../assets/m5.jpg';
     import m6 from '../assets/m6.jpg';

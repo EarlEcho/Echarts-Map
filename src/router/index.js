@@ -1,15 +1,17 @@
+
+const HomePage = () => import('@/views/HomePage.vue')
+const CloudStorage = () => import('@/views/CloudStorage.vue')
+
 const routers = [
     {
         path: '/',
         meta: {title: "首页-钢谷网大数据监控系统"},
-        name: 'HomePage',
-        component: (resolve) => require(['../views/HomePage.vue'], resolve)
+        component: HomePage
     },
     {
         path: '/cloud-storage',
         meta: {title: "云仓储-钢谷网大数据监控系统"},
-        name: 'CloudStorage',
-        component: (resolve) => require(['../views/CloudStorage.vue'], resolve)
+        component: CloudStorage
     }
 ];
 export default routers;
