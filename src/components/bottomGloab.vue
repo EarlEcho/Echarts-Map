@@ -1,12 +1,17 @@
 <style scoped lang="less">
-    @keyframes rotate {
-        0% {
-            transform: rotateX(0deg) rotateY(0deg);
-        }
-        100% {
-            transform: rotateX(360deg) rotateY(360deg);
-        }
+
+    /*.beforeDots(@top:20px,@left:15px){
+        position: relative;
+        top: @top;
+        left: @left;
+        content: "";
+        height: 3px;
+        width: 3px;
+        border-radius: 50%;
+        float: left;
+        background: white;
     }
+*/
 
     html {
         background: linear-gradient(#ff0 0%, #000 80%);
@@ -44,7 +49,7 @@
         width: 100%;
         height: 100%;
         transform-style: preserve-3d; /* 默认flat 2D */
-        animation: rotate3d 20s infinite linear;
+        animation: rotate3d 40s infinite linear;
         img {
             position: relative;
             top: 55px;
@@ -62,27 +67,29 @@
         margin: -50% 0 0 -50%;
         transform-style: preserve-3d;
     }
-    .ball div:nth-child(odd){
+
+    .ball div:nth-child(odd) {
         border: solid 1px #2b7080;
     }
-    .ball div:nth-child(even){
+
+    .ball div:nth-child(even) {
         border: solid 1px #96E6EC;
     }
 
     .ball .x1 {
-        transform: rotateY(0)
+        transform: rotateY(0);
     }
 
     .ball .x2 {
-        transform: rotateY(20deg)
+        transform: rotateY(20deg);
     }
 
     .ball .x3 {
-        transform: rotateY(40deg)
+        transform: rotateY(40deg);
     }
 
     .ball .x4 {
-        transform: rotateY(60deg)
+        transform: rotateY(60deg);
     }
 
     .ball .x5 {
@@ -141,9 +148,21 @@
         transform: rotateX(90deg) translateZ(-64px) scale(0.60);
     }
 
+    @keyframes rotate {
+        0% {
+            transform: rotateX(0deg) rotateY(0deg);
+        }
+        100% {
+            transform: rotateX(360deg) rotateY(360deg);
+        }
+    }
+
     @keyframes rotate3d {
         0% {
             transform: rotate(-20deg) rotateX(-20deg) rotateY(0)
+        }
+        50% {
+            transform: rotate(-20deg) rotateX(-55deg) rotateY(180deg)
         }
         100% {
             transform: rotate(-20deg) rotateX(-20deg) rotateY(360deg)
