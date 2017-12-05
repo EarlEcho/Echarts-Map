@@ -194,6 +194,7 @@
         }
 
     }
+
     .dialog-fade-enter-active {
         -webkit-animation: dialog-fade-in 1.2s;
         animation: dialog-fade-in 1.2s
@@ -250,7 +251,7 @@
 </style>
 <template>
     <div class="homepage-wrapper">
-        <sys-header-box logo-active="1"></sys-header-box>
+        <sys-header-box logo-active="2"></sys-header-box>
 
         <div class="data-content-box clearfix">
             <div class="data-left-wrapper g-lf">

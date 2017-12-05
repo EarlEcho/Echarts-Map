@@ -68,13 +68,14 @@
 
         .table-rank-icon {
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            background-color: #F7CE21;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             color: #A67A32;
             vertical-align: middle;
-            line-height: 20px;
+            line-height: 25px;
+            background: url(../assets/rank.png) no-repeat;
+            background-size: 100%;
         }
         .numarrow {
             display: inline-block;

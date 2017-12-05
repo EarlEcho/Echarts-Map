@@ -91,6 +91,7 @@
 
         }
     }
+
     .dialog-fade-enter-active {
         -webkit-animation: dialog-fade-in 1.2s;
         animation: dialog-fade-in 1.2s
@@ -144,6 +145,23 @@
             opacity: 0
         }
     }
+
+    .storage-main-infos {
+        position: absolute;
+        top: 190px;
+        left: 530px;
+        width: 430px;
+        height: 55px;
+        p{
+            font-weight: bold;
+            font-size: 17px;
+            color: #12639A;
+            line-height: 25px;
+        }
+        span{
+            color: white;
+        }
+    }
 </style>
 <template>
     <div class="mian-box">
@@ -157,10 +175,14 @@
 
         <!--地图-->
         <div id="main"></div>
+        <div class="storage-main-infos">
+            <p>今日已成交<span>321</span>笔，累计<span>62327</span>吨，交易金额<span>89021</span>万元</p>
+            <p>已发布成交价信息<span>24</span>条，价格指数信息<span>321</span>条</p>
+        </div>
 
 
         <!--页面头部的logo 导航-->
-        <sys-header-box logo-active="2"></sys-header-box>
+        <sys-header-box logo-active="3"></sys-header-box>
 
 
         <!--左侧数据-->
@@ -858,8 +880,8 @@
                 );
             });
             let map = setInterval(function () {
-                /*_this.drawLine();
-                clearInterval(map);*/
+                _this.drawLine();
+                clearInterval(map);
             }, 500)
         }
     }

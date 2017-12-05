@@ -36,7 +36,7 @@
         -o-animation: anticlockwise 10s linear infinite;
     }
 
-    /*@keyframes anticlockwise {
+    @keyframes anticlockwise {
         from {
             transform: rotate(0)
         }
@@ -70,7 +70,7 @@
         to {
             transform: rotate(0)
         }
-    }*/
+    }
 </style>
 <template>
     <div class="preloader">
