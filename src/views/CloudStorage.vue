@@ -5,7 +5,6 @@
         width: 100%;
         .sys-header-box {
             position: absolute;
-            z-index: 2;
         }
         div {
             box-sizing: border-box;
@@ -34,7 +33,9 @@
             float: left;
         }
         .right-data-wrapper {
+
             position: absolute;
+            z-index: 1;
             top: 164px;
             right: 30px;
             overflow: hidden;
@@ -152,13 +153,13 @@
         left: 530px;
         width: 430px;
         height: 55px;
-        p{
+        p {
             font-weight: bold;
             font-size: 17px;
             color: #12639A;
             line-height: 25px;
         }
-        span{
+        span {
             color: white;
         }
     }

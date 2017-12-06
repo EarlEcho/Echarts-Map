@@ -20,15 +20,76 @@
 
     .wrap {
         position: absolute;
-        z-index: 5;
+        z-index: 1;
         bottom: 25px;
-        left: 44%;
-        width: 200px;
-        height: 200px;
+        left: 29%;
+        width: 760px;
+        height: 170px;
         background-color: transparent;
-        overflow: hidden;
         perspective: 1000px; /* 视图距元素的距离 相当于摄像机 */
         text-align: center;
+    }
+
+    /*
+    <div class="btn-group">
+                    <div class="blocks">
+                        <div class="block-item">
+
+                        </div>
+                    </div>
+
+                </div>
+    */
+    .arrow-left {
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        /*border: solid 1px white;*/
+        width: 300px;
+        height: 190px;
+        padding-right: 20px;
+        .blocks{
+            float: right;
+        }
+
+    }
+
+    .arrow-animation {
+        width: 300px;
+        height: 115px;
+        /*border: solid 1px white;*/
+    }
+
+    .btn-group {
+        .blocks {
+            display: inline-block;
+            width: 72px;
+            height: 25px;
+            padding-top: 5px;
+            border-top: solid 1px white;
+            .block-item {
+                width: 12px;
+                height: 12px;
+                background-color: #96E6EC;
+                display: inline-block;
+                margin:0 3px;
+            }
+        }
+    }
+
+    .arrow-right {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        /*border: solid 1px white;*/
+        width: 300px;
+        height: 190px;
+        padding-left: 20px;
+        .blocks{
+            float: left;
+        }
     }
 
     .ball {
@@ -39,6 +100,7 @@
         left: 50%;
         margin: -80px 0 0 -80px;
         transition: all .6s;
+
     }
 
     .ball:hover {
@@ -171,6 +233,18 @@
 </style>
 <template>
     <div class="wrap">
+        <div class="arrow-left">
+            <div class="arrow-animation">
+
+            </div>
+            <div class="btn-group">
+                <div class="blocks">
+                    <div class="block-item" v-for="i in 4" :key="i">
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="ball">
             <div class="ball_box">
                 <div class="x1"></div>
@@ -192,6 +266,19 @@
                 <div class="y7"></div>
                 <div class="y8"></div>
                 <div class="y9"></div>
+            </div>
+        </div>
+        <div class="arrow-right">
+            <div class="arrow-animation">
+
+            </div>
+            <div class="btn-group">
+                <div class="blocks">
+                    <div class="block-item" v-for="i in 4" :key="i">
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

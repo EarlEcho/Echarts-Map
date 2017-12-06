@@ -81,7 +81,7 @@
     .homepage-right-toolbar .choose {
         display: inline-block;
         margin: 0 0 0 20px;
-        .choose-select{
+        .choose-select {
             display: inline-block;
             width: 110px;
         }
