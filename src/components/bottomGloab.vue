@@ -30,16 +30,6 @@
         text-align: center;
     }
 
-    /*
-    <div class="btn-group">
-                    <div class="blocks">
-                        <div class="block-item">
-
-                        </div>
-                    </div>
-
-                </div>
-    */
     .arrow-left {
         position: absolute;
         z-index: 0;

@@ -881,8 +881,8 @@
                 );
             });
             let map = setInterval(function () {
-               /* _this.drawLine();
-                clearInterval(map);*/
+                _this.drawLine();
+                clearInterval(map);
             }, 500)
         }
     }
