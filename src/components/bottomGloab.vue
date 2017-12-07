@@ -45,20 +45,31 @@
         z-index: 0;
         top: 0;
         left: 0;
-        /*border: solid 1px white;*/
         width: 300px;
-        height: 190px;
-        padding-right: 20px;
-        .blocks{
+        margin-top: 60px;
+        padding-right: 32px;
+        .blocks {
             float: right;
         }
 
     }
 
+    .arrow-right {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        width: 300px;
+        margin-top: 60px;
+        padding-left: 32px;
+        .blocks {
+            float: left;
+        }
+    }
+
     .arrow-animation {
         width: 300px;
-        height: 115px;
-        /*border: solid 1px white;*/
+        margin-bottom: 20px;
     }
 
     .btn-group {
@@ -73,22 +84,8 @@
                 height: 12px;
                 background-color: #96E6EC;
                 display: inline-block;
-                margin:0 3px;
+                margin: 0 3px;
             }
-        }
-    }
-
-    .arrow-right {
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        right: 0;
-        /*border: solid 1px white;*/
-        width: 300px;
-        height: 190px;
-        padding-left: 20px;
-        .blocks{
-            float: left;
         }
     }
 
@@ -230,12 +227,35 @@
             transform: rotate(-20deg) rotateX(-20deg) rotateY(360deg)
         }
     }
+
+    .triangle-facing-right {
+        display: inline-block;
+        border-right: 6px solid #12669F;
+        border-bottom: 6px solid #12669F;
+        width: 20px;
+        height: 20px;
+        transform: rotate(-45deg) skew(5deg, 5deg);
+        border-radius: 10%;
+        margin-left: -2px;
+
+    }
+
+    .triangle-facing-left {
+        display: inline-block;
+        border-left: 6px solid #12669F;
+        border-bottom: 6px solid #12669F;
+        width: 20px;
+        height: 20px;
+        transform: rotate(45deg) skew(-5deg, -5deg);
+        border-radius: 10%;
+        margin-right: -2px;
+    }
 </style>
 <template>
     <div class="wrap">
         <div class="arrow-left">
             <div class="arrow-animation">
-
+                <div class="triangle-facing-left" v-for="i in 8" ref="triangleLeft"></div>
             </div>
             <div class="btn-group">
                 <div class="blocks">
@@ -270,7 +290,7 @@
         </div>
         <div class="arrow-right">
             <div class="arrow-animation">
-
+                <div class="triangle-facing-right" v-for="i in 8" ref="triangleRight"></div>
             </div>
             <div class="btn-group">
                 <div class="blocks">
@@ -278,7 +298,6 @@
 
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -289,6 +308,23 @@
         name: '',
         data() {
             return {}
+        },
+        mounted() {
+            let arrowsRight = this.$refs.triangleRight;
+            let arrowsLeft = this.$refs.triangleLeft;
+            let ops = 0.2;
+            let i = 0;
+            let length = arrowsRight.length;
+            for (i; i < length; i++) {
+                arrowsRight[i].style.opacity = ops;
+                ops = ops + 0.1;
+            }
+            ops = 1;
+            i = 0;
+            for (i; i < length; i++) {
+                arrowsLeft[i].style.opacity = ops;
+                ops = ops - 0.1;
+            }
         }
     }
 </script>
