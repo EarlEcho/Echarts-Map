@@ -340,17 +340,20 @@
 <script>
     import ggdp from '@/functions/common'
     import BorderBox from '@/components/BoderCompontents'
+    import ElButton from "../../node_modules/element-ui/packages/button/src/button.vue";
 
     // 按需引入 ECharts 主模块
-    let echarts = require('echarts/lib/echarts');
-    require('echarts/lib/chart/pie');
-    // 引入提示框和标题组件
-    require('echarts/lib/component/tooltip');
-    require('echarts/lib/component/title');
+//    let echarts = require('echarts/lib/echarts');
+//    require('echarts/lib/chart/pie');
+//    // 引入提示框和标题组件
+//    require('echarts/lib/component/tooltip');
+//    require('echarts/lib/component/title');
     let myChart;
     export default {
         name: 'leftTopTable',
-        components: {BorderBox},
+        components: {
+            ElButton,
+            BorderBox},
         props: [],
         data() {
             return {

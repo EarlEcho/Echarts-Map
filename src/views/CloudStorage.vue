@@ -165,7 +165,7 @@
     }
 </style>
 <template>
-    <div class="mian-box">
+    <div class="mian-box" v-cloak>
         <!--最底部的旋转动画-->
         <rotate-cricle></rotate-cricle>
 
@@ -240,28 +240,29 @@
 </template>
 
 <script>
-    import ggdp from '@/functions/common'
+//    import ggdp from '@/functions/common'
+
+
     // 按需引入 ECharts 主模块
     let echarts = require('echarts/lib/echarts');
     import china from 'echarts/map/js/china.js';
 
-    require('echarts/lib/chart/map');
-    require('echarts/lib/chart/lines');
+    const LeftTopTable = () => import('@/components/LeftTopTable')
+    const LeftBottomTable = () => import('@/components/LeftBottomTable')
+    const RightTopTable = () => import('@/components/RightTopTable')
+    const RightBottomTable = () => import('@/components/RightBottomTable')
+    const RotateCricle = () => import('@/components/rotateCricle')
+    const BottomGloab = () => import('@/components/bottomGloab')
+    const SysHeaderBox = () => import('@/components/SysHeader')
 
-    require('echarts/lib/component/geo');
-    // 引入提示框和标题组件
-    require('echarts/lib/component/tooltip');
-    require('echarts/lib/component/title');
-
-
-    import LeftTopTable from '@/components/LeftTopTable'
-    import LeftBottomTable from '@/components/LeftBottomTable'
-    import RightTopTable from '@/components/RightTopTable'
-    import RightBottomTable from '@/components/RightBottomTable'
-    import RotateCricle from '@/components/rotateCricle'
-    import BottomGloab from '@/components/bottomGloab'
-
-    import SysHeaderBox from '@/components/SysHeader'
+//    import LeftTopTable from '@/components/LeftTopTable'
+//    import LeftBottomTable from '@/components/LeftBottomTable'
+//    import RightTopTable from '@/components/RightTopTable'
+//    import RightBottomTable from '@/components/RightBottomTable'
+//    import RotateCricle from '@/components/rotateCricle'
+//    import BottomGloab from '@/components/bottomGloab'
+//
+//    import SysHeaderBox from '@/components/SysHeader'
 
     export default {
         name: 'CloudStorage',

@@ -13,7 +13,9 @@
 <style>
     @import "assets/css/common.css";
     @import "assets/fonts/iconfont.css";
-
+    body{
+        background-color: #11213A;
+    }
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;

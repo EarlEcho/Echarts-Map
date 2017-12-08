@@ -393,9 +393,8 @@
     import DataHeaderBox from '@/components/ToolTop'
 
     import SysHeaderBox from '@/components/SysHeader'
-    import BorderBox from '@/components/BoderCompontents'
 
-    import {videoPlayer} from 'vue-video-player'
+    const BorderBox = () => import('@/components/BoderCompontents')
 
 
     import m0 from '../assets/m0.png';
@@ -405,11 +404,18 @@
     import m7 from '../assets/m7.jpg';
     import m9 from '../assets/m9.jpg';
     import m10 from '../assets/m10.jpg';
+    const VideoPlayer = () => import('../../node_modules/vue-video-player/src/player.vue')
+
+//    import VideoPlayer from "../../node_modules/vue-video-player/src/player.vue";
 
 
     export default {
         name: 'HomePage',
-        components: {DataHeaderBox, SysHeaderBox, videoPlayer, BorderBox},
+        components: {
+            VideoPlayer,
+            DataHeaderBox,
+            SysHeaderBox,
+            BorderBox},
         props: [],
         data() {
             return {
@@ -613,7 +619,7 @@
             // player is ready
             playerReadied(player) {
                 // seek to 10s
-                player.currentTime(10)
+//                player.currentTime(10)
                 // console.log('example 01: the player is readied', player)
             }
         }
