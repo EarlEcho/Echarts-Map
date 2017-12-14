@@ -406,9 +406,6 @@
     import m10 from '../assets/m10.jpg';
     const VideoPlayer = () => import('../../node_modules/vue-video-player/src/player.vue')
 
-//    import VideoPlayer from "../../node_modules/vue-video-player/src/player.vue";
-
-
     export default {
         name: 'HomePage',
         components: {

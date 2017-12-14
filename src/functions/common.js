@@ -18,6 +18,7 @@ let ggdp = {
             url: url,
             data: data
         }).then((response) => {
+            console.log(response.data);
             callback(response.data);
         }).catch((response) => {
         });

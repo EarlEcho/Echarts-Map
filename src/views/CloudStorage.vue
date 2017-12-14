@@ -240,7 +240,7 @@
 </template>
 
 <script>
-//    import ggdp from '@/functions/common'
+    import ggdp from '@/functions/common'
 
 
     // 按需引入 ECharts 主模块
@@ -813,6 +813,32 @@
             },
         },
         mounted() {
+            ggdp.postAjax('/dbapi/price/bigscreen', (data) => {
+
+                console.log(data);
+
+                if (data.code == 0) {
+                    console.log('成功');
+
+                } else {
+                    console.log('失败');
+
+                }
+            });
+
+
+            ggdp.postAjax('/dbapi/price/screenexp', (data) => {
+
+                console.log(data);
+
+                if (data.code == 0) {
+                    console.log('成功');
+
+                } else {
+                    console.log('失败');
+
+                }
+            });
 
         },
         created() {
@@ -882,8 +908,8 @@
                 );
             });
             let map = setInterval(function () {
-                _this.drawLine();
-                clearInterval(map);
+//                _this.drawLine();
+//                clearInterval(map);
             }, 500)
         }
     }
