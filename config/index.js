@@ -32,7 +32,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/ggw':{//此处并非一定和url一致。
-                target:'http://news-test.gangguwang.com',
+                target:'http://219.144.217.162:8085',
                 changeOrigin:true,//允许跨域
                 pathRewrite:{
                     '^/ggw': ''

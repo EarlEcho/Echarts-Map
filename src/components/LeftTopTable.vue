@@ -358,7 +358,7 @@
         data() {
             return {
                 tableTitle: '实时交易数据',
-                showTableBox2: true,
+                showTableBox2: false,
                 radioValue1: '',
                 radioValue2: '',
                 showDialogType1: false,
@@ -853,6 +853,13 @@
 
 
             }
+        },
+        mounted(){
+            /*获取左上方的实时交易数据表格的信息*/
+            ggdp.getAjax('/inter.ashx?action=transaction', (data) => {
+                console.log(data);
+//                this.transactionDatas = data;
+            });
         },
         methods: {
             showTable2() {
